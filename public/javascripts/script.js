@@ -26,6 +26,8 @@ const coo = document.getElementById('coo');
 const lodBtn = document.getElementById('lod-btn');
 const gender = document.getElementById('sponsor-gender');
 const instructionsBtn = document.getElementById('instructions-btn');
+const fraBtn = document.getElementById('fra-btn');
+const ariBtn = document.getElementById('ari-btn');
 
 phoneNum.value = '0000000000';
 results.value = 'Clear';
@@ -36,22 +38,22 @@ window.addEventListener('load', () => {
 
 //THIS STUFF BELOW IS FOR TESTING
 
-// firstName.value = 'David Jose';
-// lastName.value = 'Ortiz Salazar';
-// dob.value = '2/26/1983';
-// a_number.value = '123123123';
-// stateEl.value = 'TX';
-// relationship.value = 'Father';
-// caseManager.value = 'Hector Barberi';
-// zipCode.value = 24534;
-// city.value = 'Crystal City';
-// address.value = '203 N Ave C';
-// childDob.value = '6/3/2017';
-// childName.value = 'Lorenzo Ortiz';
-// coo.value = 'Guatemala';
-// motherName.value = 'Gloria Ortiz';
-// fatherName.value = 'Lorenzo Ortiz';
-// gender.value = 'Male';
+firstName.value = 'David Jose';
+lastName.value = 'Ortiz Salazar';
+dob.value = '2/26/1983';
+a_number.value = '123123123';
+stateEl.value = 'TX';
+relationship.value = 'Father';
+caseManager.value = 'Hector Barberi';
+zipCode.value = 24534;
+city.value = 'Crystal City';
+address.value = '203 N Ave C';
+childDob.value = '6/3/2017';
+childName.value = 'Lorenzo Ortiz';
+coo.value = 'Guatemala';
+motherName.value = 'Gloria Ortiz';
+fatherName.value = 'Lorenzo Ortiz';
+gender.value = 'Male';
 
 goBtn.addEventListener('click', jumbleNames);
 fingerPrintBtn.addEventListener('click', renderFingerprints);
@@ -61,6 +63,52 @@ fingerprintConfirmBtn.addEventListener('click', renderFPConfirmation);
 idCreator.addEventListener('click', renderForeignId);
 bcBtn.addEventListener('click', renderBc);
 lodBtn.addEventListener('click', renderLOD);
+fraBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	getResource('fra', 12);
+});
+
+const fraData = {
+	aNumber: a_number.value,
+	sponsorFirstName: firstName.value,
+	sponsorLasName: lastName.value,
+	sponsorDob: dob.value,
+	childsName: childName.value,
+	address: address.value,
+	city: city.value,
+	state: stateEl.value,
+	zipCode: zipCode.value,
+	coo: coo.value,
+	phone: phoneNum.value,
+	relationship: relationship.value,
+};
+
+async function getResource(url, datapoints) {
+	if (validate(`.${url}`, datapoints) === false) {
+		return alert(`you are missing some data.`);
+	}
+	console.log(fraData);
+	const response = await fetch(`/${url}`, {
+		method: 'POST',
+
+		body: JSON.stringify({
+			aNumber: a_number.value,
+			sponsorFirstName: firstName.value,
+			sponsorLasName: lastName.value,
+			sponsorDob: dob.value,
+			childsName: childName.value,
+			address: address.value,
+			city: city.value,
+			state: stateEl.value,
+			zipCode: zipCode.value,
+			coo: coo.value,
+			phone: phoneNum.value,
+			relationship: relationship.value,
+		}),
+	});
+	const result = await response;
+	console.log(result);
+}
 
 function getNumbers(str, startPos, length) {
 	let newStr = '';
@@ -84,9 +132,6 @@ function emailConvert(str) {
 
 function renderFingerprints() {
 	getNamesArr();
-	if (validate('.fp', 3) === false) {
-		return alert(`you are missing some data.`);
-	}
 	const today = new Date().toLocaleDateString();
 
 	const apptTime = new Date().getHours() + 3;
