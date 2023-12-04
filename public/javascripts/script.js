@@ -28,6 +28,7 @@ const gender = document.getElementById('sponsor-gender');
 const instructionsBtn = document.getElementById('instructions-btn');
 const fraBtn = document.getElementById('fra-btn');
 const ariBtn = document.getElementById('ari-btn');
+const childGender = document.getElementById('child-gender');
 
 phoneNum.value = '0000000000';
 results.value = 'Clear';
@@ -54,6 +55,7 @@ coo.value = 'Guatemala';
 motherName.value = 'Gloria Ortiz';
 fatherName.value = 'Lorenzo Ortiz';
 gender.value = 'Male';
+childGender.value = 'Male';
 
 goBtn.addEventListener('click', jumbleNames);
 fingerPrintBtn.addEventListener('click', renderFingerprints);
@@ -65,13 +67,18 @@ bcBtn.addEventListener('click', renderBc);
 lodBtn.addEventListener('click', renderLOD);
 fraBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	getResource('fra', 12);
+	getResource('fra', fraData, 12);
+});
+ariBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	console.log('clicked ari button');
+	getResource('ari', { message: 'hitting the route' }, 12);
 });
 
 const fraData = {
 	aNumber: a_number.value,
 	sponsorFirstName: firstName.value,
-	sponsorLasName: lastName.value,
+	sponsorLastName: lastName.value,
 	sponsorDob: dob.value,
 	childsName: childName.value,
 	address: address.value,
@@ -81,31 +88,25 @@ const fraData = {
 	coo: coo.value,
 	phone: phoneNum.value,
 	relationship: relationship.value,
+	childGender: childGender.value,
 };
 
-async function getResource(url, datapoints) {
+async function getResource(url, data, datapoints) {
 	if (validate(`.${url}`, datapoints) === false) {
 		return alert(`you are missing some data.`);
 	}
 	console.log(fraData);
-	const response = await fetch(`/${url}`, {
-		method: 'POST',
-
-		body: JSON.stringify({
-			aNumber: a_number.value,
-			sponsorFirstName: firstName.value,
-			sponsorLasName: lastName.value,
-			sponsorDob: dob.value,
-			childsName: childName.value,
-			address: address.value,
-			city: city.value,
-			state: stateEl.value,
-			zipCode: zipCode.value,
-			coo: coo.value,
-			phone: phoneNum.value,
-			relationship: relationship.value,
-		}),
-	});
+	const response = await fetch(
+		`/${url}`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		},
+		console.log('data fetching')
+	);
 	const result = await response;
 	console.log(result);
 }
@@ -140,7 +141,7 @@ function renderFingerprints() {
 
 	pageBodyEl.innerHTML = `
 	<section class="section">
-  <img id="fieldprint-logo" style="height: 100px" src="./fieldprint.png" />
+  <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
     This message is to confirm that <span id="fp-appt-sponsor">${
 			firstName.value
@@ -161,7 +162,7 @@ function renderFPConfirmation() {
 	const today = new Date().toLocaleDateString();
 	pageBodyEl.innerHTML = `
 	<section class="section">
-  <img id="fieldprint-logo" style="height: 100px" src="./fieldprint.png" />
+  <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
     This message is to confirm that <span id="fp-appt-sponsor">${firstName.value} ${lastName.value}</span> DID ATTEND their
 	fingerprint appointment on <span id="fp-appt-date">${today}</span>.
