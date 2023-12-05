@@ -4,7 +4,7 @@ const path = require('path');
 var router = express.Router();
 const { degrees, PDFDocument, rgb, StandardFonts } = require('pdf-lib');
 
-/* GET users listing. */
+/* POST route for sending user data to write fra.PDF. */
 router.post('/', async (req, res, next) => {
 	console.log(req.body);
 	const newPdfDoc = await fillFRA(req.body);
@@ -18,19 +18,9 @@ router.post('/', async (req, res, next) => {
 		{ encoding: 'base64' },
 		() => {
 			console.log('this is the path: ' + path.join(''), __dirname);
-			res.download(
-				__dirname + `../../${documentTitle}`,
-				documentTitle,
-				{ dotfiles: 'allow' },
-				(err) => {
-					if (err) {
-						console.log(err);
-						return;
-					}
-					console.log('download beginning');
-				}
-			);
+			res.attachment(path.resolve(__dirname + `../../${documentTitle}`));
 			res.status(200);
+			res.send(writeFile);
 		}
 	);
 });
