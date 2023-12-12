@@ -3,10 +3,23 @@ const fs = require('fs');
 const path = require('path');
 var router = express.Router();
 const { degrees, PDFDocument, rgb, StandardFonts } = require('pdf-lib');
+const AWS = require('aws-sdk');
+require('dotenv').config();
 
 /* POST route for sending user data to write fra.PDF. */
 router.post('/', async (req, res, next) => {
-	console.log(req.body);
+	console.log('this is the incoming body. ', req.body);
+	AWS.config.update({
+		accessKeyId: process.env.ACCESS_KEY_ID,
+		secretAccessKey: process.env.SECRET_ACCESS_KEY,
+		region: process.env.AWS_REGION, // e.g., 'us-east-1'
+	});
+	console.log(process.env.AWS_REGION);
+	const s3 = new AWS.S3();
+
+	// Specify the bucket name and file path
+	const bucketName = 'orr-file-bucket';
+
 	const newPdfDoc = await fillFRA(req.body);
 	const documentTitle = `${req.body.aNumber}_SP_${getInitials(
 		req.body.sponsorFirstName,
@@ -17,10 +30,25 @@ router.post('/', async (req, res, next) => {
 		newPdfDoc,
 		{ encoding: 'base64' },
 		() => {
-			console.log('this is the path: ' + path.join(''), __dirname);
-			res.attachment(path.resolve(__dirname + `../../${documentTitle}`));
-			res.status(200);
-			res.send(writeFile);
+			console.log('about to do readfilesync');
+			const fileContent = fs.readFileSync(documentTitle);
+			const params = {
+				Bucket: bucketName,
+				Key: documentTitle, // Set the desired path in your S3 bucket
+				Body: fileContent,
+			};
+			console.log(params, 'these are the params');
+			s3.upload(params, (err, data) => {
+				if (err) {
+					console.error(err);
+				} else {
+					console.log(
+						'File uploaded successfully. S3 Location:',
+						data.Location
+					);
+				}
+			});
+			res.send('fuck it');
 		}
 	);
 });

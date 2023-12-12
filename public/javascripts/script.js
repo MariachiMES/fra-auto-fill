@@ -39,23 +39,23 @@ window.addEventListener('load', () => {
 
 //THIS STUFF BELOW IS FOR TESTING
 
-firstName.value = 'David Jose';
-lastName.value = 'Ortiz Salazar';
-dob.value = '2/26/1983';
-a_number.value = '123123123';
-stateEl.value = 'TX';
-relationship.value = 'Father';
-caseManager.value = 'Hector Barberi';
-zipCode.value = 24534;
-city.value = 'Crystal City';
-address.value = '203 N Ave C';
-childDob.value = '6/3/2017';
-childName.value = 'Lorenzo Ortiz';
-coo.value = 'Guatemala';
-motherName.value = 'Gloria Ortiz';
-fatherName.value = 'Lorenzo Ortiz';
-gender.value = 'Male';
-childGender.value = 'Male';
+// firstName.value = 'David Jose';
+// lastName.value = 'Ortiz Salazar';
+// dob.value = '2/26/1983';
+// a_number.value = '123123123';
+// stateEl.value = 'TX';
+// relationship.value = 'Father';
+// caseManager.value = 'Hector Barberi';
+// zipCode.value = 24534;
+// city.value = 'Crystal City';
+// address.value = '203 N Ave C';
+// childDob.value = '6/3/2017';
+// childName.value = 'Lorenzo Ortiz';
+// coo.value = 'Guatemala';
+// motherName.value = 'Gloria Ortiz';
+// fatherName.value = 'Lorenzo Ortiz';
+// gender.value = 'Male';
+// childGender.value = 'Male';
 
 goBtn.addEventListener('click', jumbleNames);
 fingerPrintBtn.addEventListener('click', renderFingerprints);
@@ -67,35 +67,39 @@ bcBtn.addEventListener('click', renderBc);
 lodBtn.addEventListener('click', renderLOD);
 fraBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	getResource('fra', fraData, 12);
+	getResource(
+		'fra',
+		{
+			aNumber: a_number.value,
+			sponsorFirstName: firstName.value,
+			sponsorLastName: lastName.value,
+			sponsorDob: dob.value,
+			childsName: childName.value,
+			address: address.value,
+			city: city.value,
+			state: stateEl.value,
+			zipCode: zipCode.value,
+			coo: coo.value,
+			phone: phoneNum.value,
+			relationship: relationship.value,
+			childGender: childGender.value,
+		},
+		12
+	);
 });
 ariBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	console.log('clicked ari button');
 	getResource('ari', { message: 'hitting the route' }, 12);
 });
 
-const fraData = {
-	aNumber: a_number.value,
-	sponsorFirstName: firstName.value,
-	sponsorLastName: lastName.value,
-	sponsorDob: dob.value,
-	childsName: childName.value,
-	address: address.value,
-	city: city.value,
-	state: stateEl.value,
-	zipCode: zipCode.value,
-	coo: coo.value,
-	phone: phoneNum.value,
-	relationship: relationship.value,
-	childGender: childGender.value,
-};
-
 async function getResource(url, data, datapoints) {
 	if (validate(`.${url}`, datapoints) === false) {
-		return alert(`you are missing some data.`);
+		return alert(
+			`you are missing some data. the missing data will be highlighted in red`
+		);
 	}
-	console.log(fraData);
+
+	console.log(data, 'this is the fra data');
 	const response = await fetch(
 		`/${url}`,
 		{
@@ -192,7 +196,7 @@ function renderLOPC() {
 	getNamesArr();
 	if (validate('.lopc', 11) === false) {
 		return alert(
-			`It appears you are missing some data. Case manager name, Child Name, A-Number, Sponsor first name, last name, address, city, state, zip code, phone number, and relationship are required.`
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 
@@ -310,7 +314,7 @@ function jumbleNames() {
 	getNamesArr();
 	if (!validate('.bgc', 6)) {
 		return alert(
-			'A number, Sponsor first name, last name, date of birth, state, and Results are required fields.'
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 	if (a_number.value.length !== 9) {
@@ -430,7 +434,7 @@ function renderForeignId() {
 	colorsBackToNormal();
 	if (!validate('.foreign-id', 5)) {
 		return alert(
-			'Sponsor first Name, last Name and date of birth are required fields.'
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 	pageBodyEl.innerHTML = `<style>
@@ -703,7 +707,7 @@ function renderLOD() {
 	getNamesArr();
 	if (validate('.lod', 12) === false) {
 		return alert(
-			`LOD Requires Child's Name, Mother's Name, Father's Name and A-Number`
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 	pageBodyEl.innerHTML = `<style>
@@ -729,7 +733,7 @@ function renderBc() {
 	validate('.bc', 6);
 	if (!validate('.bc', 6)) {
 		return alert(
-			`A-Number, Child's Name, Child's, DOB, Mother's Name, Father's Name, and Country of Origin or required.`
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 	const today = new Date();
@@ -808,7 +812,7 @@ function renderPoa() {
 	});
 	if (poaData.length < 8) {
 		return alert(
-			`Proof of address requires the child's A-Number, Sponsor's first name, last name, address, city, state, zip code`
+			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
 	}
 	pageBodyEl.innerHTML = `<style>
