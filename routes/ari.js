@@ -3,9 +3,16 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const { degrees, PDFDocument, rbg, StandardFonts } = require('pdf-lib');
+require('dotenv').config();
+const AWS = require('aws-sdk');
 
 /* POST route for sending user data to write ari.pdf. */
 router.post('/', async (req, res, next) => {
+	AWS.config.update({
+		accessKeyId: process.env.ACCESS_KEY_ID,
+		secretAccessKey: process.env.SECRET_ACCESS_KEY,
+		region: process.env.AWS_REGION,
+	});
 	const newAriDoc = await fillAri(req.body);
 });
 

@@ -14,7 +14,6 @@ router.post('/', async (req, res, next) => {
 		secretAccessKey: process.env.SECRET_ACCESS_KEY,
 		region: process.env.AWS_REGION, // e.g., 'us-east-1'
 	});
-	console.log(process.env.AWS_REGION);
 	const s3 = new AWS.S3();
 
 	// Specify the bucket name and file path
@@ -46,9 +45,19 @@ router.post('/', async (req, res, next) => {
 						'File uploaded successfully. S3 Location:',
 						data.Location
 					);
+					const signingParams = {
+						Bucket: bucketName,
+						Key: documentTitle, // Same key used for upload
+						Expires: 3600, // Set the expiration time for the URL in seconds (e.g., 1 hour)
+					};
+
+					// Generate the pre-signed URL
+					const signedUrl = s3.getSignedUrl('getObject', signingParams);
+
+					console.log('Pre-signed URL:', signedUrl);
+					res.send(signedUrl);
 				}
 			});
-			res.send('fuck it');
 		}
 	);
 });
@@ -136,7 +145,7 @@ async function fillFRA(child) {
 	} llevarl${getGender(child).ending} a la escuela, `);
 
 	carePlan2.setText(`a sus citas medicas, y a su cita del acorte.`);
-	financialSupport.setText();
+	financialSupport.setText(`yo trabajo lunes a viernes 7am -3pm`);
 	medicalInfo1.setText(
 		`Nadie en casa sufre de ninguna enfermedad grave/contagiosa.  `
 	);
@@ -150,13 +159,7 @@ async function fillFRA(child) {
 	);
 	signingDate.setText(new Date().toLocaleDateString());
 	const pdfBytes = await pdfDoc.save();
-	// const newPdf = await fs.writeFileSync(
-	// 	`./${child.aNumber}_SP_${getInitials(
-	// 		child.sponsorFirstName,
-	// 		child.sponsorLastName
-	// 	)}_FRA.pdf`,
-	// 	pdfBytes
-	// );
+
 	return pdfBytes;
 }
 

@@ -110,7 +110,18 @@ async function getResource(url, data, datapoints) {
 			body: JSON.stringify(data),
 		},
 		console.log('data fetching')
-	);
+	)
+		.then((response) => response.text())
+		.then((downloadUrl) => {
+			console.log('this is the download url', downloadUrl);
+			const downloadFraLink = document.createElement('a');
+			downloadFraLink.href = downloadUrl;
+			downloadFraLink.download = 'sponsorFRA.pdf';
+
+			document.body.appendChild(downloadFraLink);
+			downloadFraLink.click();
+			document.body.removeChild(downloadFraLink);
+		});
 	const result = await response;
 	console.log(result);
 }
