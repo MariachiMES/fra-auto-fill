@@ -8,17 +8,55 @@ const AWS = require('aws-sdk');
 
 /* POST route for sending user data to write ari.pdf. */
 router.post('/', async (req, res, next) => {
+	console.log(req.body, 'this is the body');
 	AWS.config.update({
 		accessKeyId: process.env.ACCESS_KEY_ID,
 		secretAccessKey: process.env.SECRET_ACCESS_KEY,
 		region: process.env.AWS_REGION,
 	});
+	const s3 = new AWS.S3();
+
+	const bucketName = 'orr-file-bucket';
 	const newAriDoc = await fillAri(req.body);
+	const ariTitle = `${req.body.aNumber}_SP_${getInitials(
+		req.body.sponsorFirstName,
+		req.body.sponsorLastName
+	)}_ARI.pdf`;
+
+	const writeFile = await fs.writeFile(
+		ariTitle,
+		newAriDoc,
+		{ encoding: 'base64' },
+		() => {
+			console.log('read file sync');
+			const fileContent = fs.readFileSync(ariTitle);
+			const params = {
+				Bucket: bucketName,
+				Key: ariTitle,
+				Body: fileContent,
+			};
+			s3.upload(params, (err, data) => {
+				if (err) {
+					console.log(err, 'there was an error uploading the ARI');
+				} else {
+					console.log('ARI successfully uploaded', data.Location);
+					const signingParams = {
+						Bucket: bucketName,
+						Key: ariTitle,
+						Expires: 3600,
+					};
+
+					const signedUrl = s3.getSignedUrl('getObject', signingParams);
+
+					console.log('pre-signed url', signedUrl);
+					res.send(signedUrl);
+				}
+			});
+		}
+	);
 });
 
-module.exports = router;
-
-async function fillAri(sponsor) {
+async function fillAri(child) {
 	const ariData = fs.readFileSync(path.join(__dirname, `../ari-template.pdf`), {
 		encoding: 'base64',
 		flag: 'r',
@@ -73,44 +111,63 @@ async function fillAri(sponsor) {
 	const sponsorAddressFrom3 = form.getField('sponsorAddressFrom3');
 	const sponsorAddressUntil3 = form.getField('sponsorAddressUntil3');
 
-	sponsorSignature.setText(sponsor);
+	sponsorSignature.setText(
+		`${child.sponsorFirstName} ${child.sponsorLastName}`
+	);
 	todaysDate.setText(new Date().toLocaleDateString());
-	sponsorName.setText(sponsor);
-	childsName.setText(sponsor);
-	aNumber.setText(sponsor);
-	provider.setText(sponsor);
-	digitalSite.setText(sponsor);
-	child1Name.setText(sponsor);
-	child1Dob.setText(sponsor);
-	child2Name.setText(sponsor);
-	child2Dob.setText(sponsor);
-	sponsorCompleteName.setText(sponsor);
-	previousName.setText(sponsor);
-	datePreviousName.setText(sponsor);
-	sponsorDob.setText(sponsor);
-	sponsorCityOfBirth.setText(sponsor);
-	sponsorCountyOfBirth.setText(sponsor);
-	sponsorStateOfBirth.setText(sponsor);
-	sponsorCountryOfBirth.setText(sponsor);
-	sponsorCountryOfCitizenship.setText(sponsor);
-	sponsorAddress1.setText(sponsor);
-	sponsorState1.setText(sponsor);
-	sponsorZipCode1.setText(sponsor);
-	sponsorAddressFrom1.setText(sponsor);
-	sponsorAddress2.setText(sponsor);
-	sponsorCity1.setText(sponsor);
-	sponsorCity2.setText(sponsor);
-	sponsorState2.setText(sponsor);
-	sponsorZipCode2.setText(sponsor);
-	sponsorAddressFrom2.setText(sponsor);
-	sponsorAddressUntil2.setText(sponsor);
-	sponsorAddress3.setText(sponsor);
-	sponsorCity3.setText(sponsor);
-	sponsorState3.setText(sponsor);
-	sponsorZipCode3.setText(sponsor);
-	sponsorAddressFrom3.setText(sponsor);
-	sponsorAddressUntil3.setText(sponsor);
+	sponsorName.setText(`${child.sponsorFirstName} ${child.sponsorLastName}`);
+	childsName.setText(child.childsName);
+	aNumber.setText(child.aNumber);
+	provider.setText('Greensboro ICF');
+	digitalSite.setText('N/A');
+	child1Name.setText(child.childsName);
+	child1Dob.setText(child.childsDob);
+	child2Name.setText();
+	child2Dob.setText();
+	sponsorCompleteName.setText(
+		`${child.sponsorFirstName} ${child.sponsorLastName}`
+	);
+	previousName.setText('ningun');
+	datePreviousName.setText('n/a');
+	sponsorDob.setText(child.dob);
+	sponsorCityOfBirth.setText();
+	sponsorCountyOfBirth.setText(child.coo);
+	sponsorStateOfBirth.setText();
+	sponsorCountryOfBirth.setText(child.coo);
+	sponsorCountryOfCitizenship.setText(child.coo);
+	sponsorAddress1.setText(child.address);
+	sponsorState1.setText(child.city);
+	sponsorZipCode1.setText(child.zipCode);
+	sponsorAddressFrom1.setText();
+	sponsorAddress2.setText('Calle De Mi Tierra');
+	sponsorCity1.setText(child.city);
+	sponsorCity2.setText();
+	sponsorState2.setText(child.coo);
+	sponsorZipCode2.setText();
+	sponsorAddressFrom2.setText();
+	sponsorAddressUntil2.setText();
+	sponsorAddress3.setText();
+	sponsorCity3.setText();
+	sponsorState3.setText();
+	sponsorZipCode3.setText();
+	sponsorAddressFrom3.setText();
+	sponsorAddressUntil3.setText();
 
 	const pdfBytes = await ariPdf.save();
 	return pdfBytes;
 }
+function getInitials(firstName, lastName) {
+	const fnArr = firstName.split(' ');
+	const lnArr = lastName.split(' ');
+	let namesArr = [];
+	fnArr.forEach((item) => {
+		namesArr.push(item.charAt(0).toUpperCase());
+	});
+
+	lnArr.forEach((item) => {
+		namesArr.push(item.charAt(0).toUpperCase());
+	});
+	return namesArr.join('');
+}
+
+module.exports = router;

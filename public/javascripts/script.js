@@ -89,7 +89,24 @@ fraBtn.addEventListener('click', (e) => {
 });
 ariBtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	getResource('ari', { message: 'hitting the route' }, 12);
+	getResource(
+		'ari',
+		{
+			aNumber: a_number.value,
+			sponsorFirstName: firstName.value,
+			sponsorLastName: lastName.value,
+			sponsorDob: dob.value,
+			childsName: childName.value,
+			address: address.value,
+			city: city.value,
+			state: stateEl.value,
+			zipCode: zipCode.value,
+			coo: coo.value,
+			childsDob: childDob.value,
+			childGender: childGender.value,
+		},
+		11
+	);
 });
 
 async function getResource(url, data, datapoints) {
@@ -122,8 +139,6 @@ async function getResource(url, data, datapoints) {
 			downloadFraLink.click();
 			document.body.removeChild(downloadFraLink);
 		});
-	const result = await response;
-	console.log(result);
 }
 
 function getNumbers(str, startPos, length) {
