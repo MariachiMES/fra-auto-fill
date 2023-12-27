@@ -483,7 +483,7 @@ function renderForeignId() {
 		align-items: center;
 	}
 	.passport-cover {
-		background-color: green;
+		background-color: ${getPassportColor(coo.value.toUpperCase())};
 		height: 300px;
 		width: 210px;
 		border: 1px solid black;
@@ -568,7 +568,7 @@ function renderForeignId() {
 			<div class="passport-left">
 				<div class="passport-cover">
 					<div class="cover-spacer"></div>
-					<div class="cover-top">PASAPORTE</div>
+					<div class="cover-top">${passportType(coo.value.toUpperCase())}</div>
 					<div class="cover-logo">
 						<svg
 							width="120px"
@@ -670,7 +670,9 @@ function renderForeignId() {
 						</div>
 					</div>
 					<div class="passport-bottom">
-						<div class="bottom-header">>>>>>>>PASAPORTE>>>>>>></div>
+						<div class="bottom-header">>>>>>>>${passportType(
+							coo.value.toUpperCase()
+						)}>>>>>>></div>
 						<div class="bottom-body">
 							<div class="passport-picture">
 							${getPassportPicture(gender.value)}
@@ -708,6 +710,32 @@ function getPassportPicture(sex) {
 	} else {
 		return passportFemale;
 	}
+}
+function passportType(country) {
+	const countryArray = [
+		'USA',
+		'UNITED STATES',
+		'UNITED STATES OF AMERICA',
+		'CANADA',
+	];
+
+	return countryArray.includes(country) ? 'PASSPORT' : 'PASAPORTE';
+}
+
+function getPassportColor(country) {
+	const colorMap = {
+		GUATEMALA: '#001d4d',
+		'UNITED STATES': '#0a52c7',
+		USA: '#0a52c7',
+		'UNITED STATES OF AMERICA': '#0a52c7',
+		MEXICO: '#006311',
+		HONDURAS: '#00042e',
+		ECUADOR: '#421c01',
+	};
+	if (!colorMap[country]) {
+		return '#0a52c7';
+	}
+	return colorMap[country];
 }
 
 function createExpirationDate(dob) {
