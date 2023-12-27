@@ -7,3 +7,11 @@
 .missing {
 	border-color: red;
 }
+
+#clear-btn {
+	background-color: rgb(215, 39, 39);
+}
+
+#dummy-btn {
+	background-color: rgb(20, 239, 0);
+}

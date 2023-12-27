@@ -29,6 +29,8 @@ const instructionsBtn = document.getElementById('instructions-btn');
 const fraBtn = document.getElementById('fra-btn');
 const ariBtn = document.getElementById('ari-btn');
 const childGender = document.getElementById('child-gender');
+const dummyBtn = document.getElementById('dummy-btn');
+const clearBtn = document.getElementById('clear-btn');
 
 phoneNum.value = '0000000000';
 results.value = 'Clear';
@@ -37,25 +39,51 @@ window.addEventListener('load', () => {
 	instructionsBtn.click();
 });
 
-//THIS STUFF BELOW IS FOR TESTING
+dummyBtn.addEventListener('click', showDummyData);
 
-// firstName.value = 'David Jose';
-// lastName.value = 'Ortiz Salazar';
-// dob.value = '2/26/1983';
-// a_number.value = '123123123';
-// stateEl.value = 'TX';
-// relationship.value = 'Father';
-// caseManager.value = 'Hector Barberi';
-// zipCode.value = 24534;
-// city.value = 'Crystal City';
-// address.value = '203 N Ave C';
-// childDob.value = '6/3/2017';
-// childName.value = 'Lorenzo Ortiz';
-// coo.value = 'Guatemala';
-// motherName.value = 'Gloria Ortiz';
-// fatherName.value = 'Lorenzo Ortiz';
-// gender.value = 'Male';
-// childGender.value = 'Male';
+function showDummyData() {
+	firstName.value = 'David Jose';
+	lastName.value = 'Ortiz Salazar';
+	dob.value = '05/05/1983';
+	a_number.value = '987654321';
+	stateEl.value = 'ST';
+	relationship.value = 'Father';
+	caseManager.value = 'Mock Manager';
+	zipCode.value = 12345;
+	city.value = 'Anytown';
+	address.value = '123 Main Street';
+	childDob.value = '04/04/2008';
+	childName.value = 'Junior Ortiz';
+	coo.value = 'USA';
+	motherName.value = 'Mom Ortiz';
+	fatherName.value = 'Senior Ortiz';
+	gender.value = 'Male';
+	childGender.value = 'Male';
+}
+
+clearBtn.addEventListener('click', clearForm);
+
+function clearForm() {
+	if (confirm('Are you sure you want to clear this data?!?')) {
+		firstName.value = '';
+		lastName.value = '';
+		dob.value = '';
+		a_number.value = '';
+		stateEl.value = '';
+		relationship.value = '';
+		caseManager.value = '';
+		zipCode.value = '';
+		city.value = '';
+		address.value = '';
+		childDob.value = '';
+		childName.value = '';
+		coo.value = '';
+		motherName.value = '';
+		fatherName.value = '';
+		gender.value = '';
+		childGender.value = '';
+	}
+}
 
 goBtn.addEventListener('click', jumbleNames);
 fingerPrintBtn.addEventListener('click', renderFingerprints);
