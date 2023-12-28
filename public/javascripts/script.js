@@ -31,7 +31,33 @@ const ariBtn = document.getElementById('ari-btn');
 const childGender = document.getElementById('child-gender');
 const dummyBtn = document.getElementById('dummy-btn');
 const clearBtn = document.getElementById('clear-btn');
+const mapsBtn = document.getElementById('googlemaps-btn');
+const smartyBtn = document.getElementById('smarty-btn');
+const earthBtn = document.getElementById('googleearth-btn');
+console.log('do this');
 
+mapsBtn.addEventListener('click', getGoogleMap);
+earthBtn.addEventListener('click', getGoogleEarth);
+
+function getGoogleMap() {
+	console.log('what is going on here?!');
+	if (!validate('.smarty', 4)) {
+		return alert('the missing data is highlighted in red');
+	}
+	const addressParam = address.value.split(' ').join('+');
+	const cityParam = city.value.split(' ').join('+');
+	const googleUrl = `https://www.google.com/maps/place/${addressParam},+${cityParam},+${stateEl.value}+${zipCode.value}/`;
+	window.open(googleUrl, '_blank');
+}
+function getGoogleEarth() {
+	if (!validate('.smarty', 4)) {
+		return alert('the missing data is highlighted in red');
+	}
+	const addressParam = address.value.split(' ').join('+');
+	const cityParam = city.value.split(' ').join('+');
+	const googleEarthUrl = `https://earth.google.com/web/search/${addressParam},+${cityParam},+${stateEl.value}+${zipCode.value}/`;
+	window.open(googleEarthUrl, '_blank');
+}
 phoneNum.value = '0000000000';
 results.value = 'Clear';
 
@@ -46,12 +72,12 @@ function showDummyData() {
 	lastName.value = 'Ortiz Salazar';
 	dob.value = '05/05/1983';
 	a_number.value = '987654321';
-	stateEl.value = 'ST';
+	stateEl.value = 'TX';
 	relationship.value = 'Father';
 	caseManager.value = 'Mock Manager';
-	zipCode.value = 12345;
-	city.value = 'Anytown';
-	address.value = '123 Main Street';
+	zipCode.value = 78217;
+	city.value = 'San Antonio';
+	address.value = '9514 Hillsboro Dr';
 	childDob.value = '04/04/2008';
 	childName.value = 'Junior Ortiz';
 	coo.value = 'USA';
