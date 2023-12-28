@@ -35,29 +35,31 @@
 		<div class="p-4 inputs no-print w-full">
 			<div class="container">
 				<!-- Button trigger modal -->
-				<button
-					type="button"
-					class="btn btn-primary mb-4"
-					data-bs-toggle="modal"
-					data-bs-target="#staticBackdrop"
-					id="instructions-btn"
-				>
-					Show Instructions
-				</button>
-				<button
-					type="button"
-					class="btn btn-primary mb-4"
-					id="dummy-btn"
-				>
-					Populate Dummy Data
-				</button>
-				<button
-					type="button"
-					class="btn btn-primary mb-4"
-					id="clear-btn"
-				>
-					Clear Form
-				</button>
+				<div class="nav-buttons d-flex justify-content-around">
+					<button
+						type="button"
+						class="btn btn-primary mb-4"
+						data-bs-toggle="modal"
+						data-bs-target="#staticBackdrop"
+						id="instructions-btn"
+					>
+						Show Instructions
+					</button>
+					<button
+						type="button"
+						class="btn btn-primary mb-4"
+						id="dummy-btn"
+					>
+						Populate Dummy Data
+					</button>
+					<button
+						type="button"
+						class="btn btn-primary mb-4"
+						id="clear-btn"
+					>
+						Clear Form
+					</button>
+				</div>
 
 				<!-- Modal -->
 				<div
@@ -108,6 +110,83 @@
 						</div>
 					</div>
 				</div>
+				<div class="radio-buttons w-full d-flex justify-content-around p-4">
+					<div class="form-check justify-content-center">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							data-category="CAT1EXP"
+							id="flexRadioDefault1"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault1"
+						>
+							CAT 1 EXP
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							id="flexRadioDefault2"
+							data-category="CAT1"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault2"
+						>
+							CAT 1
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							id="flexRadioDefault2"
+							data-category="CAT2A"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault2"
+						>
+							CAT 2A
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							id="flexRadioDefault2"
+							data-category="CAT2B"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault2"
+						>
+							CAT2B
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							id="flexRadioDefault2"
+							data-category="CAT3"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault2"
+						>
+							CAT 3
+						</label>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-sm">
 						<div class="form-floating mb-3">
@@ -122,7 +201,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
+								class="form-control submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
 								id="a-number"
 								placeholder="A Number"
 							/>
@@ -180,7 +259,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc bc lod fra"
+								class="form-control submit lopc bc lod fra"
 								id="child-name"
 								placeholder="Child Name"
 							/>
@@ -207,7 +286,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc poa lod fra ari smarty"
+								class="form-control submit lopc poa lod fra ari smarty"
 								id="city"
 								placeholder="City"
 							/>
@@ -216,7 +295,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc poa bgc lod fra ari smarty"
+								class="form-control submit lopc poa bgc lod fra ari smarty"
 								id="state"
 								placeholder="State"
 							/>
@@ -283,7 +362,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc fra ari"
+								class="form-control submit lopc fra ari"
 								id="relationship"
 								placeholder="Relationship"
 							/>
@@ -390,7 +469,86 @@
 		</div>
 
 		<div id="page-body"></div>
+
+		<div
+			class="p-4 inputs no-print w-full"
+			id="case-management"
+		>
+			<div class="email-chain">
+				<div class="email-title">
+					<h1 class="d-flex justify-content-center">Emails</h1>
+				</div>
+				<div class="staff d-flex justify-content-around">
+					<div class="form-floating mb-3">
+						<input
+							type="text"
+							class="form-control submit"
+							id="lead-email"
+							placeholder="Lead Email"
+						/>
+						<label for="lead-email">Lead Email</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input
+							type="text"
+							class="form-control submit"
+							id="buddy"
+							placeholder="Buddy Email"
+						/>
+						<label for="buddy">Buddy Email</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input
+							type="text"
+							class="form-control submit"
+							id="clinician"
+							placeholder="Clinician Email"
+						/>
+						<label for="clinician">Clinician Email</label>
+					</div>
+					<button
+						class="btn"
+						type="button"
+						id="save-emails"
+					>
+						Save Emails
+					</button>
+				</div>
+				<div class="email-btns d-flex justify-content-around">
+					<button
+						class="btn mt-3"
+						type="button"
+						id="24-hour"
+					>
+						24-Hour Case Submission Notice
+					</button>
+
+					<button
+						class="btn mt-3"
+						type="button"
+						id="submit-case"
+					>
+						Submit Case
+					</button>
+					<button
+						class="btn mt-3"
+						type="button"
+						id="email-david"
+					>
+						Email David
+					</button>
+					<button
+						class="btn mt-3"
+						type="button"
+						id="resign-from-ds"
+					>
+						Resign from DS
+					</button>
+				</div>
+			</div>
+		</div>
 	</body>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

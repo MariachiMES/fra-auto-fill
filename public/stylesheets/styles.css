@@ -9,9 +9,16 @@
 }
 
 #clear-btn {
-	background-color: rgb(215, 39, 39);
+	background-color: rgb(6, 31, 255);
 }
 
 #dummy-btn {
 	background-color: rgb(20, 239, 0);
+}
+#save-emails {
+	background-color: rgb(125, 255, 113);
+}
+#resign-from-ds {
+	background-color: rgb(255, 0, 0);
+	color: white;
 }

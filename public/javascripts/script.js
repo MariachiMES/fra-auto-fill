@@ -34,9 +34,42 @@ const clearBtn = document.getElementById('clear-btn');
 const mapsBtn = document.getElementById('googlemaps-btn');
 const smartyBtn = document.getElementById('smarty-btn');
 const earthBtn = document.getElementById('googleearth-btn');
+const twentyFourHourBtn = document.getElementById('24-hour');
+const submitCaseBtn = document.getElementById('submit-case');
+const emailDavid = document.getElementById('email-david');
+const resignBtn = document.getElementById('resign-from-ds');
+const catRadioBtns = document.querySelectorAll('[type=radio]');
+const leadEmail = document.getElementById('lead-email');
+const buddy = document.getElementById('buddy');
+const clinician = document.getElementById('clinician');
+const saveEmailsBtn = document.getElementById('save-emails');
+
+const leadershipEmails = JSON.parse(localStorage.getItem('emails'));
+
+let leadershipEmailsObj = {};
+
+if (leadershipEmails) {
+	console.log(leadershipEmails);
+
+	leadEmail.value = leadershipEmails.leadEmail || null;
+	clinician.value = leadershipEmails.clinicianEmail || null;
+	buddy.value = leadershipEmails.buddyEmail || null;
+	caseManager.value = leadershipEmails.caseManager || null;
+}
+
+function saveEmailsToLocalStorage() {
+	leadershipEmailsObj = {
+		leadEmail: leadEmail.value,
+		clinicianEmail: clinician.value,
+		buddyEmail: buddy.value,
+		caseManager: caseManager.value,
+	};
+	localStorage.setItem('emails', JSON.stringify(leadershipEmailsObj));
+}
 
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
+saveEmailsBtn.addEventListener('click', saveEmailsToLocalStorage);
 // smartyBtn.addEventListener('click', getSmartyStreets);
 
 // function getSmartyStreets() {
@@ -99,6 +132,9 @@ function showDummyData() {
 	fatherName.value = 'Senior Ortiz';
 	gender.value = 'Male';
 	childGender.value = 'Male';
+	leadEmail.value = 'anna.gonzales@deployedservices.com';
+	buddy.value = 'irene.reyes@deployedservices.com';
+	clinician.value = 'martin.gonzalez@deployedservices.com';
 }
 
 clearBtn.addEventListener('click', clearForm);
@@ -1239,3 +1275,99 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 	/>
 </g>
 </svg>`;
+
+function getInitials(child) {
+	const namesArr = child.split(' ');
+	let initials = [];
+	namesArr.forEach((name) => {
+		initials.push(name.charAt(0));
+	});
+	return initials.join('.');
+}
+function getLastFour(anumber) {
+	return `${anumber[5]}-${anumber[6]}${anumber[7]}${anumber[8]}`;
+}
+
+submitCaseBtn.addEventListener('click', () => {
+	if (!catSelected) {
+		return alert('you need to select a category for this case');
+	}
+	if (!validate('.submit', 8)) {
+		return alert('you are missing the highlighted fields');
+	}
+	window.open(
+		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for PRS/SR ${
+			emailData[catSelected].abbreviatedCat
+		} ${getInitials(childName.value)} A#XXX-XX${getLastFour(
+			a_number.value
+		)}, Greensboro ICF&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;  <${
+			leadEmail.value
+		}>; Miranda Lopez <Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
+			clinician.value
+		}>; <${
+			buddy.value
+		}>&body=Greetings, %0D Please be advised that a release request for ${getInitials(
+			childName.value
+		)} ${getLastFour(
+			a_number.value
+		)} has been updated in the UC Portal. This is a ${
+			emailData[catSelected].category
+		} case. Care Provider is recommending ****RELEASE**** to child's ${
+			relationship.value
+		} who resides in ${city.value}, ${
+			stateEl.value
+		}. %0D %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
+	);
+});
+let catSelected;
+console.log(catRadioBtns);
+
+catRadioBtns.forEach((btn, idx) => {
+	btn.addEventListener('click', (e) => {
+		catSelected = e.target.getAttribute('data-category');
+		console.log(catSelected);
+	});
+});
+
+const emailData = {
+	CAT1EXP: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 1 EXPEDITED',
+		category: 'Category 1 EXPEDITED',
+	},
+	CAT1: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 1 Non-Expedited',
+		category: 'Category 1 Non-Expedited',
+	},
+	CAT2A: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 2A',
+		category: 'Category 2A',
+	},
+	CAT2B: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 2B',
+		category: 'Category 2B',
+	},
+	CAT3: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 3',
+		category: 'Category 3',
+	},
+};
