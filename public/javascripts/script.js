@@ -36,8 +36,7 @@ const smartyBtn = document.getElementById('smarty-btn');
 const earthBtn = document.getElementById('googleearth-btn');
 const twentyFourHourBtn = document.getElementById('24-hour');
 const submitCaseBtn = document.getElementById('submit-case');
-const emailDavid = document.getElementById('email-david');
-const resignBtn = document.getElementById('resign-from-ds');
+
 const catRadioBtns = document.querySelectorAll('[type=radio]');
 const leadEmail = document.getElementById('lead-email');
 const buddy = document.getElementById('buddy');
@@ -1287,6 +1286,12 @@ function getInitials(child) {
 function getLastFour(anumber) {
 	return `${anumber[5]}-${anumber[6]}${anumber[7]}${anumber[8]}`;
 }
+const emailDavid = document.getElementById('email-david');
+const resignBtn = document.getElementById('resign-from-ds');
+
+emailDavid.addEventListener('click', () => {
+	window.open('mailto: davidjortizmusic@gmail.com?subject=wtf, david');
+});
 
 submitCaseBtn.addEventListener('click', () => {
 	if (!catSelected) {
