@@ -32,15 +32,13 @@ const childGender = document.getElementById('child-gender');
 const dummyBtn = document.getElementById('dummy-btn');
 const clearBtn = document.getElementById('clear-btn');
 const mapsBtn = document.getElementById('googlemaps-btn');
-const smartyBtn = document.getElementById('smarty-btn');
+
 const earthBtn = document.getElementById('googleearth-btn');
-console.log('do this');
 
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
 
 function getGoogleMap() {
-	console.log('what is going on here?!');
 	if (!validate('.smarty', 4)) {
 		return alert('the missing data is highlighted in red');
 	}
