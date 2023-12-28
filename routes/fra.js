@@ -129,7 +129,9 @@ async function fillFRA(child) {
 	hhm1Name.setText(`${child.sponsorFirstName} ${child.sponsorLastName}`);
 	hhm1Dob.setText(child.sponsorDob);
 	hhm1RelationToSponsor.setText('Yo');
-	hhm1ChildRelationship.setText(child.relationship);
+	hhm1ChildRelationship.setText(
+		translateRelationship(child.relationship.toUpperCase())
+	);
 	acgName.setText();
 	acgDob.setText();
 	acgPhone.setText();
@@ -187,6 +189,26 @@ function getEmail(firstName) {
 		return firstNameArr[0] + '@email.com';
 	}
 	return `${firstName}@email.com`;
+}
+
+function translateRelationship(relationship) {
+	const relationships = {
+		MOTHER: 'Madre',
+		FATHER: 'Padre',
+		BROTHER: 'Hermano',
+		SISTER: 'Hermana',
+		UNCLE: 'Tio',
+		AUNT: 'Tia',
+		GRANDMOTHER: 'Abuela',
+		GRANDMA: 'Abuela',
+		GRANDFATHER: 'Abuelo',
+		GRANDPA: 'Abuelo',
+	};
+	if (!relationships[relationship]) {
+		return relationship;
+	} else {
+		return relationships[relationship];
+	}
 }
 
 function getInitials(firstName, lastName) {

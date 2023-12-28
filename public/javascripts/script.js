@@ -32,11 +32,27 @@ const childGender = document.getElementById('child-gender');
 const dummyBtn = document.getElementById('dummy-btn');
 const clearBtn = document.getElementById('clear-btn');
 const mapsBtn = document.getElementById('googlemaps-btn');
-
+const smartyBtn = document.getElementById('smarty-btn');
 const earthBtn = document.getElementById('googleearth-btn');
 
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
+// smartyBtn.addEventListener('click', getSmartyStreets);
+
+// function getSmartyStreets() {
+// 	if (!validate('.smarty', 4)) {
+// 		return alert('the missing data is highlighted in red');
+// 	}
+// 	const smartyUrl = 'https://www.smarty.com/products/single-address';
+// 	const smartyPage = window.open(smartyUrl, '_blank');
+// 	// smartyPage.opener.addEventListener('DOMContentLoaded', () => {
+// 	// 	console.log('THIS IS LOADED');
+// 	// 	smartyPage.opener.document.getElementById('us-street-address-entry').value =
+// 	// 		address.value;
+// 	// 	console.log(window.document);
+// 	// });
+// 	console.log(smartyPage.opener.document);
+// }
 
 function getGoogleMap() {
 	if (!validate('.smarty', 4)) {
