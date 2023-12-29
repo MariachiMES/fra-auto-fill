@@ -47,6 +47,7 @@ const leadershipEmails = JSON.parse(localStorage.getItem('emails'));
 
 let leadershipEmailsObj = {};
 
+//Get stuff from local storage if it's there
 if (leadershipEmails) {
 	console.log(leadershipEmails);
 
@@ -1281,6 +1282,16 @@ timeOffBtn.addEventListener('click', () => {
 		`mailto:${leadEmail.value}; <Alcides.Hernandez@deployedservices.com>?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
 	);
 });
+function getAge(dateString) {
+	var today = new Date();
+	var birthDate = new Date(dateString);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+		age--;
+	}
+	return age;
+}
 function getInitials(child) {
 	const namesArr = child.split(' ');
 	let initials = [];
@@ -1421,4 +1432,77 @@ const emailData = {
 		abbreviatedCat: 'CAT 3 Unrelated',
 		category: 'Category 3 Unrelated',
 	},
+};
+const releaseRequest = {
+	CAT1EXP: `<p>
+	This case is being submitted under ORR Field Guidance #10 Expedited
+	Release for CAT 1. Child has been screened and determined not to be
+	especially vulnerable. This case does not meet TVPRA Home Study
+	requirements and as per assessments conducted, there were no concerns
+	identified in respect to abuse, neglect, and or safety.
+</p>
+<p>
+	SPONSOR/Child RELATIONSHIP: ${sponsorFirstName.value} ${
+		sponsorLastName.value
+	} (${getAge(sponsorDob.value)}, ${
+		emailData[catSelected].abbreviated
+	} , Verified
+	Parent)requests sponsorship of ${childName.value} (A# ${a_number.value}, ${
+		childGender.value
+	}, ${getAge(childDob.value)}).
+	${sponsorFirstName.value} ${sponsorLastName.value} currently resides in ${
+		city.value
+	}, ${stateEl.value}.
+</p>
+<p>
+	Case Manager obtained and reviewed child's BC and Sponsor's BC to verify
+	the relationship between Sponsor and child as ${
+		relationship.value
+	} to the Child.
+</p>
+<p>Sponsor name on MO/FA BC: ${sponsorFirstName.value} ${
+		sponsorLastName.value
+	}</p>
+<p>
+	UC name and MO/FA name on UC BC: ${childName.value} (Child), ${motherName.value}
+	(Mother), ${fatherName.value} (Father)
+</p>
+<p>
+	This case is being submitted under ORR Field Guidance #10 Expedited
+	Release for CAT 1. Child has been screened and determined not to be
+	especially vulnerable. This case does not meet TVPRA Home Study
+	requirements and as per assessments conducted, there were no concerns
+	identified in respect to abuse, neglect, and or safety.
+</p>
+<p>The following has been completed:</p>
+<ul>
+	<li>
+		(1) Completion of Modified UC Assessment for Expedited Release Cases
+		(09/19/2023)
+	</li>
+	<li>
+		(2) Completion of Interviews with the Child and the Parent no concerns
+		identified
+	</li>
+	<li>
+		(3) Completion of a Modified Family Reunification Application
+		(09/19/2023)
+	</li>
+	<li>
+		(4) Establishment of Proof of Relationship and Identity (BC'sprovided
+		and relationship established)
+	</li>
+	<li>
+		(5) Completion of Sponsor Background Check (no household member
+		checks) with sponsor provided verbal attestation Authorization for
+		Release of Information. (09/19/2023)
+	</li>
+	<li>(6) Completion of a Modified Sponsor Assessment (09/19/2023)</li>
+</ul>
+<p>---- Verbal Attestation was provided by sponsor on 09/19/2023</p>
+<p>
+	---- MEDICAL: Child is being submitted pending medical clearance as of
+	09/25/2023
+</p>`,
+	nonExpedited: {},
 };
