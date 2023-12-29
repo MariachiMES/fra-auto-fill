@@ -37,7 +37,7 @@ const earthBtn = document.getElementById('googleearth-btn');
 const twentyFourHourBtn = document.getElementById('24-hour');
 const submitCaseBtn = document.getElementById('submit-case');
 
-const catRadioBtns = document.querySelectorAll('[type=radio]');
+const catRadioBtns = document.querySelectorAll('[data-cats]');
 const leadEmail = document.getElementById('lead-email');
 const buddy = document.getElementById('buddy');
 const clinician = document.getElementById('clinician');
@@ -1274,7 +1274,13 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 	/>
 </g>
 </svg>`;
+const timeOffBtn = document.getElementById('time-off');
 
+timeOffBtn.addEventListener('click', () => {
+	window.open(
+		`mailto:${leadEmail.value}; <Alcides.Hernandez@deployedservices.com>?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
+	);
+});
 function getInitials(child) {
 	const namesArr = child.split(' ');
 	let initials = [];
@@ -1289,21 +1295,33 @@ function getLastFour(anumber) {
 const emailDavid = document.getElementById('email-david');
 const resignBtn = document.getElementById('resign-from-ds');
 
+resignBtn.addEventListener('click', () => {
+	window.open(
+		`mailto:''?subject=RESIGNATION EFFECTIVE IMMEDIATELY&body=Greetings, %0D This email is to inform you of my imminent and overdue departure from my assignment as a Case Manager.  While my time here has been laborious, spiritually toxic, unrewarding and unfulfilling, it has also been inconsequential, absurd, futile, and soul-sucking.  My financial woes tell me that I need the bread, however I do not consider this continued torture to be necessary in any way, save for amusement of the simulation overlords. I would like to thank no one, and while the friendships and professional relationships I formed during my time here were dissonant, non-productive and somewhat abusive, they will thankfully be coming to and end as I exit the premises at 9mph in my final form of protest. Kindly, send my regards to Douglas the American Hebrew Academy Marmota, who sadly, does not care if I live or die, nor does he know of my existence.  He also may be a she.  I have no idea. The only thing I will miss about this place is the joy I felt from once watching Douglas fall out of trees as he foraged in preparation for the long winter. As the crimson leaves have ceremoniously fallen from the erect Red Maples, so too have my hopes of living a meaningful existence while working in this hell fallen. Please forward this mesage to the President of the United States of America, and King Charles III.  Use my phone.  Lord knows I was not allowed to.`
+	);
+});
+
 emailDavid.addEventListener('click', () => {
-	window.open('mailto: davidjortizmusic@gmail.com?subject=wtf, david');
+	window.open(
+		'mailto: davidjortizmusic@gmail.com?subject=WTF! Sersiously, David??!&body=I have been putting up with your nonsense for too long already...'
+	);
 });
 
 submitCaseBtn.addEventListener('click', () => {
-	if (!catSelected) {
-		return alert('you need to select a category for this case');
+	if (!catSelected || !releaseSelected) {
+		return alert(
+			'you need to select a category  AND a release type for this case'
+		);
 	}
 	if (!validate('.submit', 8)) {
 		return alert('you are missing the highlighted fields');
 	}
 	window.open(
-		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for PRS/SR ${
-			emailData[catSelected].abbreviatedCat
-		} ${getInitials(childName.value)} A#XXX-XX${getLastFour(
+		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for ${
+			releaseCriteria[releaseSelected].abbreviated
+		} ${emailData[catSelected].abbreviatedCat} ${getInitials(
+			childName.value
+		)} A#XXX-XX${getLastFour(
 			a_number.value
 		)}, Greensboro ICF&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;  <${
 			leadEmail.value
@@ -1317,15 +1335,24 @@ submitCaseBtn.addEventListener('click', () => {
 			a_number.value
 		)} has been updated in the UC Portal. This is a ${
 			emailData[catSelected].category
-		} case. Care Provider is recommending ****RELEASE**** to child's ${
-			relationship.value
-		} who resides in ${city.value}, ${
+		} case. Care Provider is recommending ${
+			releaseCriteria[releaseSelected].nonAbbreviated
+		} to child's ${relationship.value} who resides in ${city.value}, ${
 			stateEl.value
 		}. %0D %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
 	);
 });
 let catSelected;
-console.log(catRadioBtns);
+let releaseSelected;
+
+const releaseBtns = document.querySelectorAll('[name=release]');
+
+releaseBtns.forEach((btn) => {
+	btn.addEventListener('click', (e) => {
+		releaseSelected = e.target.getAttribute('data-release');
+		console.log(releaseSelected);
+	});
+});
 
 catRadioBtns.forEach((btn, idx) => {
 	btn.addEventListener('click', (e) => {
@@ -1333,6 +1360,17 @@ catRadioBtns.forEach((btn, idx) => {
 		console.log(catSelected);
 	});
 });
+
+const releaseCriteria = {
+	SR: {
+		abbreviated: 'SR',
+		nonAbbreviated: 'Straight Release',
+	},
+	PRS: {
+		abbreviated: 'PRS',
+		nonAbbreviated: 'Post-Release Services Only',
+	},
+};
 
 const emailData = {
 	CAT1EXP: {
@@ -1374,5 +1412,13 @@ const emailData = {
 		body: ``,
 		abbreviatedCat: 'CAT 3',
 		category: 'Category 3',
+	},
+	CAT3UN: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviatedCat: 'CAT 3 Unrelated',
+		category: 'Category 3 Unrelated',
 	},
 };

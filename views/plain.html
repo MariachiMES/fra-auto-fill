@@ -117,13 +117,14 @@
 							type="radio"
 							name="flexRadioDefault"
 							data-category="CAT1EXP"
+							data-cats
 							id="flexRadioDefault1"
 						/>
 						<label
 							class="form-check-label"
 							for="flexRadioDefault1"
 						>
-							CAT 1 EXP
+							CAT 1 Expedited
 						</label>
 					</div>
 					<div class="form-check">
@@ -132,6 +133,7 @@
 							type="radio"
 							name="flexRadioDefault"
 							id="flexRadioDefault2"
+							data-cats
 							data-category="CAT1"
 						/>
 						<label
@@ -147,6 +149,7 @@
 							type="radio"
 							name="flexRadioDefault"
 							id="flexRadioDefault2"
+							data-cats
 							data-category="CAT2A"
 						/>
 						<label
@@ -162,6 +165,7 @@
 							type="radio"
 							name="flexRadioDefault"
 							id="flexRadioDefault2"
+							data-cats
 							data-category="CAT2B"
 						/>
 						<label
@@ -177,6 +181,7 @@
 							type="radio"
 							name="flexRadioDefault"
 							id="flexRadioDefault2"
+							data-cats
 							data-category="CAT3"
 						/>
 						<label
@@ -184,6 +189,54 @@
 							for="flexRadioDefault2"
 						>
 							CAT 3
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="flexRadioDefault"
+							id="flexRadioDefault2"
+							data-cats
+							data-category="CAT3UN"
+						/>
+						<label
+							class="form-check-label"
+							for="flexRadioDefault2"
+						>
+							CAT 3 Unrelated
+						</label>
+					</div>
+				</div>
+				<div class="radio-buttons w-full d-flex justify-content-around p-4">
+					<div class="form-check justify-content-center">
+						<input
+							class="form-check-input release"
+							type="radio"
+							name="release"
+							data-release="SR"
+							id="release1"
+						/>
+						<label
+							class="form-check-label"
+							for="release1"
+						>
+							Straight Release
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							class="form-check-input release"
+							type="radio"
+							name="release"
+							data-release="PRS"
+							id="release2"
+						/>
+						<label
+							class="form-check-label"
+							for="release2"
+						>
+							PRS
 						</label>
 					</div>
 				</div>
@@ -509,11 +562,12 @@
 						<label for="clinician">Clinician Email</label>
 					</div>
 					<button
-						class="btn"
+						class="btn d-flex align-items-center"
 						type="button"
 						id="save-emails"
+						style="height: 3rem"
 					>
-						Save Emails
+						Save User Data
 					</button>
 				</div>
 				<div class="email-btns d-flex justify-content-around">
@@ -521,6 +575,7 @@
 						class="btn mt-3"
 						type="button"
 						id="24-hour"
+						disabled
 					>
 						24-Hour Case Submission Notice
 					</button>
@@ -531,6 +586,13 @@
 						id="submit-case"
 					>
 						Submit Case
+					</button>
+					<button
+						class="btn mt-3"
+						type="button"
+						id="time-off"
+					>
+						Request Time Off
 					</button>
 					<button
 						class="btn mt-3"
