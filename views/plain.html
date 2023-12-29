@@ -245,7 +245,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control lopc"
+								class="form-control lopc time-off"
 								id="case-manager"
 								placeholder="Case Manager"
 							/>
@@ -537,7 +537,7 @@
 					<div class="form-floating mb-3">
 						<input
 							type="text"
-							class="form-control submit"
+							class="form-control submit time-off"
 							id="lead-email"
 							placeholder="Lead Email"
 						/>
@@ -611,6 +611,104 @@
 				</div>
 			</div>
 		</div>
+		<div class="release-request-inputs">
+			<div class="row">
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text today"
+								id="inputGroup-sizing-default"
+								>Today</span
+							>
+						</div>
+						<input
+							placeholder="UC Assessment"
+							type="text"
+							class="form-control expedited"
+							aria-label="Default"
+							aria-describedby="inputGroup-sizing-default"
+						/>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text today"
+								id="inputGroup-sizing-default"
+								>Today</span
+							>
+						</div>
+						<input
+							id="expedited-fra"
+							placeholder="FRA"
+							type="text"
+							class="form-control expedited"
+							aria-label="Default"
+							aria-describedby="inputGroup-sizing-default"
+						/>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text today"
+								id="inputGroup-sizing-default"
+								>Today</span
+							>
+						</div>
+						<input
+							id="expedited-sponsor-assessment"
+							placeholder="Sponsor Assessment"
+							type="text"
+							class="form-control expedited"
+							aria-label="Default"
+							aria-describedby="inputGroup-sizing-default"
+						/>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text today"
+								id="inputGroup-sizing-default"
+								>Today</span
+							>
+						</div>
+						<input
+							id="expedited-verbal"
+							placeholder="Verbal Attestation"
+							type="text"
+							class="form-control expedited"
+							aria-label="Default"
+							aria-describedby="inputGroup-sizing-default"
+						/>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text today"
+								id="inputGroup-sizing-default"
+								>Today</span
+							>
+						</div>
+						<input
+							id="expedited-medical"
+							placeholder="Medically Clear"
+							type="text"
+							class="form-control expedited"
+							aria-label="Default"
+							aria-describedby="inputGroup-sizing-default"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="d-flex justify-content-center release-request">
 			<button
 				class="btn mt-3"
@@ -620,66 +718,7 @@
 				Generate Release Request
 			</button>
 		</div>
-		<div class="release-request-body">
-			<p>
-				This case is being submitted under ORR Field Guidance #10 Expedited
-				Release for CAT 1. Child has been screened and determined not to be
-				especially vulnerable. This case does not meet TVPRA Home Study
-				requirements and as per assessments conducted, there were no concerns
-				identified in respect to abuse, neglect, and or safety.
-			</p>
-			<p>
-				SPONSOR/UC RELATIONSHIP: Stela Walker (52, CAT 1 Expedited, Verified
-				Parent)requests sponsorship of Gloria Walker (A# 123600945, Female, 16).
-				Stela Walker currently resides in Colorado Springs, CO.
-			</p>
-			<p>
-				Case Manager obtained and reviewed UC's BC and Sponsor's BC to verify
-				the relationship between Sponsor and Minor as Mother/Father to UC.
-			</p>
-			<p>Sponsor name on MO/FA BC: Bertha Walker</p>
-			<p>
-				UC name and MO/FA name on UC BC: Gloria Walker (Child), Bertha Walker
-				(Mother), Guillermo Walker (Father)
-			</p>
-			<p>
-				This case is being submitted under ORR Field Guidance #10 Expedited
-				Release for CAT 1. Child has been screened and determined not to be
-				especially vulnerable. This case does not meet TVPRA Home Study
-				requirements and as per assessments conducted, there were no concerns
-				identified in respect to abuse, neglect, and or safety.
-			</p>
-			<p>The following has been completed:</p>
-			<ul>
-				<li>
-					(1) Completion of Modified UC Assessment for Expedited Release Cases
-					(09/19/2023)
-				</li>
-				<li>
-					(2) Completion of Interviews with the Child and the Parent no concerns
-					identified
-				</li>
-				<li>
-					(3) Completion of a Modified Family Reunification Application
-					(09/19/2023)
-				</li>
-				<li>
-					(4) Establishment of Proof of Relationship and Identity (BC'sprovided
-					and relationship established)
-				</li>
-				<li>
-					(5) Completion of Sponsor Background Check (no household member
-					checks) with sponsor provided verbal attestation Authorization for
-					Release of Information. (09/19/2023)
-				</li>
-				<li>(6) Completion of a Modified Sponsor Assessment (09/19/2023)</li>
-			</ul>
-			<p>---- Verbal Attestation was provided by sponsor on 09/19/2023</p>
-			<p>
-				---- MEDICAL: Child is being submitted pending medical clearance as of
-				09/25/2023
-			</p>
-		</div>
+		<div class="release-request-body"></div>
 	</body>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 	<script
