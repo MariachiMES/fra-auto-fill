@@ -1278,6 +1278,9 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 const timeOffBtn = document.getElementById('time-off');
 
 timeOffBtn.addEventListener('click', () => {
+	if (!validate('.time-off', 2)) {
+		return alert('you are missing the fields highlighted in red');
+	}
 	window.open(
 		`mailto:${leadEmail.value}; <Alcides.Hernandez@deployedservices.com>?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
 	);
