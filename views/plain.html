@@ -45,27 +45,8 @@
 							>
 						</div>
 						<input
-							id="home-size"
-							placeholder="Size Of Home"
-							type="text"
-							class="form-control expedited"
-							aria-label="Default"
-							aria-describedby="inputGroup-sizing-default"
-						/>
-					</div>
-				</div>
-				<div class="col-sm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span
-								class="input-group-text today"
-								id="inputGroup-sizing-default"
-								>Today</span
-							>
-						</div>
-						<input
-							id="sponsor-income"
-							placeholder="Sponsor Income"
+							id="admitted"
+							placeholder="Date Admitted"
 							type="text"
 							class="form-control expedited"
 							aria-label="Default"
@@ -84,7 +65,7 @@
 						</div>
 						<input
 							id="poa-received"
-							placeholder="poa-received"
+							placeholder="POA Received"
 							type="text"
 							class="form-control expedited"
 							aria-label="Default"
@@ -130,6 +111,7 @@
 						/>
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="col-sm">
 						<div class="input-group mb-3">
@@ -141,8 +123,8 @@
 								>
 							</div>
 							<input
-								id="lopc-complete"
-								placeholder="LOPC Completed"
+								id="handbook-read"
+								placeholder="Handbook Read"
 								type="text"
 								class="form-control expedited"
 								aria-label="Default"
@@ -160,8 +142,8 @@
 								>
 							</div>
 							<input
-								id="lopc-complete"
-								placeholder="LOPC Completed"
+								id="sponsor-background"
+								placeholder="Sponsor Background"
 								type="text"
 								class="form-control expedited"
 								aria-label="Default"
@@ -179,8 +161,8 @@
 								>
 							</div>
 							<input
-								id="lopc-complete"
-								placeholder="LOPC Completed"
+								id="medically-clear"
+								placeholder="Medically Clear"
 								type="text"
 								class="form-control expedited"
 								aria-label="Default"
@@ -188,43 +170,96 @@
 							/>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-sm">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span
-									class="input-group-text today"
-									id="inputGroup-sizing-default"
-									>Today</span
-								>
-							</div>
+						<div class="form-floating mb-3">
 							<input
-								id="lopc-complete"
-								placeholder="LOPC Completed"
 								type="text"
-								class="form-control expedited"
-								aria-label="Default"
-								aria-describedby="inputGroup-sizing-default"
+								class="form-control rr"
+								id="acg-name"
+								placeholder="ACG Name"
 							/>
+							<label for="acg-name">ACG Name</label>
 						</div>
 					</div>
 					<div class="col-sm">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span
-									class="input-group-text today"
-									id="inputGroup-sizing-default"
-									>Today</span
-								>
-							</div>
+						<div class="form-floating mb-3">
 							<input
-								id="lopc-complete"
-								placeholder="LOPC Completed"
 								type="text"
-								class="form-control expedited"
-								aria-label="Default"
-								aria-describedby="inputGroup-sizing-default"
+								class="form-control rr"
+								id="coo-caregiver"
+								placeholder="COO Caregiver"
 							/>
+							<label for="acg-name">Caregiver Name (COO)</label>
 						</div>
+					</div>
+					<div class="col-sm">
+						<div class="form-floating mb-3">
+							<input
+								type="text"
+								class="form-control rr"
+								id="home-size"
+								placeholder="Size of Home"
+							/>
+							<label for="home-size">Size Of Home</label>
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="form-floating mb-3">
+							<input
+								type="text"
+								class="form-control rr"
+								id="offenders"
+								placeholder="# Of Offenders"
+							/>
+							<label for="offenders"># Of Offenders</label>
+						</div>
+					</div>
+					<div class="col-sm">
+						<div class="form-floating mb-3 rr">
+							<input
+								type="text"
+								class="form-control rr"
+								id="cles"
+								placeholder="# Of CLE's"
+							/>
+							<label for="cles"># Of CLE's</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label for="coo-narrative">Home Country Narrative</label>
+						<textarea
+							class="form-control rr"
+							id="coo-narrative"
+							rows="2"
+						></textarea>
+					</div>
+					<div class="form-group">
+						<label for="birth-certificates">List Birth Certificates</label>
+						<textarea
+							class="form-control rr"
+							id="birth-certificates"
+							rows="2"
+						></textarea>
+					</div>
+					<div class="form-group">
+						<label for="cle-narrative">List CLE's (optional)</label>
+						<textarea
+							class="form-control rr"
+							id="cle-narrative"
+							rows="2"
+						></textarea>
+					</div>
+					<div class="form-group">
+						<label for="release-reason">Reason for Release</label>
+						<textarea
+							class="form-control rr"
+							id="release-reason"
+							rows="3"
+						></textarea>
 					</div>
 				</div>
 			</div>

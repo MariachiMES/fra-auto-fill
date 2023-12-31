@@ -1514,7 +1514,7 @@ const releaseRequest = {
 	<p>
 				${gender.value.toUpperCase === 'MALE' ? 'Mr.' : 'Ms.'} ${firstName.value} ${
 			lastName.value
-		} ${getAge(sponsorDob.value)}, ${emailData[catSelected].category}, ${
+		} ${getAge(dob.value)}, ${emailData[catSelected].category}, ${
 			relationship.value
 		} requests sposnorship of ${childName.value} A#${a_number.value}, ${
 			childGender.value
@@ -1522,6 +1522,11 @@ const releaseRequest = {
 			gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
 		} ${lastName.value} currently resides in ${city.value}, ${stateEl.value}.
 
+		<br/>
+		<br/>
+		***** INSERT HOME COUNTRY NARRATIVE ********
+		<br/>
+		<br/> There is no debt owed for the journey.
 			</p>
 			
 			<p>
@@ -1541,36 +1546,132 @@ const releaseRequest = {
 			<br/>
 			-- Adult Caregiver ID: ****** ACG ID *******
 			<br/>
-			-- Proof of ability to provide housing, food, education: The sponsor adequately demonstrated that they are able to support the child financially. The sponsor lives in a ****** SIZE OF HOME ***** .  Sponsor stated ${parsePronoun(
-				gender.value
-			)} stays with ${parsePossessivePronoun(
+			-- Proof of ability to provide housing, food, education: The sponsor adequately demonstrated that they are able to support the child financially. The sponsor lives in a ${
+				homeSize.value
+			} .  Sponsor stated ${toggleHeShe(
 			gender.value
-		)} partner in master bedroom, and they share the bathroom there. The child will have their own bed to sleep in.  Additionally, sponsor stated house has all working utilities and a fully functional kitchen. The sponsor earns ****** SPONSOR INCOME ******** annually and has verbal commitment from ACG to receive additional financial support in caring for the child.  
+		)} stays with ${toggleHisHer(
+			gender.value
+		)} partner in master bedroom, and they share the bathroom there. The child will have their own bed to sleep in.  Additionally, sponsor stated house has all working utilities and a fully functional kitchen. The sponsor earns annually and has verbal commitment from ACG to receive additional financial support in caring for the child.  
 			</p>
 			
 			<br/>
 			<br/>
 			<p>
-			--Proof of Address: Utiliy Bill dated ${fullBillDate} sent on ***** SENT DATE *****. Verified through Smarty Streets on **** SMARTY VERIFY *****. Verified through Google Maps and Google Earth on ***** GOOGLE VERIFY ******
+			--Proof of Address: Utiliy Bill dated ${fullBillDate} sent on ${
+			dateAdmitted.value
+		}. Verified through Smarty Streets on ${
+			dateAdmitted.value
+		}. Verified through Google Maps and Google Earth on ${dateAdmitted.value}
 			<br/>
 			--Proof of immigration/citizenship status: Proof of immigration status not required, therefore not submitted.
 			<br/>
-			--Letter of Designation: Received on ***** LOD DATE *****
+			--Letter of Designation: Received on ${lodReceived.value}
 			<br/>
-			--LOPC Packet sent on: ****** LOPC DATE *******
+			--LOPC Packet sent on: ${lopcComplete.value}
 			<br/> 
-			--Sponsor Handbook: Sponsor confirmed reading Sponsor Handbook on **** Handbook Date *****
+			--Sponsor Handbook: Sponsor confirmed reading Sponsor Handbook on ${
+				handbookRead.value
+			}
 			</p>
 			<p>
 			Criminal:
-			--As of **** BGC Dates ***** for ${firstName.value} ${lastName.value}:
+			--As of ${sponsorBackground.value} for ${firstName.value} ${lastName.value}:
 			<br/>
 			--Public Records Check: Clear
 			<br/>
 			--Sex offender Check: Clear
 			<br/>
-			${fingerprintRequirements(catSelected)}
-			</p>`,
+			--Fingerprints: ${fingerprintRequirements(catSelected)}
+			<br/>
+			--As of ${sponsorBackground.value} for ${ACGName.value}:
+			<br/>
+			--Public Records Check: Clear
+			<br/>
+			--Sex offender Check: Clear
+			<br/>
+			--Fingerprints: Clear
+			<br/>
+			--As of ${sponsorBackground.value} for ***HHM NAME ****:
+			<br/>
+			--Public Records Check: Clear
+			<br/>
+			--Sex offender Check: Clear
+			<br/>
+			--Fingerprints: Clear 
+			</p>
+			<p>
+			--Self Disclosure: The case manager asked the sponsor if ${toggleHeShe(
+				gender.value
+			)} has any criminal background.  Sponsor Responded: No
+			<br/>
+			SEX OFFENDER ADDRESS SEARCH
+			<br/>
+			--On ${
+				sponsorBackground.value
+			}, case manager conducted a National Sex Offender check for sponsor’s address, ${
+			address.value
+		} ${city.value}, ${stateEl.value} ${zipCode.value}, and found ${
+			offenders.value
+		} registered sex offenders registered. Case Manager reviewed registries and none of the profiles matched sponsor’s address nor sponsor or ACG/HHM identities. Case Manager educated sponsor and Child regarding sex offenders registered in their neighborhood. Additionally, Case Manager educated the Sponsor and Child regarding ${toggleHisHer(
+			childGender.value
+		)} safety, to always be vigilant when playing outside or walking in the neighborhood, and the dangers of speaking with strangers
+		</p>
+		<p>
+		CLE'S
+		<br/>
+		--As of ${new Date().toLocaleDateString()}, the child has ${
+			CLEnumber.value
+		} CLE's on file
+		</p>
+		<p>
+		BIRTH CERTIFICATES: All birth certificates needed to prove the sponsor-UAC relationship were received on ${
+			dateAdmitted.value
+		}.  Sponsor is confirmed to be the child's ${
+			relationship.value
+		}.  Birth Certificates received are: ${listOfBcs.value} 
+		<br/>
+		<br/>
+		CHILD: ${childName.value} DOB: ${childDob.value} MOTHER: ${
+			motherName.value
+		} FATHER: ${fatherName.value}
+		<br/>
+		</p>
+		<p>
+		PRIOR SPONSORSHIP
+		<br/>
+		Verified on ${
+			dateAdmitted.value
+		} that the sponsor did not previously sponsor or attempt to sponsor a child. 
+		</p>
+		<p>
+		PRIOR ADDRESS
+		<br/>
+		CONTACT WITH PRIMARY CAREGIVER IN COO: Spoke with ${cooCaregiver.value} on ${
+			dateAdmitted.value
+		}. ${
+			cooCaregiver.value
+		} was able to verify information provided by the child and the sponsor. 
+
+		</p>
+		<p>
+		SPONSOR RESOURCES: '
+		<br/>
+		The following emergency contact information was provided to the sponsor: 911, ORR Parent and Sponsor Hotline, information regarding health care and vaccinations, Department of Family and Protective Services (${
+			stateEl.value
+		}), and National Human Trafficking Resource Center.
+		</p>
+		<p>
+		MEDICAL CLEARANCE: 
+		<br/>
+		--As of ${medicalClearance} , Child is medically clear for travel.  
+		</p>
+		<p>
+		RELEASE RECOMMENDATION:
+		The sponsor is recommending ${
+			releaseCriteria[releaseSelected].nonAbbreviated
+		} to the sponsor.  ${releaseReason}
+		</p>`,
 	},
 };
 function fingerprintRequirements(cat) {
@@ -1586,10 +1687,39 @@ function parsePossessive(str) {
 		: str + `'s`;
 }
 
-function parsePronoun(str) {
+function toggleHeShe(str) {
 	return str.upperCase() === 'MALE' ? 'he' : 'she';
 }
 
-function parsePossessivePronoun(str) {
+function toggleHisHer(str) {
 	return str.toUpperCase() === 'MALE' ? 'his' : 'her';
 }
+
+function toggleHimHer(str) {
+	return str.toUpperCase() === 'MALE' ? 'him' : 'her';
+}
+
+function toggleHisHers(str) {
+	return str.toUpperCase() === 'MALE' ? 'his' : 'hers';
+}
+
+//Release Request Handlers
+
+const dateAdmitted = document.getElementById('admitted');
+const poaReceived = document.getElementById('poa-received');
+const lodReceived = document.getElementById('lod-received');
+const lopcComplete = document.getElementById('lopc-complete');
+const handbookRead = document.getElementById('handbook-read');
+const sponsorBackground = document.getElementById('sponsor-background');
+const medicalClearance = document.getElementById('medically-clear');
+
+const ACGName = document.getElementById('acg-name');
+const cooCaregiver = document.getElementById('coo-caregiver');
+const homeSize = document.getElementById('home-size');
+const offenders = document.getElementById('offenders');
+const CLEnumber = document.getElementById('cles');
+
+const cooNarrative = document.getElementById('coo-narrative');
+const listOfBcs = document.getElementById('birth-certificates');
+const cleNarrative = document.getElementById('cle-narrative');
+const releaseReason = document.getElementById('release-reason');
