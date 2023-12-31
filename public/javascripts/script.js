@@ -1295,7 +1295,7 @@ function getAge(dateString) {
 	}
 	return age;
 }
-function getInitials(child) {
+function getKidInitials(kid) {
 	const namesArr = child.split(' ');
 	let initials = [];
 	namesArr.forEach((name) => {
@@ -1335,7 +1335,7 @@ submitCaseBtn.addEventListener('click', () => {
 	window.open(
 		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for ${
 			releaseCriteria[releaseSelected].abbreviated
-		} ${emailData[catSelected].abbreviatedCat} ${getInitials(
+		} ${emailData[catSelected].abbreviatedCat} ${getKidInitials(
 			childName.value
 		)} A#XXX-XX${getLastFour(
 			a_number.value
@@ -1394,7 +1394,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 1 EXPEDITED',
+		abbreviated: 'CAT 1 EXPEDITED',
 		category: 'Category 1 EXPEDITED',
 	},
 	CAT1: {
@@ -1402,7 +1402,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 1 Non-Expedited',
+		abbreviated: 'CAT 1 Non-Expedited',
 		category: 'Category 1 Non-Expedited',
 	},
 	CAT2A: {
@@ -1410,7 +1410,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 2A',
+		abbreviated: 'CAT 2A',
 		category: 'Category 2A',
 	},
 	CAT2B: {
@@ -1418,7 +1418,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 2B',
+		abbreviated: 'CAT 2B',
 		category: 'Category 2B',
 	},
 	CAT3: {
@@ -1426,7 +1426,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 3',
+		abbreviated: 'CAT 3',
 		category: 'Category 3',
 	},
 	CAT3UN: {
@@ -1434,7 +1434,7 @@ const emailData = {
 		subject: ``,
 		cc: ``,
 		body: ``,
-		abbreviatedCat: 'CAT 3 Unrelated',
+		abbreviated: 'CAT 3 Unrelated',
 		category: 'Category 3 Unrelated',
 	},
 };
@@ -1449,8 +1449,8 @@ const releaseRequest = {
 		identified in respect to abuse, neglect, and or safety.
 	</p>
 	<p>
-		SPONSOR/Child RELATIONSHIP: ${firstName.value} ${lastName.value} (${getAge(
-			sponsorDob.value
+		SPONSOR/CHILD RELATIONSHIP: ${firstName.value} ${lastName.value} (${getAge(
+			dob.value
 		)}, ${emailData[catSelected].abbreviated} , Verified
 		Parent)requests sponsorship of ${childName.value} (A# ${a_number.value}, ${
 			childGender.value
@@ -1508,5 +1508,88 @@ const releaseRequest = {
 		09/25/2023
 	</p>`,
 	},
-	nonExpedited: {},
+	CAT1: {
+		inputs: ``,
+		request: `
+	<p>
+				${gender.value.toUpperCase === 'MALE' ? 'Mr.' : 'Ms.'} ${firstName.value} ${
+			lastName.value
+		} ${getAge(sponsorDob.value)}, ${emailData[catSelected].category}, ${
+			relationship.value
+		} requests sposnorship of ${childName.value} A#${a_number.value}, ${
+			childGender.value
+		}, age ${getAge(childDob.value)}. ${
+			gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
+		} ${lastName.value} currently resides in ${city.value}, ${stateEl.value}.
+
+			</p>
+			
+			<p>
+			<strong>FRP AND SUPPORTING DOCUMENTS</strong>
+			<br/>
+			<br/>
+			The case manager received and reviewed ${
+				gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
+			} ${parsePossessive(
+			lastName.value
+		)} family reunification packet which includes: 
+			</p>
+			<p>
+			-- Sponsor ID: Passport with Expiration Date ${createExpirationDate(dob.value)}
+			<br/>
+			-- Household Member ID: ******HOUSE HOLD MEMBER ID******
+			<br/>
+			-- Adult Caregiver ID: ****** ACG ID *******
+			<br/>
+			-- Proof of ability to provide housing, food, education: The sponsor adequately demonstrated that they are able to support the child financially. The sponsor lives in a ****** SIZE OF HOME ***** .  Sponsor stated ${parsePronoun(
+				gender.value
+			)} stays with ${parsePossessivePronoun(
+			gender.value
+		)} partner in master bedroom, and they share the bathroom there. The child will have their own bed to sleep in.  Additionally, sponsor stated house has all working utilities and a fully functional kitchen. The sponsor earns ****** SPONSOR INCOME ******** annually and has verbal commitment from ACG to receive additional financial support in caring for the child.  
+			</p>
+			
+			<br/>
+			<br/>
+			<p>
+			--Proof of Address: Utiliy Bill dated ${fullBillDate} sent on ***** SENT DATE *****. Verified through Smarty Streets on **** SMARTY VERIFY *****. Verified through Google Maps and Google Earth on ***** GOOGLE VERIFY ******
+			<br/>
+			--Proof of immigration/citizenship status: Proof of immigration status not required, therefore not submitted.
+			<br/>
+			--Letter of Designation: Received on ***** LOD DATE *****
+			<br/>
+			--LOPC Packet sent on: ****** LOPC DATE *******
+			<br/> 
+			--Sponsor Handbook: Sponsor confirmed reading Sponsor Handbook on **** Handbook Date *****
+			</p>
+			<p>
+			Criminal:
+			--As of **** BGC Dates ***** for ${firstName.value} ${lastName.value}:
+			<br/>
+			--Public Records Check: Clear
+			<br/>
+			--Sex offender Check: Clear
+			<br/>
+			${fingerprintRequirements(catSelected)}
+			</p>`,
+	},
 };
+function fingerprintRequirements(cat) {
+	if (catSelected == 'CAT1EXP' || catSelected == 'CAT2A') {
+		return 'Fingerprints not required ';
+	}
+	return 'Clear';
+}
+function parsePossessive(str) {
+	return str.charAt(str.length - 1).toUpperCase() === 'S' ||
+		str.charAt(str.length - 1).toUpperCase() === 'Z'
+		? str + `'`
+		: str + `'s`;
+}
+
+function parsePronoun(str) {
+	return str.upperCase() === 'MALE' ? 'he' : 'she';
+}
+
+function parsePossessivePronoun(str) {
+	return str.toUpperCase() === 'MALE' ? 'his' : 'her';
+}
