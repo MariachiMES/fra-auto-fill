@@ -1538,7 +1538,7 @@ submitCaseBtn.addEventListener('click', () => {
 			clinician.value
 		}>; <${
 			buddy.value
-		}>&body=Greetings, %0D Please be advised that a release request for ${getInitials(
+		}>&body=Greetings, %0D Please be advised that a release request for ${getKidInitials(
 			childName.value
 		)} ${getLastFour(
 			a_number.value
