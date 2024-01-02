@@ -301,7 +301,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
+									class="form-control rr submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
 									id="a-number"
 									placeholder="A Number"
 								/>
@@ -311,7 +311,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control lopc poa fp fp-appt bgc foreign-id lod fra ari"
+									class="form-control rr lopc poa fp fp-appt bgc foreign-id lod fra ari"
 									id="first-name"
 									placeholder="Sponsor First Name"
 								/>
@@ -320,7 +320,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control lopc fp fp-appt poa bgc foreign-id lod fra ari"
+									class="form-control rr lopc fp fp-appt poa bgc foreign-id lod fra ari"
 									id="last-name"
 									placeholder="Sponsor Last Name "
 								/>
@@ -329,7 +329,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bgc foreign-id fra ari"
+									class="form-control rr bgc foreign-id fra ari"
 									id="dob"
 									placeholder="Sponsor DOB"
 								/>
@@ -338,7 +338,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control foreign-id"
+									class="form-control rr foreign-id"
 									id="sponsor-gender"
 									placeholder="Sponsor's Gender"
 								/>
@@ -347,7 +347,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control submit lopc fra ari"
+									class="form-control rr submit lopc fra ari"
 									id="relationship"
 									placeholder="Relationship"
 								/>
@@ -443,7 +443,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bc lod fra ari"
+									class="form-control bc lod fra ari foreign-id"
 									id="coo"
 									placeholder="Country of Origin"
 								/>
@@ -747,13 +747,17 @@
 					class="hidden"
 					id="non-expedited-inputs"
 				>
-					<button
-						class="btn mt-3"
-						type="button"
-						id="non-expedited-dummy-btn"
+					<div
+						class="m-2 p-2 button-container d-flex justify-content-center w-full"
 					>
-						Populate Dummy Data
-					</button>
+						<button
+							class="btn mt-3 dummy"
+							type="button"
+							id="non-expedited-dummy-btn"
+						>
+							Populate Dummy Data
+						</button>
+					</div>
 					<div class="row">
 						<div class="col-sm">
 							<div class="input-group mb-3">

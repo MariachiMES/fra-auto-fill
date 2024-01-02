@@ -10,7 +10,7 @@ const poaBtn = document.getElementById('poa');
 const stateEl = document.getElementById('state');
 const gender = document.getElementById('sponsor-gender');
 
-//SPONSOR RELATIONSHI TO CHILD
+//SPONSOR RELATIONSHIP TO CHILD
 const relationship = document.getElementById('relationship');
 const phoneNum = document.getElementById('phone');
 const zipCode = document.getElementById('zip');
@@ -280,7 +280,7 @@ earthBtn.addEventListener('click', getGoogleEarth);
 saveEmailsBtn.addEventListener('click', saveEmailsToLocalStorage);
 
 function getGoogleMap() {
-	if (!validate('.smarty', 4)) {
+	if (!validate('.smarty', document.querySelectorAll('.smarty').length)) {
 		return alert('the missing data is highlighted in red');
 	}
 	const addressParam = address.value.split(' ').join('+');
@@ -289,7 +289,7 @@ function getGoogleMap() {
 	window.open(googleUrl, '_blank');
 }
 function getGoogleEarth() {
-	if (!validate('.smarty', 4)) {
+	if (!validate('.smarty', document.querySelectorAll('.smarty').length)) {
 		return alert('the missing data is highlighted in red');
 	}
 	const addressParam = address.value.split(' ').join('+');
@@ -460,6 +460,9 @@ function emailConvert(str) {
 
 function renderFingerprints() {
 	getNamesArr();
+	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
+		return alert(`you are missing some data.`);
+	}
 	const today = new Date().toLocaleDateString();
 
 	const apptTime = new Date().getHours() + 3;
@@ -483,7 +486,7 @@ function renderFingerprints() {
 
 function renderFPConfirmation() {
 	getNamesArr();
-	if (validate('.fp-appt', 3) === false) {
+	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
 		return alert(`you are missing some data.`);
 	}
 	const today = new Date().toLocaleDateString();
@@ -517,7 +520,7 @@ function validate(className, nodeLength) {
 }
 function renderLOPC() {
 	getNamesArr();
-	if (validate('.lopc', 11) === false) {
+	if (validate('.lopc', document.querySelectorAll('.lopc').length) === false) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
@@ -635,7 +638,7 @@ function getNamesArr() {
 
 function jumbleNames() {
 	getNamesArr();
-	if (!validate('.bgc', 6)) {
+	if (!validate('.bgc', document.querySelectorAll('.bcg').length)) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
@@ -755,7 +758,9 @@ function colorsBackToNormal() {
 function renderForeignId() {
 	getNamesArr();
 	colorsBackToNormal();
-	if (!validate('.foreign-id', 5)) {
+	if (
+		!validate('.foreign-id', document.querySelectorAll('.foreign-id').length)
+	) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
@@ -1056,7 +1061,7 @@ function createIssueDate() {
 }
 function renderLOD() {
 	getNamesArr();
-	if (validate('.lod', 12) === false) {
+	if (validate('.lod', document.querySelectorAll('.lod').length) === false) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
@@ -1081,8 +1086,8 @@ function renderLOD() {
 }
 function renderBc() {
 	getNamesArr();
-	validate('.bc', 6);
-	if (!validate('.bc', 6)) {
+	validate('.bc', document.querySelectorAll('.bc').length);
+	if (!validate('.bc', document.querySelectorAll('.bc').length)) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
 		);
@@ -1471,7 +1476,7 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 const timeOffBtn = document.getElementById('time-off');
 
 timeOffBtn.addEventListener('click', () => {
-	if (!validate('.time-off', 2)) {
+	if (!validate('.time-off', document.querySelectorAll('.time-off').length)) {
 		return alert('you are missing the fields highlighted in red');
 	}
 	window.open(
@@ -1522,7 +1527,7 @@ submitCaseBtn.addEventListener('click', () => {
 			'you need to select a category  AND a release type for this case'
 		);
 	}
-	if (!validate('.submit', 8)) {
+	if (!validate('.submit', document.querySelectorAll('.submit').length)) {
 		return alert('you are missing the highlighted fields');
 	}
 	window.open(
