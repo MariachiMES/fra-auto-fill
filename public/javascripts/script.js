@@ -133,6 +133,17 @@ const expeditedBirthCertificates = document.getElementById(
 	'expedited-birth-certificates'
 );
 
+const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
+expeditedDummyBtn.addEventListener('click', () => {
+	ucExpedited.value = '1/1/2024';
+	expeditedFRA.value = '1/1/2024';
+	expeditedSponsor.value = '1/1/2024';
+	expeditedVerbal.value = '1/1/2024';
+	expeditedMedical.value = '1/1/2024';
+	expeditedBirthCertificates.value =
+		'THESE ARE TEH EXPEDITED BIRTH CERTIFICATES LISTED';
+});
+
 const rrDummyBtn = document.getElementById('non-expedited-dummy-btn');
 
 rrDummyBtn.addEventListener('click', () => {
@@ -1670,6 +1681,14 @@ generateRRBtn.addEventListener('click', () => {
 	}
 
 	if (catSelected === 'CAT1EXP') {
+		if (
+			!validate(
+				'.rr-expedited',
+				document.querySelectorAll('.rr-expedited').length
+			)
+		) {
+			return alert('the missing data is highlighted in RED');
+		}
 		//EXPEDITED RELEASE REQUEST BODY
 		expeditedReleaseBody.classList.remove('hidden');
 		console.log('clicked');
@@ -1704,6 +1723,9 @@ generateRRBtn.addEventListener('click', () => {
 
 		return;
 	} else {
+		if (!validate('.rr', document.querySelectorAll('.rr').length)) {
+			return alert('the missing fields are highlighted in red');
+		}
 		//FILL RELEASE REQUEST
 		rrACGName.forEach((node) => {
 			node.textContent = ACGName.value;

@@ -160,7 +160,7 @@
 							id="save-emails"
 							style="height: 3rem"
 						>
-							Save CM Data
+							Save Profile
 						</button>
 					</div>
 					<!-- CATEGORY RADIO BUTTONS-->
@@ -301,7 +301,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
+									class="form-control rr rr-expedited submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
 									id="a-number"
 									placeholder="A Number"
 								/>
@@ -311,7 +311,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr lopc poa fp fp-appt bgc foreign-id lod fra ari"
+									class="form-control rr rr-expedited lopc poa fp fp-appt bgc foreign-id lod fra ari"
 									id="first-name"
 									placeholder="Sponsor First Name"
 								/>
@@ -320,7 +320,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr lopc fp fp-appt poa bgc foreign-id lod fra ari"
+									class="form-control rr rr-expedited lopc fp fp-appt poa bgc foreign-id lod fra ari"
 									id="last-name"
 									placeholder="Sponsor Last Name "
 								/>
@@ -329,7 +329,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr bgc foreign-id fra ari"
+									class="form-control rr-expedited rr bgc foreign-id fra ari"
 									id="dob"
 									placeholder="Sponsor DOB"
 								/>
@@ -338,7 +338,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr foreign-id"
+									class="form-control rr-expedited rr foreign-id"
 									id="sponsor-gender"
 									placeholder="Sponsor's Gender"
 								/>
@@ -347,7 +347,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr submit lopc fra ari"
+									class="form-control rr-expedited rr submit lopc fra ari"
 									id="relationship"
 									placeholder="Relationship"
 								/>
@@ -368,7 +368,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control submit lopc bc lod fra"
+									class="form-control rr rr-expedited submit lopc bc lod fra"
 									id="child-name"
 									placeholder="Child Name"
 								/>
@@ -377,7 +377,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bc lod"
+									class="form-control rr rr-expedited bc lod"
 									id="mother-name"
 									placeholder="Child's Mother's Name"
 								/>
@@ -386,7 +386,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control lopc poa lod fra ari smarty"
+									class="form-control lopc rr poa lod fra ari smarty"
 									id="address"
 									placeholder="Address"
 								/>
@@ -395,7 +395,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control submit lopc poa lod fra ari smarty"
+									class="form-control rr rr-expedited submit lopc poa lod fra ari smarty"
 									id="city"
 									placeholder="City"
 								/>
@@ -404,7 +404,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control submit lopc poa bgc lod fra ari smarty"
+									class="form-control rr rr-expedited submit lopc poa bgc lod fra ari smarty"
 									id="state"
 									placeholder="State"
 								/>
@@ -414,7 +414,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control lopc poa lod fra ari smarty"
+									class="form-control rr lopc poa lod fra ari smarty"
 									id="zip"
 									placeholder="Zip"
 								/>
@@ -425,7 +425,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bc lod"
+									class="form-control rr rr-expedited bc lod"
 									id="child-dob"
 									placeholder="Child DOB"
 								/>
@@ -434,7 +434,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bc lod"
+									class="form-control rr rr-expedited bc lod"
 									id="father-name"
 									placeholder="Child's Father's Name"
 								/>
@@ -443,7 +443,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bc lod fra ari foreign-id"
+									class="form-control rr rr-expedited bc lod fra ari foreign-id"
 									id="coo"
 									placeholder="Country of Origin"
 								/>
@@ -462,7 +462,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control bgc"
+									class="form-control rr bgc"
 									id="background-check-results"
 									placeholder="Results"
 								/>
@@ -472,7 +472,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control lopc fra ari"
+									class="form-control rr rr-expedited lopc fra ari"
 									id="child-gender"
 									placeholder="Child's Gender"
 								/>
@@ -636,6 +636,17 @@
 					class="hidden"
 					id="cat-1-inputs"
 				>
+					<div
+						class="m-2 p-2 button-container d-flex justify-content-center w-full"
+					>
+						<button
+							class="btn mt-3 dummy"
+							type="button"
+							id="expedited-dummy-btn"
+						>
+							Populate Dummy Data
+						</button>
+					</div>
 					<div class="row">
 						<div class="col-sm">
 							<div class="input-group mb-3">
@@ -649,7 +660,7 @@
 								<input
 									placeholder="UC Assessment"
 									type="text"
-									class="form-control rr"
+									class="form-control rr-expedited"
 									aria-label="Default"
 									aria-describedby="inputGroup-sizing-default"
 									id="uc-expedited"
@@ -669,7 +680,7 @@
 									id="expedited-fra"
 									placeholder="FRA"
 									type="text"
-									class="form-control rr"
+									class="form-control rr-expedited"
 									aria-label="Default"
 									aria-describedby="inputGroup-sizing-default"
 								/>
@@ -688,7 +699,7 @@
 									id="expedited-sponsor-assessment"
 									placeholder="Sponsor Assessment"
 									type="text"
-									class="form-control rr"
+									class="form-control rr-expedited"
 									aria-label="Default"
 									aria-describedby="inputGroup-sizing-default"
 								/>
@@ -707,7 +718,7 @@
 									id="expedited-verbal"
 									placeholder="Verbal Attestation"
 									type="text"
-									class="form-control r"
+									class="form-control rr-expedited"
 									aria-label="Default"
 									aria-describedby="inputGroup-sizing-default"
 								/>
@@ -726,7 +737,7 @@
 									id="expedited-medical"
 									placeholder="Medically Clear"
 									type="text"
-									class="form-control rr"
+									class="form-control rr-expedited"
 									aria-label="Default"
 									aria-describedby="inputGroup-sizing-default"
 								/>
@@ -735,7 +746,7 @@
 						<div class="form-group">
 							<label for="birth-certificates">List Birth Certificates</label>
 							<textarea
-								class="form-control rr"
+								class="form-control rr-expedited"
 								id="expedited-birth-certificates"
 								rows="2"
 							></textarea>
