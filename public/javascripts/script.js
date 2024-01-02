@@ -1,3 +1,4 @@
+//SPONSOR INFO
 const firstName = document.getElementById('first-name');
 const lastName = document.getElementById('last-name');
 const dob = document.getElementById('dob');
@@ -7,28 +8,32 @@ const fingerPrintBtn = document.getElementById('fingerprints');
 const lopcBtn = document.getElementById('lopc');
 const poaBtn = document.getElementById('poa');
 const stateEl = document.getElementById('state');
-const pageBodyEl = document.getElementById('page-body');
+const gender = document.getElementById('sponsor-gender');
+
+//SPONSOR RELATIONSHI TO CHILD
 const relationship = document.getElementById('relationship');
-const caseManager = document.getElementById('case-manager');
 const phoneNum = document.getElementById('phone');
 const zipCode = document.getElementById('zip');
 const city = document.getElementById('city');
 const address = document.getElementById('address');
 const results = document.getElementById('background-check-results');
+
+//CHILD INFO
 const childDob = document.getElementById('child-dob');
 const childName = document.getElementById('child-name');
-const fingerprintConfirmBtn = document.getElementById('fingerprint-confirm');
-const idCreator = document.getElementById('foreign-id');
-const bcBtn = document.getElementById('bc-btn');
 const motherName = document.getElementById('mother-name');
 const fatherName = document.getElementById('father-name');
 const coo = document.getElementById('coo');
+const childGender = document.getElementById('child-gender');
+
+//BUTTONS
+const fingerprintConfirmBtn = document.getElementById('fingerprint-confirm');
+const idCreator = document.getElementById('foreign-id');
+const bcBtn = document.getElementById('bc-btn');
 const lodBtn = document.getElementById('lod-btn');
-const gender = document.getElementById('sponsor-gender');
 const instructionsBtn = document.getElementById('instructions-btn');
 const fraBtn = document.getElementById('fra-btn');
 const ariBtn = document.getElementById('ari-btn');
-const childGender = document.getElementById('child-gender');
 const dummyBtn = document.getElementById('dummy-btn');
 const clearBtn = document.getElementById('clear-btn');
 const mapsBtn = document.getElementById('googlemaps-btn');
@@ -36,12 +41,440 @@ const smartyBtn = document.getElementById('smarty-btn');
 const earthBtn = document.getElementById('googleearth-btn');
 const twentyFourHourBtn = document.getElementById('24-hour');
 const submitCaseBtn = document.getElementById('submit-case');
-
 const catRadioBtns = document.querySelectorAll('[data-cats]');
+const saveEmailsBtn = document.getElementById('save-emails');
+const generateRRBtn = document.getElementById('generate-release-request');
+
+//CASE MANAGER INFO INPUTS
+const caseManager = document.getElementById('case-manager');
 const leadEmail = document.getElementById('lead-email');
 const buddy = document.getElementById('buddy');
 const clinician = document.getElementById('clinician');
-const saveEmailsBtn = document.getElementById('save-emails');
+
+//BODY ELEMENTS
+const releaseRequestBody = document.getElementById('release-request-body');
+const pageBodyEl = document.getElementById('page-body');
+
+let catSelected;
+let releaseSelected;
+
+const emailData = {
+	CAT1EXP: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 1 EXPEDITED',
+		category: 'Category 1 EXPEDITED',
+		fields: 5,
+	},
+	CAT1: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 1 Non-Expedited',
+		category: 'Category 1 Non-Expedited',
+		fields: 16,
+	},
+	CAT2A: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 2A',
+		category: 'Category 2A',
+		fields: 16,
+	},
+	CAT2B: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 2B',
+		category: 'Category 2B',
+		fields: 16,
+	},
+	CAT3: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 3',
+		category: 'Category 3',
+		fields: 16,
+	},
+	CAT3UN: {
+		to: ``,
+		subject: ``,
+		cc: ``,
+		body: ``,
+		abbreviated: 'CAT 3 Unrelated',
+		category: 'Category 3 Unrelated',
+		fields: 16,
+	},
+};
+const nonExpeditedHTML = `<div class="row">
+<div class="col-sm">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span
+				class="input-group-text today"
+				id="inputGroup-sizing-default"
+				>Today</span
+			>
+		</div>
+		<input
+			id="admitted"
+			placeholder="Date Admitted"
+			type="text"
+			class="form-control rr"
+			aria-label="Default"
+			aria-describedby="inputGroup-sizing-default"
+		/>
+	</div>
+</div>
+<div class="col-sm">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span
+				class="input-group-text today"
+				id="inputGroup-sizing-default"
+				>Today</span
+			>
+		</div>
+		<input
+			id="poa-received"
+			placeholder="POA Received"
+			type="text"
+			class="form-control rr"
+			aria-label="Default"
+			aria-describedby="inputGroup-sizing-default"
+		/>
+	</div>
+</div>
+<div class="col-sm">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span
+				class="input-group-text today"
+				id="inputGroup-sizing-default"
+				>Today</span
+			>
+		</div>
+		<input
+			id="lod-received"
+			placeholder="LOD received"
+			type="text"
+			class="form-control rr"
+			aria-label="Default"
+			aria-describedby="inputGroup-sizing-default"
+		/>
+	</div>
+</div>
+<div class="col-sm">
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span
+				class="input-group-text today"
+				id="inputGroup-sizing-default"
+				>Today</span
+			>
+		</div>
+		<input
+			id="lopc-complete"
+			placeholder="LOPC Completed"
+			type="text"
+			class="form-control rr"
+			aria-label="Default"
+			aria-describedby="inputGroup-sizing-default"
+		/>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span
+					class="input-group-text today"
+					id="inputGroup-sizing-default"
+					>Today</span
+				>
+			</div>
+			<input
+				id="handbook-read"
+				placeholder="Handbook Read"
+				type="text"
+				class="form-control rr"
+				aria-label="Default"
+				aria-describedby="inputGroup-sizing-default"
+			/>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span
+					class="input-group-text today"
+					id="inputGroup-sizing-default"
+					>Today</span
+				>
+			</div>
+			<input
+				id="sponsor-background"
+				placeholder="Sponsor Background"
+				type="text"
+				class="form-control rr"
+				aria-label="Default"
+				aria-describedby="inputGroup-sizing-default"
+			/>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span
+					class="input-group-text today"
+					id="inputGroup-sizing-default"
+					>Today</span
+				>
+			</div>
+			<input
+				id="medically-clear"
+				placeholder="Medically Clear"
+				type="text"
+				class="form-control rr"
+				aria-label="Default"
+				aria-describedby="inputGroup-sizing-default"
+			/>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm">
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control rr"
+				id="acg-name"
+				placeholder="ACG Name"
+			/>
+			<label for="acg-name">ACG Name</label>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control rr"
+				id="coo-caregiver"
+				placeholder="COO Caregiver"
+			/>
+			<label for="acg-name">COO Caregiver</label>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control rr"
+				id="home-size"
+				placeholder="Size of Home"
+			/>
+			<label for="home-size">Size Of Home</label>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-floating mb-3">
+			<input
+				type="text"
+				class="form-control rr"
+				id="offenders"
+				placeholder="# Of Offenders"
+			/>
+			<label for="offenders"># Of Offenders</label>
+		</div>
+	</div>
+	<div class="col-sm">
+		<div class="form-floating mb-3 rr">
+			<input
+				type="text"
+				class="form-control rr"
+				id="cles"
+				placeholder="# Of CLE's"
+			/>
+			<label for="cles"># Of CLE's</label>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group">
+		<label for="coo-narrative">Home Country Narrative</label>
+		<textarea
+			class="form-control rr"
+			id="coo-narrative"
+			rows="2"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<label for="birth-certificates">List Birth Certificates</label>
+		<textarea
+			class="form-control rr"
+			id="birth-certificates"
+			rows="2"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<label for="cle-narrative">List CLE's (optional)</label>
+		<textarea
+			class="form-control rr"
+			id="cle-narrative"
+			rows="2"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<label for="release-reason">Reason for Release</label>
+		<textarea
+			class="form-control rr"
+			id="release-reason"
+			rows="3"
+		></textarea>
+	</div>
+</div>
+</div>`;
+const releaseRequest = {
+	CAT1EXP: {
+		html: `<div class="row">
+		<div class="col-sm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span
+						class="input-group-text today"
+						id="inputGroup-sizing-default"
+						>Today</span
+					>
+				</div>
+				<input
+					placeholder="UC Assessment"
+					type="text"
+					class="form-control rr"
+					aria-label="Default"
+					aria-describedby="inputGroup-sizing-default"
+					id="uc-expedited"
+				/>
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span
+						class="input-group-text today"
+						id="inputGroup-sizing-default"
+						>Today</span
+					>
+				</div>
+				<input
+					id="expedited-fra"
+					placeholder="FRA"
+					type="text"
+					class="form-control rr"
+					aria-label="Default"
+					aria-describedby="inputGroup-sizing-default"
+				/>
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span
+						class="input-group-text today"
+						id="inputGroup-sizing-default"
+						>Today</span
+					>
+				</div>
+				<input
+					id="expedited-sponsor-assessment"
+					placeholder="Sponsor Assessment"
+					type="text"
+					class="form-control rr"
+					aria-label="Default"
+					aria-describedby="inputGroup-sizing-default"
+				/>
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span
+						class="input-group-text today"
+						id="inputGroup-sizing-default"
+						>Today</span
+					>
+				</div>
+				<input
+					id="expedited-verbal"
+					placeholder="Verbal Attestation"
+					type="text"
+					class="form-control r"
+					aria-label="Default"
+					aria-describedby="inputGroup-sizing-default"
+				/>
+			</div>
+		</div>
+		<div class="col-sm">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span
+						class="input-group-text today"
+						id="inputGroup-sizing-default"
+						>Today</span
+					>
+				</div>
+				<input
+					id="expedited-medical"
+					placeholder="Medically Clear"
+					type="text"
+					class="form-control rr"
+					aria-label="Default"
+					aria-describedby="inputGroup-sizing-default"
+				/>
+			</div>
+		</div>
+	</div>`,
+		request: '',
+	},
+	CAT1: {
+		html: nonExpeditedHTML,
+		request: '',
+	},
+	CAT2A: {
+		html: nonExpeditedHTML,
+		request: '',
+	},
+	CAT2B: {
+		html: nonExpeditedHTML,
+		request: '',
+	},
+	CAT3: {
+		html: nonExpeditedHTML,
+		request: '',
+	},
+	CAT3UN: {
+		html: nonExpeditedHTML,
+		request: '',
+	},
+};
+const releaseCriteria = {
+	SR: {
+		abbreviated: 'SR',
+		nonAbbreviated: 'Straight Release',
+	},
+	PRS: {
+		abbreviated: 'PRS',
+		nonAbbreviated: 'Post-Release Services Only',
+	},
+};
 
 const leadershipEmails = JSON.parse(localStorage.getItem('emails'));
 
@@ -1358,8 +1791,6 @@ submitCaseBtn.addEventListener('click', () => {
 		}. %0D %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
 	);
 });
-let catSelected;
-let releaseSelected;
 
 const releaseBtns = document.querySelectorAll('[name=release]');
 
@@ -1370,310 +1801,21 @@ releaseBtns.forEach((btn) => {
 	});
 });
 
+const rrPrompts = document.getElementById('release-request-prompts');
+
 catRadioBtns.forEach((btn, idx) => {
 	btn.addEventListener('click', (e) => {
 		catSelected = e.target.getAttribute('data-category');
 		console.log(catSelected);
+		rrPrompts.innerHTML = '';
+		if (releaseRequest[catSelected]) {
+			rrPrompts.innerHTML = releaseRequest[catSelected].html;
+		} else {
+			rrPrompts.innerHTML = releaseRequest[CAT1].html;
+		}
 	});
 });
 
-const releaseCriteria = {
-	SR: {
-		abbreviated: 'SR',
-		nonAbbreviated: 'Straight Release',
-	},
-	PRS: {
-		abbreviated: 'PRS',
-		nonAbbreviated: 'Post-Release Services Only',
-	},
-};
-
-const emailData = {
-	CAT1EXP: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 1 EXPEDITED',
-		category: 'Category 1 EXPEDITED',
-	},
-	CAT1: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 1 Non-Expedited',
-		category: 'Category 1 Non-Expedited',
-	},
-	CAT2A: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 2A',
-		category: 'Category 2A',
-	},
-	CAT2B: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 2B',
-		category: 'Category 2B',
-	},
-	CAT3: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 3',
-		category: 'Category 3',
-	},
-	CAT3UN: {
-		to: ``,
-		subject: ``,
-		cc: ``,
-		body: ``,
-		abbreviated: 'CAT 3 Unrelated',
-		category: 'Category 3 Unrelated',
-	},
-};
-const releaseRequest = {
-	CAT1EXP: {
-		inputs: ``,
-		request: `<p>
-		This case is being submitted under ORR Field Guidance #10 Expedited
-		Release for CAT 1. Child has been screened and determined not to be
-		especially vulnerable. This case does not meet TVPRA Home Study
-		requirements and as per assessments conducted, there were no concerns
-		identified in respect to abuse, neglect, and or safety.
-	</p>
-	<p>
-		SPONSOR/CHILD RELATIONSHIP: ${firstName.value} ${lastName.value} (${getAge(
-			dob.value
-		)}, ${emailData[catSelected].abbreviated} , Verified
-		Parent)requests sponsorship of ${childName.value} (A# ${a_number.value}, ${
-			childGender.value
-		}, ${getAge(childDob.value)}).
-		${firstName.value} ${lastName.value} currently resides in ${city.value}, ${
-			stateEl.value
-		}.
-	</p>
-	<p>
-		Case Manager obtained and reviewed child's BC and Sponsor's BC to verify
-		the relationship between Sponsor and child as ${
-			relationship.value
-		} to the Child.
-	</p>
-	<p>Sponsor name on MO/FA BC: ${firstName.value} ${lastName.value}</p>
-	<p>
-		UC name and MO/FA name on UC BC: ${childName.value} (Child), ${motherName.value}
-		(Mother), ${fatherName.value} (Father)
-	</p>
-	<p>
-		This case is being submitted under ORR Field Guidance #10 Expedited
-		Release for CAT 1. Child has been screened and determined not to be
-		especially vulnerable. This case does not meet TVPRA Home Study
-		requirements and as per assessments conducted, there were no concerns
-		identified in respect to abuse, neglect, and or safety.
-	</p>
-	<p>The following has been completed:</p>
-	<ul>
-		<li>
-			(1) Completion of Modified UC Assessment for Expedited Release Cases
-			(09/19/2023)
-		</li>
-		<li>
-			(2) Completion of Interviews with the Child and the Parent no concerns
-			identified
-		</li>
-		<li>
-			(3) Completion of a Modified Family Reunification Application
-			(09/19/2023)
-		</li>
-		<li>
-			(4) Establishment of Proof of Relationship and Identity (BC'sprovided
-			and relationship established)
-		</li>
-		<li>
-			(5) Completion of Sponsor Background Check (no household member
-			checks) with sponsor provided verbal attestation Authorization for
-			Release of Information. (09/19/2023)
-		</li>
-		<li>(6) Completion of a Modified Sponsor Assessment (09/19/2023)</li>
-	</ul>
-	<p>---- Verbal Attestation was provided by sponsor on 09/19/2023</p>
-	<p>
-		---- MEDICAL: Child is being submitted pending medical clearance as of
-		09/25/2023
-	</p>`,
-	},
-	CAT1: {
-		inputs: ``,
-		request: `
-	<p>
-				${gender.value.toUpperCase === 'MALE' ? 'Mr.' : 'Ms.'} ${firstName.value} ${
-			lastName.value
-		} ${getAge(dob.value)}, ${emailData[catSelected].category}, ${
-			relationship.value
-		} requests sposnorship of ${childName.value} A#${a_number.value}, ${
-			childGender.value
-		}, age ${getAge(childDob.value)}. ${
-			gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
-		} ${lastName.value} currently resides in ${city.value}, ${stateEl.value}.
-
-		<br/>
-		<br/>
-		***** INSERT HOME COUNTRY NARRATIVE ********
-		<br/>
-		<br/> There is no debt owed for the journey.
-			</p>
-			
-			<p>
-			<strong>FRP AND SUPPORTING DOCUMENTS</strong>
-			<br/>
-			<br/>
-			The case manager received and reviewed ${
-				gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
-			} ${parsePossessive(
-			lastName.value
-		)} family reunification packet which includes: 
-			</p>
-			<p>
-			-- Sponsor ID: Passport with Expiration Date ${createExpirationDate(dob.value)}
-			<br/>
-			-- Household Member ID: ******HOUSE HOLD MEMBER ID******
-			<br/>
-			-- Adult Caregiver ID: ****** ACG ID *******
-			<br/>
-			-- Proof of ability to provide housing, food, education: The sponsor adequately demonstrated that they are able to support the child financially. The sponsor lives in a ${
-				homeSize.value
-			} .  Sponsor stated ${toggleHeShe(
-			gender.value
-		)} stays with ${toggleHisHer(
-			gender.value
-		)} partner in master bedroom, and they share the bathroom there. The child will have their own bed to sleep in.  Additionally, sponsor stated house has all working utilities and a fully functional kitchen. The sponsor earns annually and has verbal commitment from ACG to receive additional financial support in caring for the child.  
-			</p>
-			
-			<br/>
-			<br/>
-			<p>
-			--Proof of Address: Utiliy Bill dated ${fullBillDate} sent on ${
-			dateAdmitted.value
-		}. Verified through Smarty Streets on ${
-			dateAdmitted.value
-		}. Verified through Google Maps and Google Earth on ${dateAdmitted.value}
-			<br/>
-			--Proof of immigration/citizenship status: Proof of immigration status not required, therefore not submitted.
-			<br/>
-			--Letter of Designation: Received on ${lodReceived.value}
-			<br/>
-			--LOPC Packet sent on: ${lopcComplete.value}
-			<br/> 
-			--Sponsor Handbook: Sponsor confirmed reading Sponsor Handbook on ${
-				handbookRead.value
-			}
-			</p>
-			<p>
-			Criminal:
-			--As of ${sponsorBackground.value} for ${firstName.value} ${lastName.value}:
-			<br/>
-			--Public Records Check: Clear
-			<br/>
-			--Sex offender Check: Clear
-			<br/>
-			--Fingerprints: ${fingerprintRequirements(catSelected)}
-			<br/>
-			--As of ${sponsorBackground.value} for ${ACGName.value}:
-			<br/>
-			--Public Records Check: Clear
-			<br/>
-			--Sex offender Check: Clear
-			<br/>
-			--Fingerprints: Clear
-			<br/>
-			--As of ${sponsorBackground.value} for ***HHM NAME ****:
-			<br/>
-			--Public Records Check: Clear
-			<br/>
-			--Sex offender Check: Clear
-			<br/>
-			--Fingerprints: Clear 
-			</p>
-			<p>
-			--Self Disclosure: The case manager asked the sponsor if ${toggleHeShe(
-				gender.value
-			)} has any criminal background.  Sponsor Responded: No
-			<br/>
-			SEX OFFENDER ADDRESS SEARCH
-			<br/>
-			--On ${
-				sponsorBackground.value
-			}, case manager conducted a National Sex Offender check for sponsor’s address, ${
-			address.value
-		} ${city.value}, ${stateEl.value} ${zipCode.value}, and found ${
-			offenders.value
-		} registered sex offenders registered. Case Manager reviewed registries and none of the profiles matched sponsor’s address nor sponsor or ACG/HHM identities. Case Manager educated sponsor and Child regarding sex offenders registered in their neighborhood. Additionally, Case Manager educated the Sponsor and Child regarding ${toggleHisHer(
-			childGender.value
-		)} safety, to always be vigilant when playing outside or walking in the neighborhood, and the dangers of speaking with strangers
-		</p>
-		<p>
-		CLE'S
-		<br/>
-		--As of ${new Date().toLocaleDateString()}, the child has ${
-			CLEnumber.value
-		} CLE's on file
-		</p>
-		<p>
-		BIRTH CERTIFICATES: All birth certificates needed to prove the sponsor-UAC relationship were received on ${
-			dateAdmitted.value
-		}.  Sponsor is confirmed to be the child's ${
-			relationship.value
-		}.  Birth Certificates received are: ${listOfBcs.value} 
-		<br/>
-		<br/>
-		CHILD: ${childName.value} DOB: ${childDob.value} MOTHER: ${
-			motherName.value
-		} FATHER: ${fatherName.value}
-		<br/>
-		</p>
-		<p>
-		PRIOR SPONSORSHIP
-		<br/>
-		Verified on ${
-			dateAdmitted.value
-		} that the sponsor did not previously sponsor or attempt to sponsor a child. 
-		</p>
-		<p>
-		PRIOR ADDRESS
-		<br/>
-		CONTACT WITH PRIMARY CAREGIVER IN COO: Spoke with ${cooCaregiver.value} on ${
-			dateAdmitted.value
-		}. ${
-			cooCaregiver.value
-		} was able to verify information provided by the child and the sponsor. 
-
-		</p>
-		<p>
-		SPONSOR RESOURCES: '
-		<br/>
-		The following emergency contact information was provided to the sponsor: 911, ORR Parent and Sponsor Hotline, information regarding health care and vaccinations, Department of Family and Protective Services (${
-			stateEl.value
-		}), and National Human Trafficking Resource Center.
-		</p>
-		<p>
-		MEDICAL CLEARANCE: 
-		<br/>
-		--As of ${medicalClearance} , Child is medically clear for travel.  
-		</p>
-		<p>
-		RELEASE RECOMMENDATION:
-		The sponsor is recommending ${
-			releaseCriteria[releaseSelected].nonAbbreviated
-		} to the sponsor.  ${releaseReason}
-		</p>`,
-	},
-};
 function fingerprintRequirements(cat) {
 	if (catSelected == 'CAT1EXP' || catSelected == 'CAT2A') {
 		return 'Fingerprints not required ';
@@ -1703,23 +1845,278 @@ function toggleHisHers(str) {
 	return str.toUpperCase() === 'MALE' ? 'his' : 'hers';
 }
 
-//Release Request Handlers
+generateRRBtn.addEventListener('click', () => {
+	//RELEASE REQUEST INPUTS
+	const dateAdmitted = document.getElementById('admitted');
+	const poaReceived = document.getElementById('poa-received');
+	const lodReceived = document.getElementById('lod-received');
+	const lopcComplete = document.getElementById('lopc-complete');
+	const handbookRead = document.getElementById('handbook-read');
+	const sponsorBackground = document.getElementById('sponsor-background');
+	const medicalClearance = document.getElementById('medically-clear');
+	const ACGName = document.getElementById('acg-name');
+	const cooCaregiver = document.getElementById('coo-caregiver');
+	const homeSize = document.getElementById('home-size');
+	const offenders = document.getElementById('offenders');
+	const CLEnumber = document.getElementById('cles');
+	const cooNarrative = document.getElementById('coo-narrative');
+	const listOfBcs = document.getElementById('birth-certificates');
+	const cleNarrative = document.getElementById('cle-narrative');
+	const releaseReason = document.getElementById('release-reason');
 
-const dateAdmitted = document.getElementById('admitted');
-const poaReceived = document.getElementById('poa-received');
-const lodReceived = document.getElementById('lod-received');
-const lopcComplete = document.getElementById('lopc-complete');
-const handbookRead = document.getElementById('handbook-read');
-const sponsorBackground = document.getElementById('sponsor-background');
-const medicalClearance = document.getElementById('medically-clear');
+	//EXPEDITED RELEASE REQUEST INPUTS
+	const ucExpedited = document.getElementById('uc-expedited');
+	const expeditedFRA = document.getElementById('expedited-fra');
+	const expeditedSponsor = document.getElementById(
+		'expedited-sponsor-assessment'
+	);
+	const expeditedVerbal = document.getElementById('expedited-verbal');
+	const expeditedMedical = document.getElementById('expedited-medical');
 
-const ACGName = document.getElementById('acg-name');
-const cooCaregiver = document.getElementById('coo-caregiver');
-const homeSize = document.getElementById('home-size');
-const offenders = document.getElementById('offenders');
-const CLEnumber = document.getElementById('cles');
+	if (!catSelected || !releaseSelected) {
+		return alert('select a cat and a release type');
+	}
+	releaseRequestBody.innerHTML = '';
+	if (releaseRequest[catSelected] === 'CAT1EXP') {
+		const rr = `<p>
+	This case is being submitted under ORR Field Guidance #10 Expedited
+	Release for CAT 1. Child has been screened and determined not to be
+	especially vulnerable. This case does not meet TVPRA Home Study
+	requirements and as per assessments conducted, there were no concerns
+	identified in respect to abuse, neglect, and or safety.
+</p>
+<p>
+	SPONSOR/CHILD RELATIONSHIP: ${firstName.value} ${lastName.value} (${getAge(
+			dob.value
+		)}, ${emailData[catSelected].abbreviated} , Verified
+	Parent)requests sponsorship of ${childName.value} (A# ${a_number.value}, ${
+			childGender.value
+		}, ${getAge(childDob.value)}).
+	${firstName.value} ${lastName.value} currently resides in ${city.value}, ${
+			stateEl.value
+		}.
+</p>
+<p>
+	Case Manager obtained and reviewed child's BC and Sponsor's BC to verify
+	the relationship between Sponsor and child as ${
+		relationship.value
+	} to the Child.
+</p>
+<p>Sponsor name on MO/FA BC: ${firstName.value} ${lastName.value}</p>
+<p>
+	UC name and MO/FA name on UC BC: ${childName.value} (Child), ${motherName.value}
+	(Mother), ${fatherName.value} (Father)
+</p>
+<p>
+	This case is being submitted under ORR Field Guidance #10 Expedited
+	Release for CAT 1. Child has been screened and determined not to be
+	especially vulnerable. This case does not meet TVPRA Home Study
+	requirements and as per assessments conducted, there were no concerns
+	identified in respect to abuse, neglect, and or safety.
+</p>
+<p>The following has been completed:</p>
+<ul>
+	<li>
+		(1) Completion of Modified UC Assessment for Expedited Release Cases
+		(${ucExpedited.value})
+	</li>
+	<li>
+		(2) Completion of Interviews with the Child and the Parent no concerns
+		identified
+	</li>
+	<li>
+		(3) Completion of a Modified Family Reunification Application
+		(${expeditedFRA.value})
+	</li>
+	<li>
+		(4) Establishment of Proof of Relationship and Identity (BC'sprovided
+		and relationship established)
+	</li>
+	<li>
+		(5) Completion of Sponsor Background Check (no household member
+		checks) with sponsor provided verbal attestation Authorization for
+		Release of Information. (${expeditedVerbal.value})
+	</li>
+	<li>(6) Completion of a Modified Sponsor Assessment (${
+		expeditedSponsor.value
+	})</li>
+</ul>
+<p>---- Verbal Attestation was provided by sponsor on ${
+			expeditedVerbal.value
+		}</p>
+<p>
+	---- MEDICAL: Child is being submitted pending medical clearance as of
+	${expeditedMedical}
+</p>`;
+		return (releaseRequestBody.innerHTML = rr);
+	} else {
+		const nonExpedited = `
+		<p>
+					${gender.value.toUpperCase === 'MALE' ? 'Mr.' : 'Ms.'} ${firstName.value} ${
+			lastName.value
+		} ${getAge(dob.value)}, ${emailData[catSelected].category}, ${
+			relationship.value
+		} requests sposnorship of ${childName.value} A#${a_number.value}, ${
+			childGender.value
+		}, age ${getAge(childDob.value)}. ${
+			gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
+		} ${lastName.value} currently resides in ${city.value}, ${stateEl.value}.
+	
+			<br/>
+			<br/>
+			${cooNarrative.value}
+			<br/>
+			<br/> There is no debt owed for the journey.
+				</p>
+				
+				<p>
+				<strong>FRP AND SUPPORTING DOCUMENTS</strong>
+				<br/>
+				<br/>
+				The case manager received and reviewed ${
+					gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.'
+				} ${parsePossessive(
+			lastName.value
+		)} family reunification packet which includes: 
+				</p>
+				<p>
+				-- Sponsor ID: Passport with Expiration Date ${createExpirationDate(dob.value)}
+				<br/>
+				-- Household Member ID: ******HOUSE HOLD MEMBER ID******
+				<br/>
+				-- Adult Caregiver ID: ****** ACG ID *******
+				<br/>
+				-- Proof of ability to provide housing, food, education: The sponsor adequately demonstrated that they are able to support the child financially. The sponsor lives in a ${
+					homeSize.value
+				} .  Sponsor stated ${toggleHeShe(
+			gender.value
+		)} stays with ${toggleHisHer(
+			gender.value
+		)} partner in master bedroom, and they share the bathroom there. The child will have their own bed to sleep in.  Additionally, sponsor stated house has all working utilities and a fully functional kitchen. The sponsor earns annually and has verbal commitment from ACG to receive additional financial support in caring for the child.  
+				</p>
+				
+				<br/>
+				<br/>
+				<p>
+				--Proof of Address: Utiliy Bill dated ${fullBillDate} sent on ${
+			poaReceived.value
+		}. Verified through Smarty Streets on ${
+			poaReceived.value
+		}. Verified through Google Maps and Google Earth on ${dateAdmitted.value}
+				<br/>
+				--Proof of immigration/citizenship status: Proof of immigration status not required, therefore not submitted.
+				<br/>
+				--Letter of Designation: Received on ${lodReceived.value}
+				<br/>
+				--LOPC Packet sent on: ${lopcComplete.value}
+				<br/> 
+				--Sponsor Handbook: Sponsor confirmed reading Sponsor Handbook on ${
+					handbookRead.value
+				}
+				</p>
+				<p>
+				Criminal:
+				--As of ${sponsorBackground.value} for ${firstName.value} ${lastName.value}:
+				<br/>
+				--Public Records Check: Clear
+				<br/>
+				--Sex offender Check: Clear
+				<br/>
+				--Fingerprints: ${fingerprintRequirements(catSelected)}
+				<br/>
+				--As of ${sponsorBackground.value} for ${ACGName.value}:
+				<br/>
+				--Public Records Check: Clear
+				<br/>
+				--Sex offender Check: Clear
+				<br/>
+				--Fingerprints: Clear
+				<br/>
+				--As of ${sponsorBackground.value} for ***HHM NAME ****:
+				<br/>
+				--Public Records Check: Clear
+				<br/>
+				--Sex offender Check: Clear
+				<br/>
+				--Fingerprints: Clear 
+				</p>
+				<p>
+				--Self Disclosure: The case manager asked the sponsor if ${toggleHeShe(
+					gender.value
+				)} has any criminal background.  Sponsor Responded: No
+				<br/>
+				SEX OFFENDER ADDRESS SEARCH
+				<br/>
+				--On ${
+					sponsorBackground.value
+				}, case manager conducted a National Sex Offender check for sponsor’s address, ${
+			address.value
+		} ${city.value}, ${stateEl.value} ${zipCode.value}, and found ${
+			offenders.value
+		} registered sex offenders registered. Case Manager reviewed registries and none of the profiles matched sponsor’s address nor sponsor or ACG/HHM identities. Case Manager educated sponsor and Child regarding sex offenders registered in their neighborhood. Additionally, Case Manager educated the Sponsor and Child regarding ${toggleHisHer(
+			childGender.value
+		)} safety, to always be vigilant when playing outside or walking in the neighborhood, and the dangers of speaking with strangers
+			</p>
+			<p>
+			CLE'S
+			<br/>
+			--As of ${new Date().toLocaleDateString()}, the child has ${
+			CLEnumber.value
+		} CLE's on file
+		<br/>
+		<br/>
+		${cleNarrative.value}
+		<br/>
+			</p>
+			<p>
+			BIRTH CERTIFICATES: All birth certificates needed to prove the sponsor-UAC relationship were received on ${
+				dateAdmitted.value
+			}.  Sponsor is confirmed to be the child's ${
+			relationship.value
+		}.  Birth Certificates received are: ${listOfBcs.value} 
+			<br/>
+			<br/>
+			CHILD: ${childName.value} DOB: ${childDob.value} MOTHER: ${
+			motherName.value
+		} FATHER: ${fatherName.value}
+			<br/>
+			</p>
+			<p>
+			PRIOR SPONSORSHIP
+			<br/>
+			Verified on ${
+				dateAdmitted.value
+			} that the sponsor did not previously sponsor or attempt to sponsor a child. 
+			</p>
+			<p>
+			PRIOR ADDRESS
+			<br/>
+			CONTACT WITH PRIMARY CAREGIVER IN COO: Spoke with ${cooCaregiver.value} on ${
+			dateAdmitted.value
+		}. ${
+			cooCaregiver.value
+		} was able to verify information provided by the child and the sponsor. 
+	
+			</p>
+			<p>
+			SPONSOR RESOURCES: '
+			<br/>
+			The following emergency contact information was provided to the sponsor: 911, ORR Parent and Sponsor Hotline, information regarding health care and vaccinations, Department of Family and Protective Services (${
+				stateEl.value
+			}), and National Human Trafficking Resource Center.
+			</p>
+			<p>
+			MEDICAL CLEARANCE: 
+			<br/>
+			--As of ${medicalClearance} , Child is medically clear for travel.  
+			</p>
+			<p>
+			RELEASE RECOMMENDATION:
+			The sponsor is recommending ${
+				releaseCriteria[releaseSelected].nonAbbreviated
+			} to the sponsor.  ${releaseReason}
+			</p>`;
 
-const cooNarrative = document.getElementById('coo-narrative');
-const listOfBcs = document.getElementById('birth-certificates');
-const cleNarrative = document.getElementById('cle-narrative');
-const releaseReason = document.getElementById('release-reason');
+		releaseRequestBody.innerHTML = nonExpedited;
+	}
+});
