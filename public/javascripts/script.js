@@ -1489,7 +1489,7 @@ function getAge(dateString) {
 	return age;
 }
 function getKidInitials(kid) {
-	const namesArr = child.split(' ');
+	const namesArr = kid.split(' ');
 	let initials = [];
 	namesArr.forEach((name) => {
 		initials.push(name.charAt(0));
