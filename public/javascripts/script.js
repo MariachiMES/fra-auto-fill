@@ -1544,7 +1544,7 @@ submitCaseBtn.addEventListener('click', () => {
 	window.open(
 		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for ${
 			releaseCriteria[releaseSelected].abbreviated
-		} ${emailData[catSelected].abbreviatedCat} ${getKidInitials(
+		} ${emailData[catSelected].abbreviated} ${getKidInitials(
 			childName.value
 		)} A#XXX-XX${getLastFour(
 			a_number.value
