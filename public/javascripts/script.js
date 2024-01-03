@@ -163,7 +163,7 @@ rrDummyBtn.addEventListener('click', () => {
 	cooNarrative.value = 'a bunch of stuff happened in home country';
 	listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
 	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
-	sponsorIncome.value = '$65,000';
+	sponsorIncome.value = '65000';
 });
 let catSelected;
 let releaseSelected;
@@ -1821,7 +1821,11 @@ generateRRBtn.addEventListener('click', () => {
 			results.value.toUpperCase() === 'CLEAR'
 				? 'Results not required for this sponsor prior to submission.'
 				: 'Results required prior to submission.';
-		rrIncome.textContent = sponsorIncome.value;
+		let USDollar = new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: 'USD',
+		});
+		rrIncome.textContent = USDollar.format(sponsorIncome.value);
 		nonExpeditedReleaseBody.classList.remove('hidden');
 		expeditedReleaseBody.classList.add('hidden');
 	}
