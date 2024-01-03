@@ -276,6 +276,12 @@ if (leadershipEmails) {
 	caseManager.value = leadershipEmails.caseManager || null;
 }
 
+sponsorIncome.addEventListener('keydown', (e) => {
+	console.log(e);
+	if (e.keyCode === 49) {
+		return false;
+	}
+});
 function saveEmailsToLocalStorage() {
 	leadershipEmailsObj = {
 		leadEmail: leadEmail.value,
