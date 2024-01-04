@@ -21,6 +21,10 @@
 #save-emails {
 	background-color: rgb(21, 254, 0);
 }
+#delete-child-btn {
+	background-color: red;
+	color: white;
+}
 #resign-from-ds {
 	background-color: rgb(255, 0, 0);
 	color: white;

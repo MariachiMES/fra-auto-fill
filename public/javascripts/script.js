@@ -102,6 +102,7 @@ const rrMedicalClearance = document.getElementById('rr-medically-clear');
 const rrACGName = document.querySelectorAll('.rr-acg-name');
 const rrFPConditions = document.getElementById('rr-fingerprint-conditions');
 const rrIncome = document.getElementById('rr-income');
+const rrFieldGuidance11 = document.querySelectorAll('.rr-field-guidance-11');
 
 //RELEASE REQUEST INPUTS
 const dateAdmitted = document.getElementById('admitted');
@@ -134,7 +135,6 @@ const expeditedMedical = document.getElementById('expedited-medical');
 const expeditedBirthCertificates = document.getElementById(
 	'expedited-birth-certificates'
 );
-
 const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
 expeditedDummyBtn.addEventListener('click', () => {
 	ucExpedited.value = '1/1/2024';
@@ -543,6 +543,35 @@ ariBtn.addEventListener('click', (e) => {
 	);
 });
 
+const fieldGuidance11 = document.getElementById('field-guidance-11');
+
+fieldGuidance11.addEventListener('click', () => {
+	console.log(fieldGuidance11.checked, 'this is the field guidance 11 button');
+});
+function rrFG11Check(node) {
+	if (fieldGuidance11.checked) {
+		console.log(node);
+		return (node.innerHTML = `<p>This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers</p>`);
+	} else {
+		console.log(node);
+		return (node.innerHTML = `<br />
+		--Public Records Check: Clear
+		<br />
+		--Sex offender Check: Clear
+		<br />
+		--Fingerprints: Clear`);
+	}
+}
+function checkFieldGuidance() {
+	if (catSelected === 'CAT1EXP') {
+		return `This case is being submitted under Field Guidance #10, , Expedited Release for Eligible Category 1 Cases`;
+	}
+	if (fieldGuidance11.checked) {
+		return `This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers`;
+	} else {
+		return '';
+	}
+}
 async function getResource(url, data, datapoints) {
 	if (validate(`.${url}`, datapoints) === false) {
 		return alert(
@@ -1638,7 +1667,9 @@ const resignBtn = document.getElementById('resign-from-ds');
 const todayBtns = document.querySelectorAll('.today');
 const submissionNoticeBtn = document.getElementById('24-hour');
 const requestReviewBtn = document.getElementById('request-review');
+
 console.log(todayBtns);
+
 submissionNoticeBtn.addEventListener('click', () => {
 	if (!catSelected || !releaseSelected) {
 		return alert(
@@ -1690,7 +1721,7 @@ requestReviewBtn.addEventListener('click', () => {
 			releaseCriteria[releaseSelected].nonAbbreviated
 		} to child's ${relationship.value} who resides in ${city.value}, ${
 			stateEl.value
-		}. %0D **** INSERT FIELD GUIDANCE IF APPLICABLE *****  %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE %0D ORR Standard Password Applies`
+		}. %0D ${checkFieldGuidance()}  %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE %0D ORR Standard Password Applies`
 	);
 });
 timeOffBtn.addEventListener('click', () => {
@@ -1745,7 +1776,7 @@ submitCaseBtn.addEventListener('click', () => {
 			releaseCriteria[releaseSelected].nonAbbreviated
 		} to child's ${relationship.value} who resides in ${city.value}, ${
 			stateEl.value
-		}. %0D %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
+		}. %0D ${checkFieldGuidance()} %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
 	);
 });
 
@@ -1766,6 +1797,7 @@ const nonExpeditedInputs = document.getElementById('non-expedited-inputs');
 catRadioBtns.forEach((btn, idx) => {
 	btn.addEventListener('click', (e) => {
 		catSelected = e.target.getAttribute('data-category');
+		const form = document.getElementById('fg-11-form');
 		// console.log(catSelected);
 		// rrPrompts.innerHTML = '';
 		// if (releaseRequest[catSelected]) {
@@ -1773,6 +1805,11 @@ catRadioBtns.forEach((btn, idx) => {
 		// } else {
 		// 	rrPrompts.innerHTML = releaseRequest[CAT1].html;
 		// }
+		if (catSelected === 'CAT2A' || catSelected === 'CAT2B') {
+			form.classList.remove('hidden');
+		} else {
+			form.classList.add('hidden');
+		}
 		if (catSelected === 'CAT1EXP') {
 			console.log('cat 1 inputs');
 			cat1Inputs.classList.remove('hidden');
@@ -1908,6 +1945,10 @@ generateRRBtn.addEventListener('click', () => {
 			return alert('the missing fields are highlighted in red');
 		}
 		//FILL RELEASE REQUEST
+		rrFieldGuidance11.forEach((node) => {
+			console.log(node);
+			rrFG11Check(node);
+		});
 		rrACGName.forEach((node) => {
 			node.textContent = ACGName.value;
 		});
