@@ -44,6 +44,8 @@ const submitCaseBtn = document.getElementById('submit-case');
 const catRadioBtns = document.querySelectorAll('[data-cats]');
 const saveEmailsBtn = document.getElementById('save-emails');
 const generateRRBtn = document.getElementById('generate-release-request');
+const saveChildBtn = document.getElementById('save-child-btn');
+const deleteChildBtn = document.getElementById('delete-child-btn');
 
 //CASE MANAGER INFO INPUTS
 const caseManager = document.getElementById('case-manager');
@@ -165,6 +167,8 @@ rrDummyBtn.addEventListener('click', () => {
 	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
 	sponsorIncome.value = '65000';
 });
+
+//Global variables for managing state
 let catSelected;
 let releaseSelected;
 
@@ -262,11 +266,12 @@ const releaseCriteria = {
 	},
 };
 
+//Local storage for emails
 const leadershipEmails = JSON.parse(localStorage.getItem('emails'));
 
 let leadershipEmailsObj = {};
 
-//Get stuff from local storage if it's there
+//Get Emails from local storage if it's there
 if (leadershipEmails) {
 	console.log(leadershipEmails);
 
@@ -276,12 +281,14 @@ if (leadershipEmails) {
 	caseManager.value = leadershipEmails.caseManager || null;
 }
 
-sponsorIncome.addEventListener('keydown', (e) => {
-	console.log(e);
-	if (e.keyCode === 49) {
-		return false;
-	}
-});
+// sponsorIncome.addEventListener('keydown', (e) => {
+// 	console.log(e);
+// 	if (e.keyCode === 49) {
+// 		return false;
+// 	}
+// });
+
+//Save Emails to Local Storage
 function saveEmailsToLocalStorage() {
 	leadershipEmailsObj = {
 		leadEmail: leadEmail.value,
@@ -291,11 +298,114 @@ function saveEmailsToLocalStorage() {
 	};
 	localStorage.setItem('emails', JSON.stringify(leadershipEmailsObj));
 }
+//Local storage for child
 
+const savedChild = JSON.parse(localStorage.getItem('child'));
+
+// Manage child local storage
+
+if (savedChild) {
+	console.log(savedChild);
+	a_number.value = savedChild.a_number || null;
+	firstName.value = savedChild.sponsorFirstName || null;
+	lastName.value = savedChild.sponsorLastName || null;
+	dob.value = savedChild.sponsorDob || null;
+	gender.value = savedChild.sponsorGender || null;
+	relationship.value = savedChild.sponsorRelationship || null;
+	childName.value = savedChild.childName || null;
+	motherName.value = savedChild.childMother || null;
+	fatherName.value = savedChild.childFather || null;
+	address.value = savedChild.sponsorAddress || null;
+	city.value = savedChild.sponsorCity || null;
+	stateEl.value = savedChild.sponosrState || null;
+	zipCode.value = savedChild.sponsorZip || null;
+	childDob.value = savedChild.childDob || null;
+	coo.value = savedChild.countryOfOrigin || null;
+	phoneNum.value = savedChild.sponsorPhone || null;
+	sponsorBackground.value = savedChild.BGCResults || null;
+	childGender.value = savedChild.childGender || null;
+	dateAdmitted.value = savedChild.dateAdmitted || null;
+	lodReceived.value = savedChild.lodReceived || null;
+	lopcComplete.value = savedChild.lopcComplete || null;
+	handbookRead.value = savedChild.handbookRead || null;
+	sponsorBackground.value = savedChild.sponsorBackgroundCheck || null;
+	medicalClearance.value = savedChild.medicallyClear || null;
+	ACGName.value = savedChild.ACGName || null;
+	cooCaregiver.value = savedChild.cooCaregiver || null;
+	homeSize.value = savedChild.homeSize || null;
+	sponsorIncome.value = savedChild.sponsorIncome || null;
+	offenders.value = savedChild.NumberOfOffenders || null;
+	CLEnumber.value = savedChild.CLEnumber || null;
+	cooNarrative.value = savedChild.cooNarrative || null;
+	listOfBcs.value = savedChild.listOfBcs || null;
+	cleNarrative.value = savedChild.CLENarrative || null;
+	releaseReason.value = savedChild.releaseReason || null;
+	//Expedited Release Request
+	ucExpedited.value = savedChild.ucExpedited || null;
+	expeditedFRA.value = savedChild.expeditedFRA || null;
+	expeditedSponsor.value = savedChild.expeditedSponsor || null;
+	expeditedVerbal.value = savedChild.expeditedVerbal || null;
+	expeditedMedical.value = savedChild.expeditedMedical || null;
+	expeditedBirthCertificates.value =
+		savedChild.expeditedBirthCertificates || null;
+	poaReceived.value = savedChild.poaReceived || null;
+}
+//Save Child To local Storage
+function saveChildToLocalStorage() {
+	const childObj = {
+		//Initial Demographics
+		a_number: a_number.value,
+		sponsorFirstName: firstName.value,
+		sponsorLastName: lastName.value,
+		sponsorDob: dob.value,
+		sponsorGender: gender.value,
+		sponsorRelationship: relationship.value,
+		childName: childName.value,
+		childMother: motherName.value,
+		childFather: fatherName.value,
+		sponsorAddress: address.value,
+		sponsorCity: city.value,
+		sponosrState: stateEl.value,
+		sponsorZip: zipCode.value,
+		childDob: childDob.value,
+		countryOfOrigin: coo.value,
+		sponsorPhone: phoneNum.value,
+		BGCResults: results.value,
+		childGender: childGender.value,
+		//Release Request
+		dateAdmitted: dateAdmitted.value,
+		poaReceived: poaReceived.value,
+		lodReceived: lodReceived.value,
+		lopcComplete: lopcComplete.value,
+		handbookRead: handbookRead.value,
+		sponsorBackgroundCheck: sponsorBackground.value,
+		medicallyClear: medicalClearance.value,
+		ACGName: ACGName.value,
+		cooCaregiver: cooCaregiver.value,
+		homeSize: homeSize.value,
+		sponsorIncome: sponsorIncome.value,
+		NumberOfOffenders: offenders.value,
+		CLEnumber: CLEnumber.value,
+		cooNarrative: cooNarrative.value,
+		listOfBcs: listOfBcs.value,
+		CLENarrative: cleNarrative.value,
+		releaseReason: releaseReason.value,
+		//Expedited Release Request
+		ucExpedited: ucExpedited.value,
+		expeditedFRA: expeditedFRA.value,
+		expeditedSponsor: expeditedSponsor.value,
+		expeditedVerbal: expeditedVerbal.value,
+		expeditedMedical: expeditedMedical.value,
+		expeditedBirthCertificates: expeditedBirthCertificates.value,
+	};
+	localStorage.setItem('child', JSON.stringify(childObj));
+}
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
 saveEmailsBtn.addEventListener('click', saveEmailsToLocalStorage);
 
+saveChildBtn.addEventListener('click', saveChildToLocalStorage);
+function showToast(button) {}
 function getGoogleMap() {
 	if (!validate('.smarty', document.querySelectorAll('.smarty').length)) {
 		return alert('the missing data is highlighted in red');
@@ -321,6 +431,16 @@ window.addEventListener('load', () => {
 	instructionsBtn.click();
 });
 
+deleteChildBtn.addEventListener('click', () => {
+	if (
+		confirm(
+			`are you SURE you want to delete this kid, you gonna have to type all this shit again if you mess up and you can't blame me.  i do'nt want to get an email from you later about it.  ok?`
+		)
+	) {
+		localStorage.removeItem('child');
+		location.reload();
+	}
+});
 dummyBtn.addEventListener('click', showDummyData);
 
 function showDummyData() {
@@ -1492,14 +1612,6 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 </svg>`;
 const timeOffBtn = document.getElementById('time-off');
 
-timeOffBtn.addEventListener('click', () => {
-	if (!validate('.time-off', document.querySelectorAll('.time-off').length)) {
-		return alert('you are missing the fields highlighted in red');
-	}
-	window.open(
-		`mailto:${leadEmail.value}; <Alcides.Hernandez@deployedservices.com>?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
-	);
-});
 function getAge(dateString) {
 	var today = new Date();
 	var birthDate = new Date(dateString);
@@ -1524,8 +1636,71 @@ function getLastFour(anumber) {
 const emailDavid = document.getElementById('email-david');
 const resignBtn = document.getElementById('resign-from-ds');
 const todayBtns = document.querySelectorAll('.today');
+const submissionNoticeBtn = document.getElementById('24-hour');
+const requestReviewBtn = document.getElementById('request-review');
 console.log(todayBtns);
-
+submissionNoticeBtn.addEventListener('click', () => {
+	if (!catSelected || !releaseSelected) {
+		return alert(
+			'you have to select a category for the case AND a release type for this case'
+		);
+	}
+	if (!validate('.notice', document.querySelectorAll('.notice').length)) {
+		return alert('you are missing the highlighted fields');
+	}
+	window.open(
+		`mailto: ${
+			clinician.value
+		}?subject=Case Submission Notice&cc=<gbnccasemanagersupervisors@deployedservices.com>;${
+			leadEmail.value
+		}; <gbncleadclinicians@deployedservices.com>;<miranda.lopez@deployedservices.com>;<gbnclifeservicesteam@deployedservices.com>;${
+			buddy.value
+		};<gbncyouthservicemanager@deployedservices.com>;<gbnccaseaide@deployedservices.com>&body=Greetings, %0D Please be advised, the case for ${getKidInitials(
+			childName.value
+		)} A#${getLastFour(
+			a_number.value
+		)} will be submitted within the next 24-48 hours.  Let me know if you have any questions.`
+	);
+});
+requestReviewBtn.addEventListener('click', () => {
+	if (!catSelected || !releaseSelected) {
+		return alert(
+			'you need to select a category  AND a release type for this case'
+		);
+	}
+	if (!validate('.submit', document.querySelectorAll('.submit').length)) {
+		return alert('you are missing the highlighted fields');
+	}
+	window.open(
+		`mailto:${
+			leadEmail.value
+		}?subject=Internal Review For Case ${getKidInitials(
+			childName.value
+		)} ${getLastFour(
+			a_number.value
+		)}&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;<Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
+			buddy.value
+		}>&body=Greetings, %0D I hope this email finds you well, please be advised that a release request for child (${getKidInitials(
+			childName.value
+		)} ${getLastFour(
+			a_number.value
+		)}) has been updated in the UC Portal. This is a ${
+			emailData[catSelected].category
+		} case. Care Provider is recommending ${
+			releaseCriteria[releaseSelected].nonAbbreviated
+		} to child's ${relationship.value} who resides in ${city.value}, ${
+			stateEl.value
+		}. %0D **** INSERT FIELD GUIDANCE IF APPLICABLE *****  %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE %0D ORR Standard Password Applies`
+	);
+});
+timeOffBtn.addEventListener('click', () => {
+	if (!validate('.time-off', document.querySelectorAll('.time-off').length)) {
+		return alert('you are missing the fields highlighted in red');
+	}
+	window.open(
+		`mailto:${leadEmail.value}; ?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
+	);
+});
 resignBtn.addEventListener('click', () => {
 	window.open(
 		`mailto:''?subject=RESIGNATION EFFECTIVE IMMEDIATELY&body=Greetings, %0D This email is to inform you of my imminent and overdue departure from my assignment as a Case Manager.  While my time here has been laborious, spiritually toxic, unrewarding and unfulfilling, it has also been inconsequential, absurd, futile, and soul-sucking.  My financial woes tell me that I need the bread, however I do not consider this continued torture to be necessary in any way, save for amusement of the simulation overlords. I would like to thank no one, and while the friendships and professional relationships I formed during my time here were dissonant, non-productive and somewhat abusive, they will thankfully be coming to and end as I exit the premises at 9mph in my final form of protest. Kindly, send my regards to Douglas the American Hebrew Academy Marmota, who sadly, does not care if I live or die, nor does he know of my existence.  He also may be a she.  I have no idea. The only thing I will miss about this place is the joy I felt from once watching Douglas fall out of trees as he foraged in preparation for the long winter. As the crimson leaves have ceremoniously fallen from the erect Red Maples, so too have my hopes of living a meaningful existence while working in this hell fallen. Please forward this mesage to the President of the United States of America, and King Charles III.  Use my phone.  Lord knows I was not allowed to.`

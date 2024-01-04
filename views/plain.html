@@ -129,7 +129,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control submit time-off"
+								class="form-control submit time-off notice"
 								id="lead-email"
 								placeholder="Lead Email"
 							/>
@@ -138,7 +138,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control submit"
+								class="form-control submit notice"
 								id="buddy"
 								placeholder="Buddy Email"
 							/>
@@ -147,7 +147,7 @@
 						<div class="form-floating mb-3">
 							<input
 								type="text"
-								class="form-control submit"
+								class="form-control submit notice"
 								id="clinician"
 								placeholder="Clinician Email"
 							/>
@@ -301,7 +301,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr rr-expedited submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
+									class="form-control notice rr rr-expedited submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
 									id="a-number"
 									placeholder="A Number"
 								/>
@@ -368,7 +368,7 @@
 							<div class="form-floating mb-3">
 								<input
 									type="text"
-									class="form-control rr rr-expedited submit lopc bc lod fra"
+									class="form-control notice rr rr-expedited submit lopc bc lod fra"
 									id="child-name"
 									placeholder="Child Name"
 								/>
@@ -573,6 +573,20 @@
 							>
 								Get ARI
 							</button>
+							<button
+								class="btn mt-3"
+								type="button"
+								id="save-child-btn"
+							>
+								Save Child
+							</button>
+							<button
+								class="btn mt-3"
+								type="button"
+								id="delete-child-btn"
+							>
+								Delete Child
+							</button>
 						</div>
 					</div>
 				</div>
@@ -582,15 +596,21 @@
 				class="p-4 inputs no-print w-full"
 				id="case-management"
 			>
-				<!-- LOGISTICAL BUTTONS-->
+				<!-- EMAIL BUTTONS-->
 				<div class="email-btns d-flex justify-content-around">
 					<button
 						class="btn mt-3"
 						type="button"
 						id="24-hour"
-						disabled
 					>
 						24-Hour Case Submission Notice
+					</button>
+					<button
+						class="btn mt-3"
+						type="button"
+						id="request-review"
+					>
+						Request Review
 					</button>
 
 					<button
@@ -1284,6 +1304,9 @@
 					PRIOR SPONSORSHIP
 					<br />
 					Verified on <span class="rr-date-admitted"></span> that the sponsor
+					did not previously sponsor or attempt to sponsor a child.
+					<br />
+					Verified on <span class="rr-date-admitted"></span> that the ACG/HHM
 					did not previously sponsor or attempt to sponsor a child.
 				</p>
 				<p>
