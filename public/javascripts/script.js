@@ -1240,7 +1240,7 @@ function renderLOD() {
 	Yo, ${motherName.value}, con domicilio en ${coo.value}, otorgo por este medio el poder a ${firstName.value} ${lastName.value}, con domicilio en ${address.value}, ${city.value}, ${stateEl.value} ${zip.value}, para actual como tutor legal de ${childName.value}, menor de edad, con fecha de nacimiento ${childDob.value}.
    </p>
    <p>
-	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de CH${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
+	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de ${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
    </p>
    
    <h4>Nombre de la madre: ${motherName.value}</h4>
