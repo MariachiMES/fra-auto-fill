@@ -37,6 +37,54 @@
 		<title>Big Papi's Document Generation</title>
 	</head>
 	<body>
+		<!-- MODAL -->
+		<div
+			class="modal fade"
+			id="staticBackdrop"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1
+							class="modal-title fs-5"
+							id="staticBackdropLabel"
+						>
+							Document Generator
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						Fill the form with the pertinent information regarding your case.
+						Use the buttons below the form to generate the documents you need.
+						Any missing information will be alerted and highlighted in red.
+						Generating the document will also allow you to print the page to
+						Adobe PDF with the naming convention pre-filled for you.
+						Additionally, if you need more birth certificates or ARI's etc, you
+						can change the information and click the button for the document you
+						need to re-render the inforamtion.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container-fluid">
 			<div class="row flex-nowrap">
 				<div
@@ -60,6 +108,8 @@
 							<li class="nav-item">
 								<a
 									href="#"
+									data-bs-toggle="modal"
+									data-bs-target="#staticBackdrop"
 									class="nav-link align-middle px-0 custom-link-color"
 									id="instructions-btn"
 								>
