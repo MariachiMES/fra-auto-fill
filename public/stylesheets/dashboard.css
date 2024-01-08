@@ -1,16 +1,6 @@
 .bg-custom-dark {
 	background-color: rgb(11, 12, 19);
 }
-@media print {
-	.bg-custom-dark {
-		background-color: white;
-	}
-	.form-control,
-	.form-control:focus {
-		background-color: white;
-		color: white;
-	}
-}
 
 .header-text-color {
 	color: rgb(255, 255, 255);

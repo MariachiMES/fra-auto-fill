@@ -2,6 +2,27 @@
 	.no-print {
 		display: none;
 	}
+	.bg-custom-dark {
+		background-color: white;
+	}
+	.form-control,
+	.form-control:focus {
+		background-color: white;
+		color: white;
+	}
+	.main {
+		background-color: transparent;
+		color: black;
+	}
+	.document-body {
+		color: black;
+	}
+	#page-body {
+		color: black;
+	}
+	div {
+		color: black;
+	}
 }
 
 .missing {

@@ -659,7 +659,17 @@ function renderFingerprints() {
 	const adjustedTime = apptTime > 12 ? apptTime - 12 : apptTime;
 	const amOrPm = apptTime > 11 ? 'pm' : 'am';
 
-	pageBodyEl.innerHTML = `
+	pageBodyEl.innerHTML = `<style>
+	section{
+		color: white;
+	}
+	@media print{
+		section{
+			color:black;
+		}
+	}
+	
+	</style>
 	<section class="section">
   <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
@@ -681,6 +691,17 @@ function renderFPConfirmation() {
 	}
 	const today = new Date().toLocaleDateString();
 	pageBodyEl.innerHTML = `
+	<style>
+	section{
+		color: white;
+	}
+	@media print{
+		section{
+			color:black;
+		}
+	}
+	
+	</style>
 	<section class="section">
   <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
@@ -717,7 +738,18 @@ function renderLOPC() {
 	}
 
 	pageBodyEl.innerHTML = `
-	<div class="container is-max-desktop" style="text-align: center">
+	<style>
+	td{
+		color: white;
+	}
+	@media print{
+		td{
+			color:black;
+		}
+	}
+	
+	</style>
+	<div class="container is-max-desktop doc" style="text-align: center">
     <h1 class="title is-1">LOPC APPOINTMENT</h1>
     <table class="table is-fullwidth">
         <tbody>
@@ -862,6 +894,16 @@ function jumbleNames() {
 
 function renderBGCheck(arr) {
 	pageBodyEl.innerHTML = `
+	<style>
+	th,td,tr,td, h1{
+		color: white;
+	}
+	@media print{
+		h1,th,td,tr,td{
+			color:black
+		}
+	}
+	</style>
 	<h1 id="todays-date" class="d-flex p-2">
 		Public Records Check
 	</h1>
@@ -1056,7 +1098,7 @@ function renderForeignId() {
 	}
 	
 </style>
-<div class="passport-container">
+<div class="passport-container doc">
 			<div class="passport-left">
 				<div class="passport-cover">
 					<div class="cover-spacer"></div>
@@ -1288,12 +1330,18 @@ function renderBc() {
 	<style>
 	element.style {
 	}
+	@media print{
+		.bc-el{
+			color: black
+		}
+	}
 	.bc-el {
 		text-align: center;
 		border: 1px solid black;
 		margin: 1rem;
 		padding: 1rem;
 		height: 100%;
+		color: white
 	}
 
 
@@ -1316,7 +1364,7 @@ function renderBc() {
 		-webkit-text-size-adjust: 100%;
 	}
 </style>
-	<div class="bc-el document"><h1 class="bc-title"></h1><div class="bc-header"><h2>Registro Nacional de las Personas</h2>
+	<div class="bc-el document doc"><h1 class="bc-title"></h1><div class="bc-header"><h2>Registro Nacional de las Personas</h2>
 	<h4>Republica de ${coo.value}</h4>
 	<h3>Registro Civil de las Personas</h3>
 	<h3>Certificado de Nacimiento</h3></div><div class="bc-info">
@@ -1369,17 +1417,19 @@ function renderPoa() {
 	
 	.invoice {
 		background: #fff;
-		padding: 20px
+		padding: 20px;
+		color: black;
 	}
 	
 	.invoice-company {
-		font-size: 20px
+		font-size: 20p;x
+		color: black;
 	}
 	
 	.invoice-header {
 		margin: 0 -20px;
 		background: #f0f3f4;
-		padding: 20px
+		padding: 20px;
 	}
 	
 	.invoice-date,
@@ -1391,7 +1441,7 @@ function renderPoa() {
 	
 	.invoice-from,
 	.invoice-to {
-		padding-right: 20px
+		padding-right: 20px;
 	}
 	
 	.invoice-date .date,
