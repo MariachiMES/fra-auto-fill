@@ -1,0 +1,66 @@
+.bg-custom-dark {
+	background-color: rgb(11, 12, 19);
+}
+
+.header-text-color {
+	color: rgb(255, 255, 255);
+}
+
+a:link,
+a:visited,
+a:active {
+	text-decoration: none;
+	color: rgb(166, 166, 166);
+}
+
+a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.main {
+	background-color: rgb(17, 20, 31);
+	color: white;
+}
+.save {
+	color: rgb(0, 255, 0);
+}
+
+.delete {
+	color: red;
+}
+
+.fire {
+	color: rgb(255, 145, 0);
+}
+.dummy-color {
+	color: rgb(206, 1, 206);
+}
+
+.form-control,
+.form-control:focus {
+	background-color: rgb(17, 20, 31);
+	color: white;
+}
+.save-user-button {
+	color: rgb(0, 255, 0);
+	border: 2px solid rgb(153, 255, 0);
+}
+
+.save-user-button:hover {
+	color: rgb(0, 255, 0);
+	border: 1px solid rgb(153, 255, 0);
+	background-color: rgba(0, 255, 0, 0.2);
+}
+.custom-aside {
+	float: left;
+}
+.generate-rr {
+	border: 1px solid rgb(255, 145, 0);
+	color: rgb(255, 145, 0);
+	border-color: rgb(255, 145, 0);
+}
+
+.clear-btn {
+	color: rgb(2, 255, 238);
+}

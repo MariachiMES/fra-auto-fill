@@ -8,28 +8,6 @@
 	border-color: red;
 }
 
-#clear-btn {
-	background-color: rgb(6, 31, 255);
-}
-
-#dummy-btn {
-	background-color: rgb(239, 0, 199);
-}
-#save-child-btn {
-	background-color: rgb(21, 254, 0);
-}
-#save-emails {
-	background-color: rgb(21, 254, 0);
-}
-#delete-child-btn {
-	background-color: red;
-	color: white;
-}
-#resign-from-ds {
-	background-color: rgb(255, 0, 0);
-	color: white;
-}
-
 .hidden {
 	display: none;
 }

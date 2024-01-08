@@ -135,38 +135,38 @@ const expeditedMedical = document.getElementById('expedited-medical');
 const expeditedBirthCertificates = document.getElementById(
 	'expedited-birth-certificates'
 );
-const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
-expeditedDummyBtn.addEventListener('click', () => {
-	ucExpedited.value = '1/1/2024';
-	expeditedFRA.value = '1/1/2024';
-	expeditedSponsor.value = '1/1/2024';
-	expeditedVerbal.value = '1/1/2024';
-	expeditedMedical.value = '1/1/2024';
-	expeditedBirthCertificates.value =
-		'THESE ARE TEH EXPEDITED BIRTH CERTIFICATES LISTED';
-});
+// const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
+// expeditedDummyBtn.addEventListener('click', () => {
+// 	ucExpedited.value = '1/1/2024';
+// 	expeditedFRA.value = '1/1/2024';
+// 	expeditedSponsor.value = '1/1/2024';
+// 	expeditedVerbal.value = '1/1/2024';
+// 	expeditedMedical.value = '1/1/2024';
+// 	expeditedBirthCertificates.value =
+// 		'THESE ARE TEH EXPEDITED BIRTH CERTIFICATES LISTED';
+// });
 
-const rrDummyBtn = document.getElementById('non-expedited-dummy-btn');
+// const rrDummyBtn = document.getElementById('non-expedited-dummy-btn');
 
-rrDummyBtn.addEventListener('click', () => {
-	dateAdmitted.value = '12/1/2023';
-	poaReceived.value = '12/1/2023';
-	lodReceived.value = '12/1/2023';
-	lopcComplete.value = '12/1/2023';
-	handbookRead.value = '12/1/2023';
-	sponsorBackground.value = '12/1/2023';
-	medicalClearance.value = '12/1/2023';
-	ACGName.value = 'Daniel Xavier Ortiz';
-	cooCaregiver.value = 'Mr. Deployed Services';
-	homeSize.value = '4 bedroom apartment';
-	offenders.value = 5;
-	CLEnumber.value = 0;
-	cleNarrative.value = 'The child has No CLEs';
-	cooNarrative.value = 'a bunch of stuff happened in home country';
-	listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
-	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
-	sponsorIncome.value = '65000';
-});
+// rrDummyBtn.addEventListener('click', () => {
+// 	dateAdmitted.value = '12/1/2023';
+// 	poaReceived.value = '12/1/2023';
+// 	lodReceived.value = '12/1/2023';
+// 	lopcComplete.value = '12/1/2023';
+// 	handbookRead.value = '12/1/2023';
+// 	sponsorBackground.value = '12/1/2023';
+// 	medicalClearance.value = '12/1/2023';
+// 	ACGName.value = 'Daniel Xavier Ortiz';
+// 	cooCaregiver.value = 'Mr. Deployed Services';
+// 	homeSize.value = '4 bedroom apartment';
+// 	offenders.value = 5;
+// 	CLEnumber.value = 0;
+// 	cleNarrative.value = 'The child has No CLEs';
+// 	cooNarrative.value = 'a bunch of stuff happened in home country';
+// 	listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
+// 	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
+// 	sponsorIncome.value = '65000';
+// });
 
 //Global variables for managing state
 let catSelected;
@@ -464,6 +464,30 @@ function showDummyData() {
 	leadEmail.value = 'anna.gonzales@deployedservices.com';
 	buddy.value = 'irene.reyes@deployedservices.com';
 	clinician.value = 'martin.gonzalez@deployedservices.com';
+	ucExpedited.value = '1/1/2024';
+	expeditedFRA.value = '1/1/2024';
+	expeditedSponsor.value = '1/1/2024';
+	expeditedVerbal.value = '1/1/2024';
+	expeditedMedical.value = '1/1/2024';
+	expeditedBirthCertificates.value =
+		'THESE ARE THE EXPEDITED BIRTH CERTIFICATES LISTED';
+	dateAdmitted.value = '12/1/2023';
+	poaReceived.value = '12/1/2023';
+	lodReceived.value = '12/1/2023';
+	lopcComplete.value = '12/1/2023';
+	handbookRead.value = '12/1/2023';
+	sponsorBackground.value = '12/1/2023';
+	medicalClearance.value = '12/1/2023';
+	ACGName.value = 'Daniel Xavier Ortiz';
+	cooCaregiver.value = 'Mr. Deployed Services';
+	homeSize.value = '4 bedroom apartment';
+	offenders.value = 5;
+	CLEnumber.value = 0;
+	cleNarrative.value = 'The child has No CLEs';
+	cooNarrative.value = 'a bunch of stuff happened in home country';
+	listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
+	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
+	sponsorIncome.value = '65000';
 }
 
 clearBtn.addEventListener('click', clearForm);
@@ -1240,7 +1264,7 @@ function renderLOD() {
 	Yo, ${motherName.value}, con domicilio en ${coo.value}, otorgo por este medio el poder a ${firstName.value} ${lastName.value}, con domicilio en ${address.value}, ${city.value}, ${stateEl.value} ${zip.value}, para actual como tutor legal de ${childName.value}, menor de edad, con fecha de nacimiento ${childDob.value}.
    </p>
    <p>
-	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de ${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
+	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de CH${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
    </p>
    
    <h4>Nombre de la madre: ${motherName.value}</h4>

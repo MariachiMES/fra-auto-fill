@@ -2,5 +2,8 @@ const router = require('express').Router();
 
 router.get('/', async (req, res) => {
 	res.render('.index.html');
-	console.log('home page loaded');
+});
+
+router.get('/dashboard', async (req, res) => {
+	res.render('.dashboard.html');
 });
