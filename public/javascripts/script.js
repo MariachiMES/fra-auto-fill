@@ -1882,6 +1882,7 @@ catRadioBtns.forEach((btn, idx) => {
 		if (catSelected === 'CAT2A' || catSelected === 'CAT2B') {
 			form.classList.remove('hidden');
 		} else {
+			fieldGuidance11.checked = false;
 			form.classList.add('hidden');
 		}
 		if (catSelected === 'CAT1EXP') {
