@@ -40,11 +40,11 @@
 		<div class="container-fluid">
 			<div class="row flex-nowrap">
 				<div
-					class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-custom-dark custom-aside"
+					class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-custom-dark no-print custom-aside"
 				>
 					<!--ASIDE-->
 					<div
-						class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100"
+						class="d-flex flex-column align-items-center no-print align-items-sm-start px-3 pt-2 min-vh-100"
 					>
 						<a
 							class="d-flex align-items-center pb-3 mb-md-0 me-md-auto header-text-color text-decoration-none"
@@ -399,394 +399,416 @@
 					<!--EMAIL INPUTS-->
 					<div class="email-chain">
 						<div class="email-title"></div>
+						<div class="no-print">
+							<div class="staff no-print d-flex justify-content-around">
+								<div class="form-floating no-print mb-3">
+									<input
+										type="text"
+										class="form-control no-print lopc time-off"
+										id="case-manager"
+										placeholder="Case Manager"
+									/>
+									<label for="case-manager">Case Manager</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input
+										type="text"
+										class="form-control no-print submit time-off notice"
+										id="lead-email"
+										placeholder="Lead Email"
+									/>
+									<label
+										class="no-print"
+										for="lead-email"
+										>Lead Email</label
+									>
+								</div>
+								<div class="form-floating mb-3">
+									<input
+										type="text"
+										class="form-control no-print submit notice"
+										id="buddy"
+										placeholder="Buddy Email"
+									/>
+									<label
+										class="no-print"
+										for="buddy"
+										>Buddy Email</label
+									>
+								</div>
+								<div class="form-floating mb-3">
+									<input
+										type="text"
+										class="form-control no-print submit notice"
+										id="clinician"
+										placeholder="Clinician Email"
+									/>
+									<label
+										class="no-print"
+										for="clinician"
+										>Clinician Email</label
+									>
+								</div>
 
-						<div class="staff d-flex justify-content-around">
-							<div class="form-floating mb-3">
-								<input
-									type="text"
-									class="form-control lopc time-off"
-									id="case-manager"
-									placeholder="Case Manager"
-								/>
-								<label for="case-manager">Case Manager</label>
+								<button
+									class="btn d-flex no-print align-items-center save-user-button"
+									type="button"
+									id="save-emails"
+									style="
+										display: flex;
+										height: 2.5rem;
+										justify-content: center;
+										align-items: center;
+									"
+								>
+									Save User
+								</button>
 							</div>
-							<div class="form-floating mb-3">
-								<input
-									type="text"
-									class="form-control submit time-off notice"
-									id="lead-email"
-									placeholder="Lead Email"
-								/>
-								<label for="lead-email">Lead Email</label>
-							</div>
-							<div class="form-floating mb-3">
-								<input
-									type="text"
-									class="form-control submit notice"
-									id="buddy"
-									placeholder="Buddy Email"
-								/>
-								<label for="buddy">Buddy Email</label>
-							</div>
-							<div class="form-floating mb-3">
-								<input
-									type="text"
-									class="form-control submit notice"
-									id="clinician"
-									placeholder="Clinician Email"
-								/>
-								<label for="clinician">Clinician Email</label>
-							</div>
-
-							<button
-								class="btn d-flex align-items-center save-user-button"
-								type="button"
-								id="save-emails"
-								style="
-									display: flex;
-									height: 2.5rem;
-									justify-content: center;
-									align-items: center;
-								"
+							<!-- CATEGORY RADIO BUTTONS-->
+							<div
+								class="no-print radio-buttons w-full d-flex justify-content-around p-4"
 							>
-								Save User
-							</button>
-						</div>
-						<!-- CATEGORY RADIO BUTTONS-->
-						<div class="radio-buttons w-full d-flex justify-content-around p-4">
-							<div class="form-check justify-content-center">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									data-category="CAT1EXP"
-									data-cats
-									id="flexRadioDefault1"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault1"
-								>
-									CAT 1 Expedited
-								</label>
+								<div class="form-check justify-content-center">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										data-category="CAT1EXP"
+										data-cats
+										id="flexRadioDefault1"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault1"
+									>
+										CAT 1 Expedited
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										data-cats
+										data-category="CAT1"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault2"
+									>
+										CAT 1
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										data-cats
+										data-category="CAT2A"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault2"
+									>
+										CAT 2A
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										data-cats
+										data-category="CAT2B"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault2"
+									>
+										CAT2B
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										data-cats
+										data-category="CAT3"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault2"
+									>
+										CAT 3
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input"
+										type="radio"
+										name="flexRadioDefault"
+										id="flexRadioDefault2"
+										data-cats
+										data-category="CAT3UN"
+									/>
+									<label
+										class="form-check-label"
+										for="flexRadioDefault2"
+									>
+										CAT 3 Unrelated
+									</label>
+								</div>
 							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-									data-cats
-									data-category="CAT1"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault2"
-								>
-									CAT 1
-								</label>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-									data-cats
-									data-category="CAT2A"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault2"
-								>
-									CAT 2A
-								</label>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-									data-cats
-									data-category="CAT2B"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault2"
-								>
-									CAT2B
-								</label>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-									data-cats
-									data-category="CAT3"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault2"
-								>
-									CAT 3
-								</label>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-									data-cats
-									data-category="CAT3UN"
-								/>
-								<label
-									class="form-check-label"
-									for="flexRadioDefault2"
-								>
-									CAT 3 Unrelated
-								</label>
-							</div>
-						</div>
-						<!-- RELEASE TYPE RADIO BUTTONS-->
-						<div class="radio-buttons w-full d-flex justify-content-around p-4">
-							<div class="form-check justify-content-center">
-								<input
-									class="form-check-input release"
-									type="radio"
-									name="release"
-									data-release="SR"
-									id="release1"
-								/>
-								<label
-									class="form-check-label"
-									for="release1"
-								>
-									Straight Release
-								</label>
-							</div>
-							<div class="form-check">
-								<input
-									class="form-check-input release"
-									type="radio"
-									name="release"
-									data-release="PRS"
-									id="release2"
-								/>
-								<label
-									class="form-check-label"
-									for="release2"
-								>
-									PRS
-								</label>
-							</div>
-						</div>
-						<!--FIELD GUIDANCE 11 CHECK BOX-->
-						<div
-							class="form-check mt-4 mb-4 hidden"
-							id="fg-11-form"
-						>
-							<input
-								class="form-check-input"
-								type="checkbox"
-								id="field-guidance-11"
-							/>
-							<label
-								class="form-check-label"
-								for="field-guidance-11"
+							<!-- RELEASE TYPE RADIO BUTTONS-->
+							<div
+								class="radio-buttons w-full d-flex justify-content-around p-4"
 							>
-								Field Guidance #11
-							</label>
+								<div class="form-check justify-content-center">
+									<input
+										class="form-check-input release"
+										type="radio"
+										name="release"
+										data-release="SR"
+										id="release1"
+									/>
+									<label
+										class="form-check-label"
+										for="release1"
+									>
+										Straight Release
+									</label>
+								</div>
+								<div class="form-check">
+									<input
+										class="form-check-input release"
+										type="radio"
+										name="release"
+										data-release="PRS"
+										id="release2"
+									/>
+									<label
+										class="form-check-label"
+										for="release2"
+									>
+										PRS
+									</label>
+								</div>
+							</div>
+							<!--FIELD GUIDANCE 11 CHECK BOX-->
+							<div
+								class="form-check mt-4 mb-4 hidden"
+								id="fg-11-form"
+							>
+								<input
+									class="form-check-input"
+									type="checkbox"
+									id="field-guidance-11"
+								/>
+								<label
+									class="form-check-label"
+									for="field-guidance-11"
+								>
+									Field Guidance #11
+								</label>
+							</div>
 						</div>
 						<!--DOCUMENT GENERATION INPUTS-->
-						<div class="row">
-							<div class="col-sm">
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control notice rr rr-expedited submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
-										id="a-number"
-										placeholder="A Number"
-									/>
-									<label for="a-number">A-Number</label>
+						<div class="no-print">
+							<div class="row">
+								<div class="col-sm">
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control notice rr rr-expedited submit lopc fp fp-appt poa bgc foreign-id bc lod fra ari"
+											id="a-number"
+											placeholder="A Number"
+										/>
+										<label for="a-number">A-Number</label>
+									</div>
+
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited lopc poa fp fp-appt bgc foreign-id lod fra ari"
+											id="first-name"
+											placeholder="Sponsor First Name"
+										/>
+										<label for="first-name">Sponsor First Name</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited lopc fp fp-appt poa bgc foreign-id lod fra ari"
+											id="last-name"
+											placeholder="Sponsor Last Name "
+										/>
+										<label for="last-name">Sponsor Last Name</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr-expedited rr bgc foreign-id fra ari"
+											id="dob"
+											placeholder="Sponsor DOB"
+										/>
+										<label for="dob">Sponsor DOB</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr-expedited rr foreign-id"
+											id="sponsor-gender"
+											placeholder="Sponsor's Gender"
+										/>
+										<label for="sponsor-gender">Sponsor's Gender</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr-expedited rr submit lopc fra ari"
+											id="relationship"
+											placeholder="Relationship"
+										/>
+										<label for="relationship">Relationship</label>
+									</div>
 								</div>
 
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited lopc poa fp fp-appt bgc foreign-id lod fra ari"
-										id="first-name"
-										placeholder="Sponsor First Name"
-									/>
-									<label for="first-name">Sponsor First Name</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited lopc fp fp-appt poa bgc foreign-id lod fra ari"
-										id="last-name"
-										placeholder="Sponsor Last Name "
-									/>
-									<label for="last-name">Sponsor Last Name</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr-expedited rr bgc foreign-id fra ari"
-										id="dob"
-										placeholder="Sponsor DOB"
-									/>
-									<label for="dob">Sponsor DOB</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr-expedited rr foreign-id"
-										id="sponsor-gender"
-										placeholder="Sponsor's Gender"
-									/>
-									<label for="sponsor-gender">Sponsor's Gender</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr-expedited rr submit lopc fra ari"
-										id="relationship"
-										placeholder="Relationship"
-									/>
-									<label for="relationship">Relationship</label>
-								</div>
-							</div>
+								<style>
+									.btn {
+										border: 1px solid black;
+									}
+									.btn:hover {
+										background-color: rgb(187, 228, 243);
+									}
+								</style>
 
-							<style>
-								.btn {
-									border: 1px solid black;
-								}
-								.btn:hover {
-									background-color: rgb(187, 228, 243);
-								}
-							</style>
+								<div class="col-sm">
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control notice rr rr-expedited submit lopc bc lod fra"
+											id="child-name"
+											placeholder="Child Name"
+										/>
+										<label for="child-name">Child Name</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited bc lod"
+											id="mother-name"
+											placeholder="Child's Mother's Name"
+										/>
+										<label for="mother-name">Mother's Name</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control lopc rr poa lod fra ari smarty"
+											id="address"
+											placeholder="Address"
+										/>
+										<label for="address">Address</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited submit lopc poa lod fra ari smarty"
+											id="city"
+											placeholder="City"
+										/>
+										<label for="city">City</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited submit lopc poa bgc lod fra ari smarty"
+											id="state"
+											placeholder="State"
+										/>
+										<label for="state">State</label>
+									</div>
 
-							<div class="col-sm">
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control notice rr rr-expedited submit lopc bc lod fra"
-										id="child-name"
-										placeholder="Child Name"
-									/>
-									<label for="child-name">Child Name</label>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr lopc poa lod fra ari smarty"
+											id="zip"
+											placeholder="Zip"
+										/>
+										<label for="zip">Zip</label>
+									</div>
 								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited bc lod"
-										id="mother-name"
-										placeholder="Child's Mother's Name"
-									/>
-									<label for="mother-name">Mother's Name</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control lopc rr poa lod fra ari smarty"
-										id="address"
-										placeholder="Address"
-									/>
-									<label for="address">Address</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited submit lopc poa lod fra ari smarty"
-										id="city"
-										placeholder="City"
-									/>
-									<label for="city">City</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited submit lopc poa bgc lod fra ari smarty"
-										id="state"
-										placeholder="State"
-									/>
-									<label for="state">State</label>
-								</div>
+								<div class="col-sm">
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited bc lod"
+											id="child-dob"
+											placeholder="Child DOB"
+										/>
+										<label for="child-dob">Child DOB</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited bc lod"
+											id="father-name"
+											placeholder="Child's Father's Name"
+										/>
+										<label for="father-name">Father's Name</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited bc lod fra ari foreign-id"
+											id="coo"
+											placeholder="Country of Origin"
+										/>
+										<label for="coo">Country of Origin</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control lopc poa fra ari"
+											id="phone"
+											placeholder="Phone"
+										/>
+										<label for="phone">Phone</label>
+									</div>
 
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr lopc poa lod fra ari smarty"
-										id="zip"
-										placeholder="Zip"
-									/>
-									<label for="zip">Zip</label>
-								</div>
-							</div>
-							<div class="col-sm">
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited bc lod"
-										id="child-dob"
-										placeholder="Child DOB"
-									/>
-									<label for="child-dob">Child DOB</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited bc lod"
-										id="father-name"
-										placeholder="Child's Father's Name"
-									/>
-									<label for="father-name">Father's Name</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited bc lod fra ari foreign-id"
-										id="coo"
-										placeholder="Country of Origin"
-									/>
-									<label for="coo">Country of Origin</label>
-								</div>
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control lopc poa fra ari"
-										id="phone"
-										placeholder="Phone"
-									/>
-									<label for="phone">Phone</label>
-								</div>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr bgc"
+											id="background-check-results"
+											placeholder="Results"
+										/>
+										<label for="background-check-results">Results</label>
+									</div>
 
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr bgc"
-										id="background-check-results"
-										placeholder="Results"
-									/>
-									<label for="background-check-results">Results</label>
-								</div>
-
-								<div class="form-floating mb-3">
-									<input
-										type="text"
-										class="form-control rr rr-expedited lopc fra ari"
-										id="child-gender"
-										placeholder="Child's Gender"
-									/>
-									<label for="child-gender">Child's Gender</label>
+									<div class="form-floating mb-3">
+										<input
+											type="text"
+											class="form-control rr rr-expedited lopc fra ari"
+											id="child-gender"
+											placeholder="Child's Gender"
+										/>
+										<label for="child-gender">Child's Gender</label>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div id="page-body"></div>
+						<div
+							id="page-body"
+							class="document-body"
+						></div>
 						<!-- RELEASE REQUEST TITLE HELPER THING-->
 						<div class="heading-wrapper no-print">
 							<h3 class="d-flex justify-content-center w-full no-print">
