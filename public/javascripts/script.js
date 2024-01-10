@@ -649,7 +649,7 @@ function emailConvert(str) {
 }
 
 function renderFingerprints() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
 		return alert(`you are missing some data.`);
 	}
@@ -673,19 +673,20 @@ function renderFingerprints() {
 	<section class="section">
   <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
-    This message is to confirm that <span id="fp-appt-sponsor">${
-			firstName.value
-		} ${lastName.value}</span> has a fingerprint appointment
+	This message is to confirm that <span id="fp-appt-sponsor">${firstName.value} ${
+		lastName.value
+	}</span> has a fingerprint appointment
     on <span id="fp-appt-date">${today}</span> at <span id="fp-appt-time">${
 		adjustedTime + amOrPm
 	}</span>
   </h2>
 </section>`;
 	changeTitle('Fingerprint_Appt');
+	window.print();
 }
 
 function renderFPConfirmation() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
 		return alert(`you are missing some data.`);
 	}
@@ -710,6 +711,7 @@ function renderFPConfirmation() {
   </h2>
 </section>`;
 	changeTitle('Fingerprint_Confirmation');
+	window.print();
 }
 
 function validate(className, nodeLength) {
@@ -730,7 +732,7 @@ function validate(className, nodeLength) {
 	return true;
 }
 function renderLOPC() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	if (validate('.lopc', document.querySelectorAll('.lopc').length) === false) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
@@ -827,6 +829,7 @@ function renderLOPC() {
 </div>
 `;
 	changeTitle('LOPC');
+	window.print();
 }
 
 function errorColorHandling(element) {
@@ -840,26 +843,27 @@ function colorHandler(element) {
 let firstNameArr = [];
 let lastNameArr = [];
 
-function getNamesArr() {
+function getNamesArr(firstName, lastName) {
 	colorsBackToNormal();
-	if (firstNameArr.length !== 0 || lastNameArr.length !== 0) {
-		return;
-	}
+	firstNameArr = [];
+	lastNameArr = [];
 
-	if (firstName.value.trim().split(' ').length > 1) {
-		firstNameArr = firstName.value.trim().split(' ');
+	if (firstName.trim().split(' ').length > 1) {
+		firstNameArr = firstName.trim().split(' ');
 	} else {
-		firstNameArr = [firstName.value.trim()];
+		firstNameArr = [firstName.trim()];
 	}
-	if (lastName.value.trim().split(' ').length > 1) {
-		lastNameArr = lastName.value.trim().split(' ');
+	if (lastName.trim().split(' ').length > 1) {
+		lastNameArr = lastName.trim().split(' ');
 	} else {
-		lastNameArr = [lastName.value];
+		lastNameArr = [lastName];
 	}
+	console.log(firstNameArr, lastNameArr, 'get names arr');
 }
 
 function jumbleNames() {
-	getNamesArr();
+	console.log('what');
+	getNamesArr(firstName.value, lastName.value);
 	if (!validate('.bgc', document.querySelectorAll('.bcg').length)) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
@@ -873,8 +877,10 @@ function jumbleNames() {
 
 	let fullNameArr = [];
 	if (firstNameArr.length > 1) {
+		fullNameArr = [];
 		fullNameArr.push(firstNameArr.concat(lastNameArr).join(' '));
 	}
+	console.log(fullNameArr, 'line 883');
 
 	for (var i = 0; i < firstNameArr.length; i++) {
 		let newName = firstNameArr[i] + ' ' + lastNameArr.join(' ');
@@ -888,11 +894,13 @@ function jumbleNames() {
 			}
 		}
 	}
+	console.log(fullNameArr, 'this is the full name array');
 
 	renderBGCheck(fullNameArr);
 }
 
 function renderBGCheck(arr) {
+	console.log(arr, 'this is the array being passed in');
 	pageBodyEl.innerHTML = `
 	<style>
 	th,td,tr,td, h1{
@@ -933,8 +941,9 @@ function renderBGCheck(arr) {
 		<td>${dob.value}</td>
 		<td>Clear</td>`;
 		tableBodyEl.append(tableRow);
-		changeTitle('Public_Records_Check');
 	});
+	changeTitle('Public_Records_Check');
+	window.print();
 }
 
 function getInitials(first, last) {
@@ -988,7 +997,7 @@ function colorsBackToNormal() {
 }
 
 function renderForeignId() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	colorsBackToNormal();
 	if (
 		!validate('.foreign-id', document.querySelectorAll('.foreign-id').length)
@@ -1237,6 +1246,7 @@ function renderForeignId() {
 		</div>
 `;
 	changeTitle('Passport');
+	window.print();
 }
 function getPassportPicture(sex) {
 	if (sex.toUpperCase() === 'MALE') {
@@ -1292,7 +1302,7 @@ function createIssueDate() {
 	return issueDate.toLocaleDateString();
 }
 function renderLOD() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	if (validate('.lod', document.querySelectorAll('.lod').length) === false) {
 		return alert(
 			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
@@ -1315,9 +1325,10 @@ function renderLOD() {
    <h4>Nombre del apoderado: ${firstName.value} ${lastName.value}</h4></div>`;
 
 	changeTitle('LOD');
+	window.print();
 }
 function renderBc() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	validate('.bc', document.querySelectorAll('.bc').length);
 	if (!validate('.bc', document.querySelectorAll('.bc').length)) {
 		return alert(
@@ -1390,10 +1401,11 @@ function renderBc() {
 		fatherName.value
 	}</h3><hr></div><div class="inscrito"></div><h4></h4></div>!`;
 	document.title = `${a_number.value}_Child_BC`;
+	window.print();
 }
 
 function renderPoa() {
-	getNamesArr();
+	getNamesArr(firstName.value, lastName.value);
 	const poaNodes = document.querySelectorAll('.poa');
 	let poaData = [];
 	poaNodes.forEach((item) => {
@@ -1633,6 +1645,7 @@ function renderPoa() {
 	</div>
 	</div>`;
 	changeTitle('Proof_Address');
+	window.print();
 }
 
 const passportMale = `<svg height="100px" width="100px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
