@@ -297,6 +297,7 @@ function saveEmailsToLocalStorage() {
 		caseManager: caseManager.value,
 	};
 	localStorage.setItem('emails', JSON.stringify(leadershipEmailsObj));
+	showSaveToast();
 }
 //Local storage for child
 
@@ -399,13 +400,14 @@ function saveChildToLocalStorage() {
 		expeditedBirthCertificates: expeditedBirthCertificates.value,
 	};
 	localStorage.setItem('child', JSON.stringify(childObj));
+	showSaveToast();
 }
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
 saveEmailsBtn.addEventListener('click', saveEmailsToLocalStorage);
 
 saveChildBtn.addEventListener('click', saveChildToLocalStorage);
-function showToast(button) {}
+
 function getGoogleMap() {
 	if (!validate('.smarty', document.querySelectorAll('.smarty').length)) {
 		return alert('the missing data is highlighted in red');
@@ -646,11 +648,11 @@ function getNumbers(str, startPos, length) {
 }
 const savedToast = document.getElementById('saved-toast');
 
-function showSave() {
+function showSaveToast() {
 	savedToast.classList.remove('hidden');
 	setTimeout(() => {
 		savedToast.classList.add('hidden');
-	}, 3000);
+	}, 1500);
 }
 
 function parsePhoneNum(num) {
