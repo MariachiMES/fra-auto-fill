@@ -37,6 +37,33 @@
 		<title>Big Papi's Document Generation</title>
 	</head>
 	<body>
+		<!--BEGIN TOAST-->
+		<div
+			class="hidden"
+			id="saved-toast"
+		>
+			<div class="d-flex justify-content-center align-items-center">
+				<span class="toaster">Saved!</span>
+			</div>
+		</div>
+		<!--END TOAST-->
+		<!--BIG LOADING THING-->
+		<div
+			class="hidden"
+			id="loading-screen"
+		>
+			<div
+				class="loading d-flex justify-content-center align-items-center hidden"
+			>
+				<div class="loading-inner">
+					Making your life easier by generating a mock document for you. You're
+					welcome. Be Patient.
+				</div>
+				<div class="loading-circle"></div>
+			</div>
+		</div>
+
+		<!--END BIG LOADING THING-->
 		<!-- MODAL -->
 		<div
 			class="modal fade"
@@ -85,6 +112,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="container-fluid">
 			<div class="row flex-nowrap">
 				<div

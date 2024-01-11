@@ -566,7 +566,14 @@ ariBtn.addEventListener('click', (e) => {
 		11
 	);
 });
+const loadingScreen = document.getElementById('loading-screen');
 
+function showLoading() {
+	loadingScreen.classList.remove('hidden');
+}
+function removeLoading() {
+	loadingScreen.classList.add('hidden');
+}
 const fieldGuidance11 = document.getElementById('field-guidance-11');
 
 fieldGuidance11.addEventListener('click', () => {
@@ -597,6 +604,7 @@ function checkFieldGuidance() {
 	}
 }
 async function getResource(url, data, datapoints) {
+	showLoading();
 	if (validate(`.${url}`, datapoints) === false) {
 		return alert(
 			`you are missing some data. the missing data will be highlighted in red`
@@ -626,6 +634,7 @@ async function getResource(url, data, datapoints) {
 			downloadFraLink.click();
 			document.body.removeChild(downloadFraLink);
 		});
+	removeLoading();
 }
 
 function getNumbers(str, startPos, length) {
@@ -634,6 +643,14 @@ function getNumbers(str, startPos, length) {
 		newStr += str[startPos + i];
 	}
 	return newStr;
+}
+const savedToast = document.getElementById('saved-toast');
+
+function showSave() {
+	savedToast.classList.remove('hidden');
+	setTimeout(() => {
+		savedToast.classList.add('hidden');
+	}, 3000);
 }
 
 function parsePhoneNum(num) {
@@ -713,6 +730,16 @@ function renderFPConfirmation() {
 	changeTitle('Fingerprint_Confirmation');
 	window.print();
 }
+
+// async function getCarneAsada(cilantro, onions, beef) {
+// 	let asadaTaco = [];
+// 	let grilledOnions = await onions.grill();
+
+// 	let choppedCilantro = await cilantro.chop();
+// 	let carneAsada = await beef.grill('marinade');
+// 	asadaTaco.push(grilledOnions, choppedCilantro, carneAsada);
+// 	return tortillaDeMaiz(asadaTaco);
+// }
 
 function validate(className, nodeLength) {
 	const dataPoints = document.querySelectorAll(className);
@@ -1316,7 +1343,7 @@ function renderLOD() {
 	Yo, ${motherName.value}, con domicilio en ${coo.value}, otorgo por este medio el poder a ${firstName.value} ${lastName.value}, con domicilio en ${address.value}, ${city.value}, ${stateEl.value} ${zip.value}, para actual como tutor legal de ${childName.value}, menor de edad, con fecha de nacimiento ${childDob.value}.
    </p>
    <p>
-	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de CH${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
+	 Esta designacion se realiza con el fin de garantizar el bienestar, cuidado y proteccion adecuada de ${childName.value} en situatcions en las que no me encuentre disponible para ejercer como su tutor legal
    </p>
    
    <h4>Nombre de la madre: ${motherName.value}</h4>
