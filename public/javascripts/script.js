@@ -939,7 +939,7 @@ function renderBGCheck(arr) {
 		<td>${line}</td>
 		<td>${stateEl.value}</td>
 		<td>${dob.value}</td>
-		<td>Clear</td>`;
+		<td>${results.value}</td>`;
 		tableBodyEl.append(tableRow);
 	});
 	changeTitle('Public_Records_Check');
