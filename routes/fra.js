@@ -135,10 +135,10 @@ async function fillFRA(child) {
 	acgName.setText();
 	acgDob.setText();
 	acgPhone.setText();
-	acgAddress.setText();
-	acgCity.setText();
-	acgState.setText();
-	acgZip.setText();
+	acgAddress.setText(child.address);
+	acgCity.setText(child.city);
+	acgState.setText(child.state);
+	acgZip.setText(child.zipCode);
 	acgRelationship.setText();
 	sponsorAcg.setText();
 	carePlan.setText(`
@@ -203,6 +203,10 @@ function translateRelationship(relationship) {
 		GRANDMA: 'Abuela',
 		GRANDFATHER: 'Abuelo',
 		GRANDPA: 'Abuelo',
+		'PATERNAL AUNT': 'Tia',
+		'MATERNAL AUNT': 'Tia',
+		'MATERNAL UNCLE': 'Tio',
+		'PATERNAL UNCLE': 'Tio',
 	};
 	if (!relationships[relationship]) {
 		return relationship;
