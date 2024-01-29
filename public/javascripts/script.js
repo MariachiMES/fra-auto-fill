@@ -302,10 +302,13 @@ function saveEmailsToLocalStorage() {
 	showSaveToast();
 }
 //Local storage for child
-
+const oldFormat = JSON.parse(localStorage.getItem('child'));
 const savedChildren = JSON.parse(localStorage.getItem('children'));
 let childrenArray;
 
+if (oldFormat) {
+	savedChildren = new Array(oldFormat);
+}
 // Manage child local storage
 
 if (savedChildren) {
