@@ -46,6 +46,14 @@
 				<span class="toaster">Saved!</span>
 			</div>
 		</div>
+		<div
+			class="hidden"
+			id="deleted-toast"
+		>
+			<div class="d-flex justify-content-center align-items-center">
+				<span class="deleted-toaster">Deleted!</span>
+			</div>
+		</div>
 		<!--END TOAST-->
 		<!--BIG LOADING THING-->
 		<div
@@ -81,7 +89,7 @@
 							class="modal-title fs-5"
 							id="staticBackdropLabel"
 						>
-							Document Generator
+							READ THIS FIRST!!!!!!!!!
 						</h1>
 						<button
 							type="button"
@@ -91,14 +99,22 @@
 						></button>
 					</div>
 					<div class="modal-body">
-						Fill the form with the pertinent information regarding your case.
-						Use the buttons below the form to generate the documents you need.
-						Any missing information will be alerted and highlighted in red.
-						Generating the document will also allow you to print the page to
-						Adobe PDF with the naming convention pre-filled for you.
-						Additionally, if you need more birth certificates or ARI's etc, you
-						can change the information and click the button for the document you
-						need to re-render the inforamtion.
+						hey. listen. this thing makes it so that you only have to enter this
+						information once and then you get all your documents, the fra, the
+						ari, some maps stuff and the release request automatically. also
+						there are email templates for requesting time off, requesting
+						internal review, case submission notice and case submission. also if
+						you want to resign, there's a template for that. i even handled the
+						gender pronouns for you. you can now have multiple simultaneous
+						cases. save your info at the top right. save your case on the left
+						with the green button. just fill in the form. select your category
+						and all that. use the MOCK DOCUMENTS tab on the left to generate
+						documents. if you're missing anything, i'll let you know what you're
+						missing. at the bottom you can generate a release request. you're
+						welcome.
+
+						<br /><br />
+						love, david
 					</div>
 					<div class="modal-footer">
 						<button
@@ -145,6 +161,22 @@
 									<span class="ms-1 d-none d-sm-inline">Instructions</span>
 								</a>
 							</li>
+							<li>
+								<a
+									href="#submenu5"
+									data-bs-toggle="collapse"
+									class="nav-link px-0 align-middle custom-link-color"
+								>
+									<i class="bi bi-briefcase-fill"></i>
+									<span class="ms-1 d-none d-sm-inline">Cases</span>
+								</a>
+								<ul
+									class="collapse nav flex-column ms-1"
+									id="submenu5"
+									data-bs-parent="#menu"
+								></ul>
+							</li>
+
 							<li>
 								<a
 									href="#submenu1"

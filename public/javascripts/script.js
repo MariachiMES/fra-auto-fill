@@ -135,6 +135,10 @@ const expeditedMedical = document.getElementById('expedited-medical');
 const expeditedBirthCertificates = document.getElementById(
 	'expedited-birth-certificates'
 );
+
+const menuEl = document.getElementById('menu');
+const subMenu5El = document.getElementById('submenu5');
+const deletedToast = document.getElementById('deleted-toast');
 // const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
 // expeditedDummyBtn.addEventListener('click', () => {
 // 	ucExpedited.value = '1/1/2024';
@@ -273,8 +277,6 @@ let leadershipEmailsObj = {};
 
 //Get Emails from local storage if it's there
 if (leadershipEmails) {
-	console.log(leadershipEmails);
-
 	leadEmail.value = leadershipEmails.leadEmail || null;
 	clinician.value = leadershipEmails.clinicianEmail || null;
 	buddy.value = leadershipEmails.buddyEmail || null;
@@ -301,55 +303,19 @@ function saveEmailsToLocalStorage() {
 }
 //Local storage for child
 
-const savedChild = JSON.parse(localStorage.getItem('child'));
+const savedChildren = JSON.parse(localStorage.getItem('children'));
+let childrenArray;
 
 // Manage child local storage
 
-if (savedChild) {
-	console.log(savedChild);
-	a_number.value = savedChild.a_number || null;
-	firstName.value = savedChild.sponsorFirstName || null;
-	lastName.value = savedChild.sponsorLastName || null;
-	dob.value = savedChild.sponsorDob || null;
-	gender.value = savedChild.sponsorGender || null;
-	relationship.value = savedChild.sponsorRelationship || null;
-	childName.value = savedChild.childName || null;
-	motherName.value = savedChild.childMother || null;
-	fatherName.value = savedChild.childFather || null;
-	address.value = savedChild.sponsorAddress || null;
-	city.value = savedChild.sponsorCity || null;
-	stateEl.value = savedChild.sponosrState || null;
-	zipCode.value = savedChild.sponsorZip || null;
-	childDob.value = savedChild.childDob || null;
-	coo.value = savedChild.countryOfOrigin || null;
-	phoneNum.value = savedChild.sponsorPhone || null;
-	sponsorBackground.value = savedChild.BGCResults || null;
-	childGender.value = savedChild.childGender || null;
-	dateAdmitted.value = savedChild.dateAdmitted || null;
-	lodReceived.value = savedChild.lodReceived || null;
-	lopcComplete.value = savedChild.lopcComplete || null;
-	handbookRead.value = savedChild.handbookRead || null;
-	sponsorBackground.value = savedChild.sponsorBackgroundCheck || null;
-	medicalClearance.value = savedChild.medicallyClear || null;
-	ACGName.value = savedChild.ACGName || null;
-	cooCaregiver.value = savedChild.cooCaregiver || null;
-	homeSize.value = savedChild.homeSize || null;
-	sponsorIncome.value = savedChild.sponsorIncome || null;
-	offenders.value = savedChild.NumberOfOffenders || null;
-	CLEnumber.value = savedChild.CLEnumber || null;
-	cooNarrative.value = savedChild.cooNarrative || null;
-	listOfBcs.value = savedChild.listOfBcs || null;
-	cleNarrative.value = savedChild.CLENarrative || null;
-	releaseReason.value = savedChild.releaseReason || null;
-	//Expedited Release Request
-	ucExpedited.value = savedChild.ucExpedited || null;
-	expeditedFRA.value = savedChild.expeditedFRA || null;
-	expeditedSponsor.value = savedChild.expeditedSponsor || null;
-	expeditedVerbal.value = savedChild.expeditedVerbal || null;
-	expeditedMedical.value = savedChild.expeditedMedical || null;
-	expeditedBirthCertificates.value =
-		savedChild.expeditedBirthCertificates || null;
-	poaReceived.value = savedChild.poaReceived || null;
+if (savedChildren) {
+	childrenArray = savedChildren;
+
+	createCaseButtons(childrenArray);
+	const firstChild = childrenArray[0];
+	populateChild(firstChild);
+} else {
+	childrenArray = [];
 }
 //Save Child To local Storage
 function saveChildToLocalStorage() {
@@ -399,9 +365,145 @@ function saveChildToLocalStorage() {
 		expeditedMedical: expeditedMedical.value,
 		expeditedBirthCertificates: expeditedBirthCertificates.value,
 	};
-	localStorage.setItem('child', JSON.stringify(childObj));
-	showSaveToast();
+
+	if (childrenArray.length === 0) {
+		childrenArray.push(childObj);
+		localStorage.setItem('children', JSON.stringify(childrenArray));
+		showSaveToast();
+		subMenu5El.innerHTML = '';
+		createCaseButtons(childrenArray);
+		return;
+	}
+
+	for (var i = 0; i < childrenArray.length; i++) {
+		if (childrenArray[i].a_number == childObj.a_number) {
+			console.log(
+				'this item is already in the array and should not be made into a new things',
+				i
+			);
+			childrenArray.splice(i, 1, childObj);
+			showSaveToast();
+			subMenu5El.innerHTML = '';
+			createCaseButtons(childrenArray);
+			return;
+		}
+		if (
+			i === childrenArray.length - 1 &&
+			childrenArray[i].a_number != childObj.a_number
+		) {
+			console.log('adding to the end of the array');
+			childrenArray.push(childObj);
+			localStorage.setItem('children', JSON.stringify(childrenArray));
+			showSaveToast();
+			subMenu5El.innerHTML = '';
+			createCaseButtons(childrenArray);
+			return;
+		}
+	}
 }
+
+function createCaseButtons(arr) {
+	arr.forEach((item) => {
+		const li = document.createElement('li');
+		li.classList.add('w-100', 'px-4');
+		const a = document.createElement('a');
+		a.classList.add('nav-link', 'px-0', 'custom-link-color');
+		a.href = '#';
+
+		li.append(a);
+
+		const span = document.createElement('span');
+		span.classList.add('ms-1', 'd-none', 'd-sm-inline');
+		span.textContent = item.a_number;
+		span.id = item.a_number;
+		a.append(span);
+		console.log(typeof li.id);
+		span.addEventListener('click', changeChildren);
+		const i = document.createElement('i');
+		i.classList.add('bi', 'bi-x-circle', 'mx-3', 'text-danger');
+		i.setAttribute('data-case', item.a_number);
+		a.append(i);
+		subMenu5El.append(li);
+		i.addEventListener('click', removeFromCaseload);
+	});
+}
+
+function populateChild(child) {
+	a_number.value = child.a_number || null;
+	firstName.value = child.sponsorFirstName || null;
+	lastName.value = child.sponsorLastName || null;
+	dob.value = child.sponsorDob || null;
+	gender.value = child.sponsorGender || null;
+	relationship.value = child.sponsorRelationship || null;
+	childName.value = child.childName || null;
+	motherName.value = child.childMother || null;
+	fatherName.value = child.childFather || null;
+	address.value = child.sponsorAddress || null;
+	city.value = child.sponsorCity || null;
+	stateEl.value = child.sponosrState || null;
+	zipCode.value = child.sponsorZip || null;
+	childDob.value = child.childDob || null;
+	coo.value = child.countryOfOrigin || null;
+	phoneNum.value = child.sponsorPhone || null;
+	sponsorBackground.value = child.BGCResults || null;
+	childGender.value = child.childGender || null;
+	dateAdmitted.value = child.dateAdmitted || null;
+	lodReceived.value = child.lodReceived || null;
+	lopcComplete.value = child.lopcComplete || null;
+	handbookRead.value = child.handbookRead || null;
+	sponsorBackground.value = child.sponsorBackgroundCheck || null;
+	medicalClearance.value = child.medicallyClear || null;
+	ACGName.value = child.ACGName || null;
+	cooCaregiver.value = child.cooCaregiver || null;
+	homeSize.value = child.homeSize || null;
+	sponsorIncome.value = child.sponsorIncome || null;
+	offenders.value = child.NumberOfOffenders || null;
+	CLEnumber.value = child.CLEnumber || null;
+	cooNarrative.value = child.cooNarrative || null;
+	listOfBcs.value = child.listOfBcs || null;
+	cleNarrative.value = child.CLENarrative || null;
+	releaseReason.value = child.releaseReason || null;
+	//Expedited Release Request
+	ucExpedited.value = child.ucExpedited || null;
+	expeditedFRA.value = child.expeditedFRA || null;
+	expeditedSponsor.value = child.expeditedSponsor || null;
+	expeditedVerbal.value = child.expeditedVerbal || null;
+	expeditedMedical.value = child.expeditedMedical || null;
+	expeditedBirthCertificates.value = child.expeditedBirthCertificates || null;
+	poaReceived.value = child.poaReceived || null;
+}
+
+function changeChildren(e) {
+	let newChild;
+	const selectedANumber = e.target.id;
+	childrenArray.forEach((child, idx) => {
+		if (child.a_number == selectedANumber) {
+			newChild = childrenArray[idx];
+		}
+	});
+	populateChild(newChild);
+}
+function removeFromCaseload(e) {
+	if (confirm('ARE YOU SURE YOU WANT TO DELETE THIS CASE, BRUH??!')) {
+		const selectedCase = e.target.dataset.case;
+		for (var i = 0; i < childrenArray.length; i++) {
+			if (selectedCase == childrenArray[i].a_number) {
+				childrenArray.splice(i, 1);
+
+				localStorage.setItem('children', JSON.stringify(childrenArray));
+				if (childrenArray.length === 0) {
+					localStorage.removeItem('children');
+					clearForm(true);
+				}
+				showDeleteToast();
+				subMenu5El.innerHTML = '';
+				createCaseButtons(childrenArray);
+				return;
+			}
+		}
+	}
+}
+
 mapsBtn.addEventListener('click', getGoogleMap);
 earthBtn.addEventListener('click', getGoogleEarth);
 saveEmailsBtn.addEventListener('click', saveEmailsToLocalStorage);
@@ -494,8 +596,29 @@ function showDummyData() {
 
 clearBtn.addEventListener('click', clearForm);
 
-function clearForm() {
-	if (confirm('Are you sure you want to clear this data?!?')) {
+function clearForm(bool) {
+	if (!bool) {
+		confirm('Are you sure you want to clear this data?!?');
+		firstName.value = '';
+		lastName.value = '';
+		dob.value = '';
+		a_number.value = '';
+		stateEl.value = '';
+		relationship.value = '';
+		caseManager.value = '';
+		zipCode.value = '';
+		city.value = '';
+		address.value = '';
+		childDob.value = '';
+		childName.value = '';
+		coo.value = '';
+		motherName.value = '';
+		fatherName.value = '';
+		gender.value = '';
+		childGender.value = '';
+		pageBodyEl.innerHTML = '';
+		return;
+	} else {
 		firstName.value = '';
 		lastName.value = '';
 		dob.value = '';
@@ -652,6 +775,12 @@ function showSaveToast() {
 	savedToast.classList.remove('hidden');
 	setTimeout(() => {
 		savedToast.classList.add('hidden');
+	}, 1500);
+}
+function showDeleteToast() {
+	deletedToast.classList.remove('hidden');
+	setTimeout(() => {
+		deletedToast.classList.add('hidden');
 	}, 1500);
 }
 
@@ -1783,8 +1912,6 @@ const resignBtn = document.getElementById('resign-from-ds');
 const todayBtns = document.querySelectorAll('.today');
 const submissionNoticeBtn = document.getElementById('24-hour');
 const requestReviewBtn = document.getElementById('request-review');
-
-console.log(todayBtns);
 
 submissionNoticeBtn.addEventListener('click', () => {
 	if (!catSelected || !releaseSelected) {
