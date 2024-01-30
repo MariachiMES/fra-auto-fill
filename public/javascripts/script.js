@@ -303,7 +303,7 @@ function saveEmailsToLocalStorage() {
 }
 //Local storage for child
 const oldFormat = JSON.parse(localStorage.getItem('child'));
-const savedChildren = JSON.parse(localStorage.getItem('children'));
+let savedChildren = JSON.parse(localStorage.getItem('children'));
 let childrenArray;
 
 if (oldFormat) {
