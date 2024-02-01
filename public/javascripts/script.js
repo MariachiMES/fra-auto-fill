@@ -531,99 +531,50 @@ function getGoogleEarth() {
 	const googleEarthUrl = `https://earth.google.com/web/search/${addressParam},+${cityParam},+${stateEl.value}+${zipCode.value}/`;
 	window.open(googleEarthUrl, '_blank');
 
+	window.addEventListener('load', () => {
+		instructionsBtn.click();
+	});
 
-window.addEventListener('load', () => {
-	instructionsBtn.click();
-});
+	deleteChildBtn.addEventListener('click', () => {
+		if (
+			confirm(
+				`are you SURE you want to delete this kid, you gonna have to type all this shit again if you mess up and you can't blame me.  i do'nt want to get an email from you later about it.  ok?`
+			)
+		) {
+			localStorage.removeItem('child');
+			location.reload();
+		}
+	});
+	dummyBtn.addEventListener('click', showDummyData);
 
-deleteChildBtn.addEventListener('click', () => {
-	if (
-		confirm(
-			`are you SURE you want to delete this kid, you gonna have to type all this shit again if you mess up and you can't blame me.  i do'nt want to get an email from you later about it.  ok?`
-		)
-	) {
-		localStorage.removeItem('child');
-		location.reload();
-	}
-});
-dummyBtn.addEventListener('click', showDummyData);
-
-function showDummyData() {
-	firstName.value = 'David Jose';
-	lastName.value = 'Ortiz Salazar';
-	dob.value = '05/05/1983';
-	a_number.value = '987654321';
-	stateEl.value = 'TX';
-	relationship.value = 'Father';
-	caseManager.value = 'Mock Manager';
-	zipCode.value = 78217;
-	city.value = 'San Antonio';
-	address.value = '9514 Hillsboro Dr';
-	childDob.value = '04/04/2008';
-	childName.value = 'Junior Ortiz';
-	coo.value = 'USA';
-	motherName.value = 'Mom Ortiz';
-	fatherName.value = 'Senior Ortiz';
-	gender.value = 'Male';
-	childGender.value = 'Male';
-	leadEmail.value = 'anna.gonzales@deployedservices.com';
-	buddy.value = 'irene.reyes@deployedservices.com';
-	clinician.value = 'martin.gonzalez@deployedservices.com';
-	ucExpedited.value = '';
-	expeditedFRA.value = '';
-	expeditedSponsor.value = '';
-	expeditedVerbal.value = '';
-	expeditedMedical.value = '';
-	expeditedBirthCertificates.value =
-		'THESE ARE THE EXPEDITED BIRTH CERTIFICATES LISTED';
-	dateAdmitted.value = '';
-	poaReceived.value = '';
-	lodReceived.value = '';
-	lopcComplete.value = '';
-	handbookRead.value = '';
-	sponsorBackground.value = '';
-	medicalClearance.value = '';
-	ACGName.value = 'Daniel Xavier Ortiz';
-	cooCaregiver.value = 'Mr. Deployed Services';
-	homeSize.value = '4 bedroom apartment';
-	offenders.value = 5;
-	CLEnumber.value = 0;
-	cleNarrative.value = 'The child has No CLEs';
-	cooNarrative.value = 'a bunch of stuff happened in home country';
-	listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
-	releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
-	sponsorIncome.value = '65000';
-}
-
-clearBtn.addEventListener('click', clearForm);
-
-function clearForm(bool) {
-	if (!bool) {
-		confirm('Are you sure you want to clear this data?!?');
-		firstName.value = '';
-		lastName.value = '';
-		dob.value = '';
-		a_number.value = '';
-		stateEl.value = '';
-		relationship.value = '';
-		caseManager.value = '';
-		zipCode.value = '';
-		city.value = '';
-		address.value = '';
-		childDob.value = '';
-		childName.value = '';
-		coo.value = '';
-		motherName.value = '';
-		fatherName.value = '';
-		gender.value = '';
-		childGender.value = '';
-		pageBodyEl.innerHTML = '';
+	function showDummyData() {
+		firstName.value = 'David Jose';
+		lastName.value = 'Ortiz Salazar';
+		dob.value = '05/05/1983';
+		a_number.value = '987654321';
+		stateEl.value = 'TX';
+		relationship.value = 'Father';
+		caseManager.value = 'Mock Manager';
+		zipCode.value = 78217;
+		city.value = 'San Antonio';
+		address.value = '9514 Hillsboro Dr';
+		childDob.value = '04/04/2008';
+		childName.value = 'Junior Ortiz';
+		coo.value = 'USA';
+		motherName.value = 'Mom Ortiz';
+		fatherName.value = 'Senior Ortiz';
+		gender.value = 'Male';
+		childGender.value = 'Male';
+		leadEmail.value = 'anna.gonzales@deployedservices.com';
+		buddy.value = 'irene.reyes@deployedservices.com';
+		clinician.value = 'martin.gonzalez@deployedservices.com';
 		ucExpedited.value = '';
 		expeditedFRA.value = '';
 		expeditedSponsor.value = '';
 		expeditedVerbal.value = '';
 		expeditedMedical.value = '';
-		expeditedBirthCertificates.value = '';
+		expeditedBirthCertificates.value =
+			'THESE ARE THE EXPEDITED BIRTH CERTIFICATES LISTED';
 		dateAdmitted.value = '';
 		poaReceived.value = '';
 		lodReceived.value = '';
@@ -631,229 +582,280 @@ function clearForm(bool) {
 		handbookRead.value = '';
 		sponsorBackground.value = '';
 		medicalClearance.value = '';
-		ACGName.value = '';
-		cooCaregiver.value = '';
-		homeSize.value = '';
-		offenders.value = '';
-		CLEnumber.value = '';
-		cleNarrative.value = '';
-		cooNarrative.value = '';
-		listOfBcs.value = '';
-		releaseReason.value = '';
-		sponsorIncome.value = '';
-		return;
-	} else {
-		firstName.value = '';
-		lastName.value = '';
-		a_number.value = '';
-		stateEl.value = '';
-		relationship.value = '';
-		caseManager.value = '';
-		zipCode.value = '';
-		city.value = '';
-		address.value = '';
-		childDob.value = '';
-		childName.value = '';
-		coo.value = '';
-		motherName.value = '';
-		fatherName.value = '';
-		gender.value = '';
-		childGender.value = '';
-		pageBodyEl.innerHTML = '';
-		ucExpedited.value = '';
-		expeditedFRA.value = '';
-		expeditedSponsor.value = '';
-		expeditedVerbal.value = '';
-		expeditedMedical.value = '';
-		expeditedBirthCertificates.value = '';
-		dateAdmitted.value = '';
-		poaReceived.value = '';
-		lodReceived.value = '';
-		lopcComplete.value = '';
-		handbookRead.value = '';
-		sponsorBackground.value = '';
-		medicalClearance.value = '';
-		ACGName.value = '';
-		cooCaregiver.value = '';
-		homeSize.value = '';
-		offenders.value = '';
-		CLEnumber.value = '';
-		cleNarrative.value = '';
-		cooNarrative.value = '';
-		listOfBcs.value = '';
-		releaseReason.value = '';
-		sponsorIncome.value = '';
+		ACGName.value = 'Daniel Xavier Ortiz';
+		cooCaregiver.value = 'Mr. Deployed Services';
+		homeSize.value = '4 bedroom apartment';
+		offenders.value = 5;
+		CLEnumber.value = 0;
+		cleNarrative.value = 'The child has No CLEs';
+		cooNarrative.value = 'a bunch of stuff happened in home country';
+		listOfBcs.value = 'THERE ARE SOME BIRTH CERTIFICATES';
+		releaseReason.value = 'the sponsor demonstrates the ability to do stuff';
+		sponsorIncome.value = '65000';
 	}
-}
 
-goBtn.addEventListener('click', jumbleNames);
-fingerPrintBtn.addEventListener('click', renderFingerprints);
-lopcBtn.addEventListener('click', renderLOPC);
-poaBtn.addEventListener('click', renderPoa);
-fingerprintConfirmBtn.addEventListener('click', renderFPConfirmation);
-idCreator.addEventListener('click', renderForeignId);
-bcBtn.addEventListener('click', renderBc);
-lodBtn.addEventListener('click', renderLOD);
-fraBtn.addEventListener('click', (e) => {
-	e.preventDefault();
-	getResource(
-		'fra',
-		{
-			aNumber: a_number.value,
-			sponsorFirstName: firstName.value,
-			sponsorLastName: lastName.value,
-			sponsorDob: dob.value,
-			childsName: childName.value,
-			address: address.value,
-			city: city.value,
-			state: stateEl.value,
-			zipCode: zipCode.value,
-			coo: coo.value,
-			phone: phoneNum.value,
-			relationship: relationship.value,
-			childGender: childGender.value,
-		},
-		12
-	);
-});
-ariBtn.addEventListener('click', (e) => {
-	e.preventDefault();
-	getResource(
-		'ari',
-		{
-			aNumber: a_number.value,
-			sponsorFirstName: firstName.value,
-			sponsorLastName: lastName.value,
-			sponsorDob: dob.value,
-			childsName: childName.value,
-			address: address.value,
-			city: city.value,
-			state: stateEl.value,
-			zipCode: zipCode.value,
-			coo: coo.value,
-			childsDob: childDob.value,
-			childGender: childGender.value,
-		},
-		11
-	);
-});
-const loadingScreen = document.getElementById('loading-screen');
+	clearBtn.addEventListener('click', clearForm);
 
-function showLoading() {
-	loadingScreen.classList.remove('hidden');
-}
-function removeLoading() {
-	loadingScreen.classList.add('hidden');
-}
-const fieldGuidance11 = document.getElementById('field-guidance-11');
+	function clearForm(bool) {
+		if (!bool) {
+			confirm('Are you sure you want to clear this data?!?');
+			firstName.value = '';
+			lastName.value = '';
+			dob.value = '';
+			a_number.value = '';
+			stateEl.value = '';
+			relationship.value = '';
+			caseManager.value = '';
+			zipCode.value = '';
+			city.value = '';
+			address.value = '';
+			childDob.value = '';
+			childName.value = '';
+			coo.value = '';
+			motherName.value = '';
+			fatherName.value = '';
+			gender.value = '';
+			childGender.value = '';
+			pageBodyEl.innerHTML = '';
+			ucExpedited.value = '';
+			expeditedFRA.value = '';
+			expeditedSponsor.value = '';
+			expeditedVerbal.value = '';
+			expeditedMedical.value = '';
+			expeditedBirthCertificates.value = '';
+			dateAdmitted.value = '';
+			poaReceived.value = '';
+			lodReceived.value = '';
+			lopcComplete.value = '';
+			handbookRead.value = '';
+			sponsorBackground.value = '';
+			medicalClearance.value = '';
+			ACGName.value = '';
+			cooCaregiver.value = '';
+			homeSize.value = '';
+			offenders.value = '';
+			CLEnumber.value = '';
+			cleNarrative.value = '';
+			cooNarrative.value = '';
+			listOfBcs.value = '';
+			releaseReason.value = '';
+			sponsorIncome.value = '';
+			return;
+		} else {
+			firstName.value = '';
+			lastName.value = '';
+			a_number.value = '';
+			stateEl.value = '';
+			relationship.value = '';
+			caseManager.value = '';
+			zipCode.value = '';
+			city.value = '';
+			address.value = '';
+			childDob.value = '';
+			childName.value = '';
+			coo.value = '';
+			motherName.value = '';
+			fatherName.value = '';
+			gender.value = '';
+			childGender.value = '';
+			pageBodyEl.innerHTML = '';
+			ucExpedited.value = '';
+			expeditedFRA.value = '';
+			expeditedSponsor.value = '';
+			expeditedVerbal.value = '';
+			expeditedMedical.value = '';
+			expeditedBirthCertificates.value = '';
+			dateAdmitted.value = '';
+			poaReceived.value = '';
+			lodReceived.value = '';
+			lopcComplete.value = '';
+			handbookRead.value = '';
+			sponsorBackground.value = '';
+			medicalClearance.value = '';
+			ACGName.value = '';
+			cooCaregiver.value = '';
+			homeSize.value = '';
+			offenders.value = '';
+			CLEnumber.value = '';
+			cleNarrative.value = '';
+			cooNarrative.value = '';
+			listOfBcs.value = '';
+			releaseReason.value = '';
+			sponsorIncome.value = '';
+		}
+	}
 
-fieldGuidance11.addEventListener('click', () => {
-	console.log(fieldGuidance11.checked, 'this is the field guidance 11 button');
-});
-function rrFG11Check(node) {
-	if (fieldGuidance11.checked) {
-		console.log(node);
-		return (node.innerHTML = `<p>This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers</p>`);
-	} else {
-		console.log(node);
-		return (node.innerHTML = `<br />
+	goBtn.addEventListener('click', jumbleNames);
+	fingerPrintBtn.addEventListener('click', renderFingerprints);
+	lopcBtn.addEventListener('click', renderLOPC);
+	poaBtn.addEventListener('click', renderPoa);
+	fingerprintConfirmBtn.addEventListener('click', renderFPConfirmation);
+	idCreator.addEventListener('click', renderForeignId);
+	bcBtn.addEventListener('click', renderBc);
+	lodBtn.addEventListener('click', renderLOD);
+	fraBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		getResource(
+			'fra',
+			{
+				aNumber: a_number.value,
+				sponsorFirstName: firstName.value,
+				sponsorLastName: lastName.value,
+				sponsorDob: dob.value,
+				childsName: childName.value,
+				address: address.value,
+				city: city.value,
+				state: stateEl.value,
+				zipCode: zipCode.value,
+				coo: coo.value,
+				phone: phoneNum.value,
+				relationship: relationship.value,
+				childGender: childGender.value,
+			},
+			12
+		);
+	});
+	ariBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		getResource(
+			'ari',
+			{
+				aNumber: a_number.value,
+				sponsorFirstName: firstName.value,
+				sponsorLastName: lastName.value,
+				sponsorDob: dob.value,
+				childsName: childName.value,
+				address: address.value,
+				city: city.value,
+				state: stateEl.value,
+				zipCode: zipCode.value,
+				coo: coo.value,
+				childsDob: childDob.value,
+				childGender: childGender.value,
+			},
+			11
+		);
+	});
+	const loadingScreen = document.getElementById('loading-screen');
+
+	function showLoading() {
+		loadingScreen.classList.remove('hidden');
+	}
+	function removeLoading() {
+		loadingScreen.classList.add('hidden');
+	}
+	const fieldGuidance11 = document.getElementById('field-guidance-11');
+
+	fieldGuidance11.addEventListener('click', () => {
+		console.log(
+			fieldGuidance11.checked,
+			'this is the field guidance 11 button'
+		);
+	});
+	function rrFG11Check(node) {
+		if (fieldGuidance11.checked) {
+			console.log(node);
+			return (node.innerHTML = `<p>This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers</p>`);
+		} else {
+			console.log(node);
+			return (node.innerHTML = `<br />
 		--Public Records Check: Clear
 		<br />
 		--Sex offender Check: Clear
 		<br />
 		--Fingerprints: Clear`);
+		}
 	}
-}
-function checkFieldGuidance() {
-	if (catSelected === 'CAT1EXP') {
-		return `This case is being submitted under Field Guidance #10, , Expedited Release for Eligible Category 1 Cases`;
+	function checkFieldGuidance() {
+		if (catSelected === 'CAT1EXP') {
+			return `This case is being submitted under Field Guidance #10, , Expedited Release for Eligible Category 1 Cases`;
+		}
+		if (fieldGuidance11.checked) {
+			return `This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers`;
+		} else {
+			return '';
+		}
 	}
-	if (fieldGuidance11.checked) {
-		return `This case is being submitted under Field Guidance #11, Temporary Waivers of Background Check Requirements forCategory 2 Adult Household Members and Adult Caregivers`;
-	} else {
-		return '';
-	}
-}
-async function getResource(url, data, datapoints) {
-	if (validate(`.${url}`, datapoints) === false) {
-		return alert(
-			`you are missing some data. the missing data will be highlighted in red`
-		);
-	}
-	showLoading();
+	async function getResource(url, data, datapoints) {
+		if (validate(`.${url}`, datapoints) === false) {
+			return alert(
+				`you are missing some data. the missing data will be highlighted in red`
+			);
+		}
+		showLoading();
 
-	console.log(data, 'this is the fra data');
-	const response = await fetch(
-		`/${url}`,
-		{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
+		console.log(data, 'this is the fra data');
+		const response = await fetch(
+			`/${url}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
 			},
-			body: JSON.stringify(data),
-		},
-		console.log('data fetching')
-	)
-		.then((response) => response.text())
-		.then((downloadUrl) => {
-			console.log('this is the download url', downloadUrl);
-			const downloadFraLink = document.createElement('a');
-			downloadFraLink.href = downloadUrl;
-			downloadFraLink.download = 'sponsorFRA.pdf';
+			console.log('data fetching')
+		)
+			.then((response) => response.text())
+			.then((downloadUrl) => {
+				console.log('this is the download url', downloadUrl);
+				const downloadFraLink = document.createElement('a');
+				downloadFraLink.href = downloadUrl;
+				downloadFraLink.download = 'sponsorFRA.pdf';
 
-			document.body.appendChild(downloadFraLink);
-			downloadFraLink.click();
-			document.body.removeChild(downloadFraLink);
-		});
-	removeLoading();
-}
-
-function getNumbers(str, startPos, length) {
-	let newStr = '';
-	for (var i = 0; i < length; i++) {
-		newStr += str[startPos + i];
+				document.body.appendChild(downloadFraLink);
+				downloadFraLink.click();
+				document.body.removeChild(downloadFraLink);
+			});
+		removeLoading();
 	}
-	return newStr;
-}
-const savedToast = document.getElementById('saved-toast');
 
-function showSaveToast() {
-	savedToast.classList.remove('hidden');
-	setTimeout(() => {
-		savedToast.classList.add('hidden');
-	}, 1500);
-}
-function showDeleteToast() {
-	deletedToast.classList.remove('hidden');
-	setTimeout(() => {
-		deletedToast.classList.add('hidden');
-	}, 1500);
-}
-
-function parsePhoneNum(num) {
-	const areaCode = getNumbers(num, 0, 3);
-	const prefix = getNumbers(num, 3, 3);
-	const phNum = getNumbers(num, 6, 4);
-
-	return `(${areaCode}) - ${prefix} - ${phNum}`;
-}
-function emailConvert(str) {
-	const nameArr = str.split(' ');
-	return nameArr.join('.');
-}
-
-function renderFingerprints() {
-	getNamesArr(firstName.value, lastName.value);
-	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
-		return alert(`you are missing some data.`);
+	function getNumbers(str, startPos, length) {
+		let newStr = '';
+		for (var i = 0; i < length; i++) {
+			newStr += str[startPos + i];
+		}
+		return newStr;
 	}
-	const today = new Date().toLocaleDateString();
+	const savedToast = document.getElementById('saved-toast');
 
-	const apptTime = new Date().getHours() + 3;
-	const adjustedTime = apptTime > 12 ? apptTime - 12 : apptTime;
-	const amOrPm = apptTime > 11 ? 'pm' : 'am';
+	function showSaveToast() {
+		savedToast.classList.remove('hidden');
+		setTimeout(() => {
+			savedToast.classList.add('hidden');
+		}, 1500);
+	}
+	function showDeleteToast() {
+		deletedToast.classList.remove('hidden');
+		setTimeout(() => {
+			deletedToast.classList.add('hidden');
+		}, 1500);
+	}
 
-	pageBodyEl.innerHTML = `<style>
+	function parsePhoneNum(num) {
+		const areaCode = getNumbers(num, 0, 3);
+		const prefix = getNumbers(num, 3, 3);
+		const phNum = getNumbers(num, 6, 4);
+
+		return `(${areaCode}) - ${prefix} - ${phNum}`;
+	}
+	function emailConvert(str) {
+		const nameArr = str.split(' ');
+		return nameArr.join('.');
+	}
+
+	function renderFingerprints() {
+		getNamesArr(firstName.value, lastName.value);
+		if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
+			return alert(`you are missing some data.`);
+		}
+		const today = new Date().toLocaleDateString();
+
+		const apptTime = new Date().getHours() + 3;
+		const adjustedTime = apptTime > 12 ? apptTime - 12 : apptTime;
+		const amOrPm = apptTime > 11 ? 'pm' : 'am';
+
+		pageBodyEl.innerHTML = `<style>
 	section{
 		color: white;
 	}
@@ -868,24 +870,24 @@ function renderFingerprints() {
   <img id="fieldprint-logo" style="height: 100px" src="/images/fieldprint.png" />
   <h2 class="subtitle">
 	This message is to confirm that <span id="fp-appt-sponsor">${firstName.value} ${
-		lastName.value
-	}</span> has a fingerprint appointment
+			lastName.value
+		}</span> has a fingerprint appointment
     on <span id="fp-appt-date">${today}</span> at <span id="fp-appt-time">${
-		adjustedTime + amOrPm
-	}</span>
+			adjustedTime + amOrPm
+		}</span>
   </h2>
 </section>`;
-	changeTitle('Fingerprint_Appt');
-	window.print();
-}
-
-function renderFPConfirmation() {
-	getNamesArr(firstName.value, lastName.value);
-	if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
-		return alert(`you are missing some data.`);
+		changeTitle('Fingerprint_Appt');
+		window.print();
 	}
-	const today = new Date().toLocaleDateString();
-	pageBodyEl.innerHTML = `
+
+	function renderFPConfirmation() {
+		getNamesArr(firstName.value, lastName.value);
+		if (!validate('.fp-appt', document.querySelectorAll('.fp-appt').length)) {
+			return alert(`you are missing some data.`);
+		}
+		const today = new Date().toLocaleDateString();
+		pageBodyEl.innerHTML = `
 	<style>
 	section{
 		color: white;
@@ -904,46 +906,48 @@ function renderFPConfirmation() {
 	fingerprint appointment on <span id="fp-appt-date">${today}</span>.
   </h2>
 </section>`;
-	changeTitle('Fingerprint_Confirmation');
-	window.print();
-}
+		changeTitle('Fingerprint_Confirmation');
+		window.print();
+	}
 
-// async function getCarneAsada(cilantro, onions, beef) {
-// 	let asadaTaco = [];
-// 	let grilledOnions = await onions.grill();
+	// async function getCarneAsada(cilantro, onions, beef) {
+	// 	let asadaTaco = [];
+	// 	let grilledOnions = await onions.grill();
 
-// 	let choppedCilantro = await cilantro.chop();
-// 	let carneAsada = await beef.grill('marinade');
-// 	asadaTaco.push(grilledOnions, choppedCilantro, carneAsada);
-// 	return tortillaDeMaiz(asadaTaco);
-// }
+	// 	let choppedCilantro = await cilantro.chop();
+	// 	let carneAsada = await beef.grill('marinade');
+	// 	asadaTaco.push(grilledOnions, choppedCilantro, carneAsada);
+	// 	return tortillaDeMaiz(asadaTaco);
+	// }
 
-function validate(className, nodeLength) {
-	const dataPoints = document.querySelectorAll(className);
-	let dataValues = [];
-	dataPoints.forEach((item) => {
-		if (item.value === '') {
-			errorColorHandling(item);
-		} else {
-			colorHandler(item);
-			dataValues.push(item.value);
+	function validate(className, nodeLength) {
+		const dataPoints = document.querySelectorAll(className);
+		let dataValues = [];
+		dataPoints.forEach((item) => {
+			if (item.value === '') {
+				errorColorHandling(item);
+			} else {
+				colorHandler(item);
+				dataValues.push(item.value);
+			}
+		});
+		if (dataValues.length < nodeLength) {
+			return false;
 		}
-	});
-	if (dataValues.length < nodeLength) {
-		return false;
-	}
 
-	return true;
-}
-function renderLOPC() {
-	getNamesArr(firstName.value, lastName.value);
-	if (validate('.lopc', document.querySelectorAll('.lopc').length) === false) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
+		return true;
 	}
+	function renderLOPC() {
+		getNamesArr(firstName.value, lastName.value);
+		if (
+			validate('.lopc', document.querySelectorAll('.lopc').length) === false
+		) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
 
-	pageBodyEl.innerHTML = `
+		pageBodyEl.innerHTML = `
 	<style>
 	td{
 		color: white;
@@ -1018,8 +1022,8 @@ function renderLOPC() {
                 <td>${emailConvert(
 									caseManager.value
 								).toLowerCase()}@deployedservices.com ${
-		caseManager.value
-	} Ph: 000.000.0000/ Greensboro ICF</td>
+			caseManager.value
+		} Ph: 000.000.0000/ Greensboro ICF</td>
             </tr>
             <tr>
                 <td>Comments:</td>
@@ -1032,80 +1036,83 @@ function renderLOPC() {
     </table>
 </div>
 `;
-	changeTitle('LOPC');
-	window.print();
-}
-
-function errorColorHandling(element) {
-	element.classList.add('missing');
-}
-
-function colorHandler(element) {
-	element.classList.remove('missing');
-}
-
-let firstNameArr = [];
-let lastNameArr = [];
-
-function getNamesArr(firstName, lastName) {
-	colorsBackToNormal();
-	firstNameArr = [];
-	lastNameArr = [];
-
-	if (firstName.trim().split(' ').length > 1) {
-		firstNameArr = firstName.trim().split(' ');
-	} else {
-		firstNameArr = [firstName.trim()];
-	}
-	if (lastName.trim().split(' ').length > 1) {
-		lastNameArr = lastName.trim().split(' ');
-	} else {
-		lastNameArr = [lastName];
-	}
-	console.log(firstNameArr, lastNameArr, 'get names arr');
-}
-
-function jumbleNames() {
-	console.log('what');
-	getNamesArr(firstName.value, lastName.value);
-	if (!validate('.bgc', document.querySelectorAll('.bcg').length)) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
-	}
-	if (a_number.value.length !== 9) {
-		return alert(
-			'There is some missing data, or your A-number is not quite correct somehow. Trying to help you, dude.  \n\n love, david.'
-		);
+		changeTitle('LOPC');
+		window.print();
 	}
 
-	let fullNameArr = [];
-	if (firstNameArr.length > 1) {
-		fullNameArr = [];
-		fullNameArr.push(firstNameArr.concat(lastNameArr).join(' '));
+	function errorColorHandling(element) {
+		element.classList.add('missing');
 	}
-	console.log(fullNameArr, 'line 883');
 
-	for (var i = 0; i < firstNameArr.length; i++) {
-		let newName = firstNameArr[i] + ' ' + lastNameArr.join(' ');
-		if (!fullNameArr.includes(newName) || newName.split(' ').length < 2) {
-			fullNameArr.push(newName);
+	function colorHandler(element) {
+		element.classList.remove('missing');
+	}
+
+	let firstNameArr = [];
+	let lastNameArr = [];
+
+	function getNamesArr(firstName, lastName) {
+		colorsBackToNormal();
+		firstNameArr = [];
+		lastNameArr = [];
+
+		if (firstName.trim().split(' ').length > 1) {
+			firstNameArr = firstName.trim().split(' ');
+		} else {
+			firstNameArr = [firstName.trim()];
 		}
-		for (var j = 0; j < lastNameArr.length; j++) {
-			let secondName = firstNameArr[i] + ' ' + lastNameArr[j];
-			if (!fullNameArr.includes(secondName) || newName.split(' ').length < 2) {
-				fullNameArr.push(secondName);
+		if (lastName.trim().split(' ').length > 1) {
+			lastNameArr = lastName.trim().split(' ');
+		} else {
+			lastNameArr = [lastName];
+		}
+		console.log(firstNameArr, lastNameArr, 'get names arr');
+	}
+
+	function jumbleNames() {
+		console.log('what');
+		getNamesArr(firstName.value, lastName.value);
+		if (!validate('.bgc', document.querySelectorAll('.bcg').length)) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
+		if (a_number.value.length !== 9) {
+			return alert(
+				'There is some missing data, or your A-number is not quite correct somehow. Trying to help you, dude.  \n\n love, david.'
+			);
+		}
+
+		let fullNameArr = [];
+		if (firstNameArr.length > 1) {
+			fullNameArr = [];
+			fullNameArr.push(firstNameArr.concat(lastNameArr).join(' '));
+		}
+		console.log(fullNameArr, 'line 883');
+
+		for (var i = 0; i < firstNameArr.length; i++) {
+			let newName = firstNameArr[i] + ' ' + lastNameArr.join(' ');
+			if (!fullNameArr.includes(newName) || newName.split(' ').length < 2) {
+				fullNameArr.push(newName);
+			}
+			for (var j = 0; j < lastNameArr.length; j++) {
+				let secondName = firstNameArr[i] + ' ' + lastNameArr[j];
+				if (
+					!fullNameArr.includes(secondName) ||
+					newName.split(' ').length < 2
+				) {
+					fullNameArr.push(secondName);
+				}
 			}
 		}
+		console.log(fullNameArr, 'this is the full name array');
+
+		renderBGCheck(fullNameArr);
 	}
-	console.log(fullNameArr, 'this is the full name array');
 
-	renderBGCheck(fullNameArr);
-}
-
-function renderBGCheck(arr) {
-	console.log(arr, 'this is the array being passed in');
-	pageBodyEl.innerHTML = `
+	function renderBGCheck(arr) {
+		console.log(arr, 'this is the array being passed in');
+		pageBodyEl.innerHTML = `
 	<style>
 	th,td,tr,td, h1{
 		color: white;
@@ -1132,85 +1139,85 @@ function renderBGCheck(arr) {
 		<tr></tr>
 	</tbody>
 	</table>`;
-	const tableBodyEl = document.getElementById('table-body');
-	const todayEl = document.getElementById('todays-date');
-	const today = new Date();
-	todayEl.append(today.toLocaleDateString());
+		const tableBodyEl = document.getElementById('table-body');
+		const todayEl = document.getElementById('todays-date');
+		const today = new Date();
+		todayEl.append(today.toLocaleDateString());
 
-	arr.forEach((line) => {
-		const tableRow = document.createElement('tr');
-		tableRow.innerHTML = `
+		arr.forEach((line) => {
+			const tableRow = document.createElement('tr');
+			tableRow.innerHTML = `
 		<td>${line}</td>
 		<td>${stateEl.value}</td>
 		<td>${dob.value}</td>
 		<td>${results.value}</td>`;
-		tableBodyEl.append(tableRow);
-	});
-	changeTitle('Public_Records_Check');
-	window.print();
-}
-
-function getInitials(first, last) {
-	let initials = '';
-	for (var i = 0; i < first.length; i++) {
-		initials += first[i].charAt(0).toUpperCase();
+			tableBodyEl.append(tableRow);
+		});
+		changeTitle('Public_Records_Check');
+		window.print();
 	}
-	for (var j = 0; j < last.length; j++) {
-		initials += last[j].charAt(0).toUpperCase();
+
+	function getInitials(first, last) {
+		let initials = '';
+		for (var i = 0; i < first.length; i++) {
+			initials += first[i].charAt(0).toUpperCase();
+		}
+		for (var j = 0; j < last.length; j++) {
+			initials += last[j].charAt(0).toUpperCase();
+		}
+		return initials;
 	}
-	return initials;
-}
 
-function changeTitle(docName) {
-	document.title = `${a_number.value}_SP_${getInitials(
-		firstNameArr,
-		lastNameArr
-	)}_${docName}`;
-}
-
-function electricBillDate() {
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
-	const today = new Date();
-	today.setDate(1);
-	const month = monthNames[today.getMonth()];
-	const formattedDate = today.toLocaleDateString();
-	return [month, formattedDate];
-}
-
-const billMonth = electricBillDate()[0];
-const fullBillDate = electricBillDate()[1];
-
-function colorsBackToNormal() {
-	const inputArr = document.querySelectorAll('input');
-	inputArr.forEach((item) => {
-		item.classList.remove('missing');
-	});
-}
-
-function renderForeignId() {
-	getNamesArr(firstName.value, lastName.value);
-	colorsBackToNormal();
-	if (
-		!validate('.foreign-id', document.querySelectorAll('.foreign-id').length)
-	) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
+	function changeTitle(docName) {
+		document.title = `${a_number.value}_SP_${getInitials(
+			firstNameArr,
+			lastNameArr
+		)}_${docName}`;
 	}
-	pageBodyEl.innerHTML = `<style>
+
+	function electricBillDate() {
+		const monthNames = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December',
+		];
+		const today = new Date();
+		today.setDate(1);
+		const month = monthNames[today.getMonth()];
+		const formattedDate = today.toLocaleDateString();
+		return [month, formattedDate];
+	}
+
+	const billMonth = electricBillDate()[0];
+	const fullBillDate = electricBillDate()[1];
+
+	function colorsBackToNormal() {
+		const inputArr = document.querySelectorAll('input');
+		inputArr.forEach((item) => {
+			item.classList.remove('missing');
+		});
+	}
+
+	function renderForeignId() {
+		getNamesArr(firstName.value, lastName.value);
+		colorsBackToNormal();
+		if (
+			!validate('.foreign-id', document.querySelectorAll('.foreign-id').length)
+		) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
+		pageBodyEl.innerHTML = `<style>
 	.passport-container {
 		display: grid;
 		grid-template-rows: 1fr 1fr;
@@ -1449,70 +1456,70 @@ function renderForeignId() {
 			</div>
 		</div>
 `;
-	changeTitle('Passport');
-	window.print();
-}
-function getPassportPicture(sex) {
-	if (sex.toUpperCase() === 'MALE') {
-		return passportMale;
-	} else {
-		return passportFemale;
+		changeTitle('Passport');
+		window.print();
 	}
-}
-function passportType(country) {
-	const countryArray = [
-		'USA',
-		'UNITED STATES',
-		'UNITED STATES OF AMERICA',
-		'CANADA',
-	];
-
-	return countryArray.includes(country) ? 'PASSPORT' : 'PASAPORTE';
-}
-
-function getPassportColor(country) {
-	const colorMap = {
-		GUATEMALA: '#001d4d',
-		'UNITED STATES': '#0a52c7',
-		USA: '#0a52c7',
-		'UNITED STATES OF AMERICA': '#0a52c7',
-		MEXICO: '#006311',
-		HONDURAS: '#00042e',
-		ECUADOR: '#421c01',
-	};
-	if (!colorMap[country]) {
-		return '#0a52c7';
+	function getPassportPicture(sex) {
+		if (sex.toUpperCase() === 'MALE') {
+			return passportMale;
+		} else {
+			return passportFemale;
+		}
 	}
-	return colorMap[country];
-}
+	function passportType(country) {
+		const countryArray = [
+			'USA',
+			'UNITED STATES',
+			'UNITED STATES OF AMERICA',
+			'CANADA',
+		];
 
-function createExpirationDate(dob) {
-	const dateOfBirth = new Date(dob);
-	const expirationDate = new Date(dateOfBirth);
-	expirationDate.setDate(dateOfBirth.getDate() - 1);
-	expirationDate.setFullYear(new Date().getFullYear() + 2);
-	return expirationDate.toLocaleDateString();
-}
-
-function randomize(params) {
-	const randomNum = Math.floor(Math.random() * params);
-	return randomNum;
-}
-function createIssueDate() {
-	const issueDate = new Date();
-	issueDate.setMonth(randomize(11));
-	issueDate.setDate(randomize(28));
-	issueDate.setFullYear(issueDate.getFullYear() - 3);
-	return issueDate.toLocaleDateString();
-}
-function renderLOD() {
-	getNamesArr(firstName.value, lastName.value);
-	if (validate('.lod', document.querySelectorAll('.lod').length) === false) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
+		return countryArray.includes(country) ? 'PASSPORT' : 'PASAPORTE';
 	}
-	pageBodyEl.innerHTML = `<style>
+
+	function getPassportColor(country) {
+		const colorMap = {
+			GUATEMALA: '#001d4d',
+			'UNITED STATES': '#0a52c7',
+			USA: '#0a52c7',
+			'UNITED STATES OF AMERICA': '#0a52c7',
+			MEXICO: '#006311',
+			HONDURAS: '#00042e',
+			ECUADOR: '#421c01',
+		};
+		if (!colorMap[country]) {
+			return '#0a52c7';
+		}
+		return colorMap[country];
+	}
+
+	function createExpirationDate(dob) {
+		const dateOfBirth = new Date(dob);
+		const expirationDate = new Date(dateOfBirth);
+		expirationDate.setDate(dateOfBirth.getDate() - 1);
+		expirationDate.setFullYear(new Date().getFullYear() + 2);
+		return expirationDate.toLocaleDateString();
+	}
+
+	function randomize(params) {
+		const randomNum = Math.floor(Math.random() * params);
+		return randomNum;
+	}
+	function createIssueDate() {
+		const issueDate = new Date();
+		issueDate.setMonth(randomize(11));
+		issueDate.setDate(randomize(28));
+		issueDate.setFullYear(issueDate.getFullYear() - 3);
+		return issueDate.toLocaleDateString();
+	}
+	function renderLOD() {
+		getNamesArr(firstName.value, lastName.value);
+		if (validate('.lod', document.querySelectorAll('.lod').length) === false) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
+		pageBodyEl.innerHTML = `<style>
 	.lod-el{
 		padding: 3rem;
 	}
@@ -1528,20 +1535,20 @@ function renderLOD() {
    <br/>
    <h4>Nombre del apoderado: ${firstName.value} ${lastName.value}</h4></div>`;
 
-	changeTitle('LOD');
-	window.print();
-}
-function renderBc() {
-	getNamesArr(firstName.value, lastName.value);
-	validate('.bc', document.querySelectorAll('.bc').length);
-	if (!validate('.bc', document.querySelectorAll('.bc').length)) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
+		changeTitle('LOD');
+		window.print();
 	}
-	const today = new Date();
-	const yesterday = new Date(today.setDate(today.getDate() - 1));
-	pageBodyEl.innerHTML = `
+	function renderBc() {
+		getNamesArr(firstName.value, lastName.value);
+		validate('.bc', document.querySelectorAll('.bc').length);
+		if (!validate('.bc', document.querySelectorAll('.bc').length)) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
+		const today = new Date();
+		const yesterday = new Date(today.setDate(today.getDate() - 1));
+		pageBodyEl.innerHTML = `
 	<style>
 	element.style {
 	}
@@ -1602,30 +1609,30 @@ function renderBc() {
 		Madre</strong><h3>${
 			motherName.value
 		}</h3><hr><strong>Datos del Padre</strong><h3>${
-		fatherName.value
-	}</h3><hr></div><div class="inscrito"></div><h4></h4></div>!`;
-	document.title = `${a_number.value}_Child_BC`;
-	window.print();
-}
-
-function renderPoa() {
-	getNamesArr(firstName.value, lastName.value);
-	const poaNodes = document.querySelectorAll('.poa');
-	let poaData = [];
-	poaNodes.forEach((item) => {
-		if (item.value === '') {
-			errorColorHandling(item);
-		} else {
-			poaData.push(item.value);
-			colorHandler(item);
-		}
-	});
-	if (poaData.length < 8) {
-		return alert(
-			`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
-		);
+			fatherName.value
+		}</h3><hr></div><div class="inscrito"></div><h4></h4></div>!`;
+		document.title = `${a_number.value}_Child_BC`;
+		window.print();
 	}
-	pageBodyEl.innerHTML = `<style>
+
+	function renderPoa() {
+		getNamesArr(firstName.value, lastName.value);
+		const poaNodes = document.querySelectorAll('.poa');
+		let poaData = [];
+		poaNodes.forEach((item) => {
+			if (item.value === '') {
+				errorColorHandling(item);
+			} else {
+				poaData.push(item.value);
+				colorHandler(item);
+			}
+		});
+		if (poaData.length < 8) {
+			return alert(
+				`There is some missing data.  The fields you are missing for this document will be highlighted in red.  Tryin' to help you, fam.  \n love, \n David`
+			);
+		}
+		pageBodyEl.innerHTML = `<style>
 	body{
 		margin-top:20px;
 	
@@ -1848,11 +1855,11 @@ function renderPoa() {
 	  </div>
 	</div>
 	</div>`;
-	changeTitle('Proof_Address');
-	window.print();
-}
+		changeTitle('Proof_Address');
+		window.print();
+	}
 
-const passportMale = `<svg height="100px" width="100px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	const passportMale = `<svg height="100px" width="100px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 viewBox="0 0 512 512"  xml:space="preserve">
 <style type="text/css">
 .st0{fill:#000000;}
@@ -1890,7 +1897,7 @@ viewBox="0 0 512 512"  xml:space="preserve">
 </g>
 </svg>`;
 
-const passportFemale = `<svg
+	const passportFemale = `<svg
 height="100px"
 width="100px"
 version="1.1"
@@ -1930,415 +1937,425 @@ c7.801,2.894,17.742,5.173,28.611,8.346c0.616,0.182,1.245,0.378,1.86,0.559C367.82
 	/>
 </g>
 </svg>`;
-const timeOffBtn = document.getElementById('time-off');
+	const timeOffBtn = document.getElementById('time-off');
 
-function getAge(dateString) {
-	var today = new Date();
-	var birthDate = new Date(dateString);
-	var age = today.getFullYear() - birthDate.getFullYear();
-	var m = today.getMonth() - birthDate.getMonth();
-	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-		age--;
-	}
-	return age;
-}
-function getKidInitials(kid) {
-	const namesArr = kid.split(' ');
-	let initials = [];
-	namesArr.forEach((name) => {
-		initials.push(name.charAt(0));
-	});
-	return initials.join('.');
-}
-function getLastFour(anumber) {
-	return `${anumber[5]}-${anumber[6]}${anumber[7]}${anumber[8]}`;
-}
-const emailDavid = document.getElementById('email-david');
-const resignBtn = document.getElementById('resign-from-ds');
-const todayBtns = document.querySelectorAll('.today');
-const submissionNoticeBtn = document.getElementById('24-hour');
-const requestReviewBtn = document.getElementById('request-review');
-
-submissionNoticeBtn.addEventListener('click', () => {
-	if (!catSelected || !releaseSelected) {
-		return alert(
-			'you have to select a category for the case AND a release type for this case'
-		);
-	}
-	if (!validate('.notice', document.querySelectorAll('.notice').length)) {
-		return alert('you are missing the highlighted fields');
-	}
-	window.open(
-		`mailto: ${
-			clinician.value
-		}?subject=Case Submission Notice&cc=<gbnccasemanagersupervisors@deployedservices.com>;${
-			leadEmail.value
-		}; <gbncleadclinicians@deployedservices.com>;<miranda.lopez@deployedservices.com>;<gbnclifeservicesteam@deployedservices.com>;${
-			buddy.value
-		};<gbncyouthservicemanager@deployedservices.com>;<gbnccaseaide@deployedservices.com>&body=Greetings, %0D Please be advised, the case for ${getKidInitials(
-			childName.value
-		)} A#${getLastFour(
-			a_number.value
-		)} will be submitted within the next 24-48 hours.  Let me know if you have any questions.`
-	);
-});
-requestReviewBtn.addEventListener('click', () => {
-	if (!catSelected || !releaseSelected) {
-		return alert(
-			'you need to select a category  AND a release type for this case'
-		);
-	}
-	if (!validate('.submit', document.querySelectorAll('.submit').length)) {
-		return alert('you are missing the highlighted fields');
-	}
-	window.open(
-		`mailto:${
-			leadEmail.value
-		}?subject=Internal Review For Case ${getKidInitials(
-			childName.value
-		)} ${getLastFour(
-			a_number.value
-		)}&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;<Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
-			buddy.value
-		}>&body=Greetings, %0D I hope this email finds you well, please be advised that a release request for child (${getKidInitials(
-			childName.value
-		)} ${getLastFour(
-			a_number.value
-		)}) has been updated in the UC Portal. This is a ${
-			emailData[catSelected].category
-		} case. Care Provider is recommending ${
-			releaseCriteria[releaseSelected].nonAbbreviated
-		} to child's ${relationship.value} who resides in ${city.value}, ${
-			stateEl.value
-		}. %0D ${checkFieldGuidance()}  %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE %0D ORR Standard Password Applies`
-	);
-});
-timeOffBtn.addEventListener('click', () => {
-	if (!validate('.time-off', document.querySelectorAll('.time-off').length)) {
-		return alert('you are missing the fields highlighted in red');
-	}
-	window.open(
-		`mailto:${leadEmail.value}; ?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
-	);
-});
-resignBtn.addEventListener('click', () => {
-	window.open(
-		`mailto:''?subject=RESIGNATION EFFECTIVE IMMEDIATELY&body=Greetings, %0D This email is to inform you of my imminent and overdue departure from my assignment as a Case Manager.  While my time here has been laborious, spiritually toxic, unrewarding and unfulfilling, it has also been inconsequential, absurd, futile, and soul-sucking.  My financial woes tell me that I need the bread, however I do not consider this continued torture to be necessary in any way, save for amusement of the simulation overlords. I would like to thank no one, and while the friendships and professional relationships I formed during my time here were dissonant, non-productive and somewhat abusive, they will thankfully be coming to and end as I exit the premises at 9mph in my final form of protest. Kindly, send my regards to Douglas the American Hebrew Academy Marmota, who sadly, does not care if I live or die, nor does he know of my existence.  He also may be a she.  I have no idea. The only thing I will miss about this place is the joy I felt from once watching Douglas fall out of trees as he foraged in preparation for the long winter. As the crimson leaves have ceremoniously fallen from the erect Red Maples, so too have my hopes of living a meaningful existence while working in this hell fallen. Please forward this mesage to the President of the United States of America, and King Charles III.  Use my phone.  Lord knows I was not allowed to.`
-	);
-});
-
-emailDavid.addEventListener('click', () => {
-	window.open(
-		'mailto: davidjortizmusic@gmail.com?subject=WTF! Sersiously, David??!&body=Listen David!!!  I have been putting up with your nonsense for too long already...'
-	);
-});
-
-submitCaseBtn.addEventListener('click', () => {
-	if (!catSelected || !releaseSelected) {
-		return alert(
-			'you need to select a category  AND a release type for this case'
-		);
-	}
-	if (!validate('.submit', document.querySelectorAll('.submit').length)) {
-		return alert('you are missing the highlighted fields');
-	}
-	window.open(
-		`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for ${
-			releaseCriteria[releaseSelected].abbreviated
-		} ${emailData[catSelected].abbreviated} ${getKidInitials(
-			childName.value
-		)} A#XXX-XX${getLastFour(
-			a_number.value
-		)}, Greensboro ICF&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;  <${
-			leadEmail.value
-		}>; Miranda Lopez <Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
-			clinician.value
-		}>; <${
-			buddy.value
-		}>&body=Greetings, %0D Please be advised that a release request for ${getKidInitials(
-			childName.value
-		)} ${getLastFour(
-			a_number.value
-		)} has been updated in the UC Portal. This is a ${
-			emailData[catSelected].category
-		} case. Care Provider is recommending ${
-			releaseCriteria[releaseSelected].nonAbbreviated
-		} to child's ${relationship.value} who resides in ${city.value}, ${
-			stateEl.value
-		}. %0D ${checkFieldGuidance()} %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
-	);
-});
-
-const releaseBtns = document.querySelectorAll('[name=release]');
-
-releaseBtns.forEach((btn) => {
-	btn.addEventListener('click', (e) => {
-		releaseSelected = e.target.getAttribute('data-release');
-		console.log(releaseSelected);
-	});
-});
-
-const rrPrompts = document.getElementById('release-request-prompts');
-
-const cat1Inputs = document.getElementById('cat-1-inputs');
-const nonExpeditedInputs = document.getElementById('non-expedited-inputs');
-
-catRadioBtns.forEach((btn, idx) => {
-	btn.addEventListener('click', (e) => {
-		catSelected = e.target.getAttribute('data-category');
-		const form = document.getElementById('fg-11-form');
-		// console.log(catSelected);
-		// rrPrompts.innerHTML = '';
-		// if (releaseRequest[catSelected]) {
-		// 	rrPrompts.innerHTML = releaseRequest[catSelected].html;
-		// } else {
-		// 	rrPrompts.innerHTML = releaseRequest[CAT1].html;
-		// }
-		if (catSelected === 'CAT2A' || catSelected === 'CAT2B') {
-			form.classList.remove('hidden');
-		} else {
-			fieldGuidance11.checked = false;
-			form.classList.add('hidden');
+	function getAge(dateString) {
+		var today = new Date();
+		var birthDate = new Date(dateString);
+		var age = today.getFullYear() - birthDate.getFullYear();
+		var m = today.getMonth() - birthDate.getMonth();
+		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+			age--;
 		}
+		return age;
+	}
+	function getKidInitials(kid) {
+		const namesArr = kid.split(' ');
+		let initials = [];
+		namesArr.forEach((name) => {
+			initials.push(name.charAt(0));
+		});
+		return initials.join('.');
+	}
+	function getLastFour(anumber) {
+		return `${anumber[5]}-${anumber[6]}${anumber[7]}${anumber[8]}`;
+	}
+	const emailDavid = document.getElementById('email-david');
+	const resignBtn = document.getElementById('resign-from-ds');
+	const todayBtns = document.querySelectorAll('.today');
+	const submissionNoticeBtn = document.getElementById('24-hour');
+	const requestReviewBtn = document.getElementById('request-review');
+
+	submissionNoticeBtn.addEventListener('click', () => {
+		if (!catSelected || !releaseSelected) {
+			return alert(
+				'you have to select a category for the case AND a release type for this case'
+			);
+		}
+		if (!validate('.notice', document.querySelectorAll('.notice').length)) {
+			return alert('you are missing the highlighted fields');
+		}
+		window.open(
+			`mailto: ${
+				clinician.value
+			}?subject=Case Submission Notice&cc=<gbnccasemanagersupervisors@deployedservices.com>;${
+				leadEmail.value
+			}; <gbncleadclinicians@deployedservices.com>;<miranda.lopez@deployedservices.com>;<gbnclifeservicesteam@deployedservices.com>;${
+				buddy.value
+			};<gbncyouthservicemanager@deployedservices.com>;<gbnccaseaide@deployedservices.com>&body=Greetings, %0D Please be advised, the case for ${getKidInitials(
+				childName.value
+			)} A#${getLastFour(
+				a_number.value
+			)} will be submitted within the next 24-48 hours.  Let me know if you have any questions.`
+		);
+	});
+	requestReviewBtn.addEventListener('click', () => {
+		if (!catSelected || !releaseSelected) {
+			return alert(
+				'you need to select a category  AND a release type for this case'
+			);
+		}
+		if (!validate('.submit', document.querySelectorAll('.submit').length)) {
+			return alert('you are missing the highlighted fields');
+		}
+		window.open(
+			`mailto:${
+				leadEmail.value
+			}?subject=Internal Review For Case ${getKidInitials(
+				childName.value
+			)} ${getLastFour(
+				a_number.value
+			)}&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;<Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
+				buddy.value
+			}>&body=Greetings, %0D I hope this email finds you well, please be advised that a release request for child (${getKidInitials(
+				childName.value
+			)} ${getLastFour(
+				a_number.value
+			)}) has been updated in the UC Portal. This is a ${
+				emailData[catSelected].category
+			} case. Care Provider is recommending ${
+				releaseCriteria[releaseSelected].nonAbbreviated
+			} to child's ${relationship.value} who resides in ${city.value}, ${
+				stateEl.value
+			}. %0D ${checkFieldGuidance()}  %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE %0D ORR Standard Password Applies`
+		);
+	});
+	timeOffBtn.addEventListener('click', () => {
+		if (!validate('.time-off', document.querySelectorAll('.time-off').length)) {
+			return alert('you are missing the fields highlighted in red');
+		}
+		window.open(
+			`mailto:${leadEmail.value}; ?subject=Time OFF- ${caseManager.value}&cc=GBNC Case Manager Supervisors; GBNC Scheduling Team&body=I kindly request to be off on *********DATE********* due to a personal matter. Please be advised that the request has been submitted through UKG. If you have any questions, please do not hesitate to reach out. `
+		);
+	});
+	resignBtn.addEventListener('click', () => {
+		window.open(
+			`mailto:''?subject=RESIGNATION EFFECTIVE IMMEDIATELY&body=Greetings, %0D This email is to inform you of my imminent and overdue departure from my assignment as a Case Manager.  While my time here has been laborious, spiritually toxic, unrewarding and unfulfilling, it has also been inconsequential, absurd, futile, and soul-sucking.  My financial woes tell me that I need the bread, however I do not consider this continued torture to be necessary in any way, save for amusement of the simulation overlords. I would like to thank no one, and while the friendships and professional relationships I formed during my time here were dissonant, non-productive and somewhat abusive, they will thankfully be coming to and end as I exit the premises at 9mph in my final form of protest. Kindly, send my regards to Douglas the American Hebrew Academy Marmota, who sadly, does not care if I live or die, nor does he know of my existence.  He also may be a she.  I have no idea. The only thing I will miss about this place is the joy I felt from once watching Douglas fall out of trees as he foraged in preparation for the long winter. As the crimson leaves have ceremoniously fallen from the erect Red Maples, so too have my hopes of living a meaningful existence while working in this hell fallen. Please forward this mesage to the President of the United States of America, and King Charles III.  Use my phone.  Lord knows I was not allowed to.`
+		);
+	});
+
+	emailDavid.addEventListener('click', () => {
+		window.open(
+			'mailto: davidjortizmusic@gmail.com?subject=WTF! Sersiously, David??!&body=Listen David!!!  I have been putting up with your nonsense for too long already...'
+		);
+	});
+
+	submitCaseBtn.addEventListener('click', () => {
+		if (!catSelected || !releaseSelected) {
+			return alert(
+				'you need to select a category  AND a release type for this case'
+			);
+		}
+		if (!validate('.submit', document.querySelectorAll('.submit').length)) {
+			return alert('you are missing the highlighted fields');
+		}
+		window.open(
+			`mailto:ProjectManagementCaseManagement <ProjectManagementCaseManagement@deployedservices.com>?subject=for ${
+				releaseCriteria[releaseSelected].abbreviated
+			} ${emailData[catSelected].abbreviated} ${getKidInitials(
+				childName.value
+			)} A#XXX-XX${getLastFour(
+				a_number.value
+			)}, Greensboro ICF&cc=GBNC Case Manager Supervisors <gbnccasemanagersupervisors@deployedservices.com>;  <${
+				leadEmail.value
+			}>; Miranda Lopez <Miranda.Lopez@deployedservices.com>; GBNC Lead Clinicians <gbncLeadClinicians@deployedservices.com>; Robert Ruiz <robert.ruiz@deployedservices.com>; Behavioral Health Project Management <BehavioralHealthProjectManagement@deployedservices.com>; Luis Sandoval <Luis.Sandoval@deployedservices.com>; Cierra Sawyer <Cierra.Sawyer@deployedservices.com>; Alcides Hernandez <Alcides.Hernandez@deployedservices.com>; Aide Hernandez-Montiel <Aide.Hernandez@deployedservices.com>; <${
+				clinician.value
+			}>; <${
+				buddy.value
+			}>&body=Greetings, %0D Please be advised that a release request for ${getKidInitials(
+				childName.value
+			)} ${getLastFour(
+				a_number.value
+			)} has been updated in the UC Portal. This is a ${
+				emailData[catSelected].category
+			} case. Care Provider is recommending ${
+				releaseCriteria[releaseSelected].nonAbbreviated
+			} to child's ${relationship.value} who resides in ${city.value}, ${
+				stateEl.value
+			}. %0D ${checkFieldGuidance()} %0D All assessments were completed, and no concerns were identified. %0D %0D Please note that UC is medically cleared for discharge as of DATEDATEDATE`
+		);
+	});
+
+	const releaseBtns = document.querySelectorAll('[name=release]');
+
+	releaseBtns.forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			releaseSelected = e.target.getAttribute('data-release');
+			console.log(releaseSelected);
+		});
+	});
+
+	const rrPrompts = document.getElementById('release-request-prompts');
+
+	const cat1Inputs = document.getElementById('cat-1-inputs');
+	const nonExpeditedInputs = document.getElementById('non-expedited-inputs');
+
+	catRadioBtns.forEach((btn, idx) => {
+		btn.addEventListener('click', (e) => {
+			catSelected = e.target.getAttribute('data-category');
+			const form = document.getElementById('fg-11-form');
+			// console.log(catSelected);
+			// rrPrompts.innerHTML = '';
+			// if (releaseRequest[catSelected]) {
+			// 	rrPrompts.innerHTML = releaseRequest[catSelected].html;
+			// } else {
+			// 	rrPrompts.innerHTML = releaseRequest[CAT1].html;
+			// }
+			if (catSelected === 'CAT2A' || catSelected === 'CAT2B') {
+				form.classList.remove('hidden');
+			} else {
+				fieldGuidance11.checked = false;
+				form.classList.add('hidden');
+			}
+			if (catSelected === 'CAT1EXP') {
+				console.log('cat 1 inputs');
+				cat1Inputs.classList.remove('hidden');
+				nonExpeditedInputs.classList.add('hidden');
+			} else {
+				console.log('non expedited inputs');
+				nonExpeditedInputs.classList.remove('hidden');
+				cat1Inputs.classList.add('hidden');
+			}
+		});
+	});
+
+	function fingerprintRequirements(cat) {
+		if (catSelected == 'CAT1EXP' || catSelected == 'CAT2A') {
+			return 'Fingerprints not required ';
+		}
+		return 'Clear';
+	}
+	function parsePossessive(str) {
+		return str.charAt(str.length - 1).toUpperCase() === 'S' ||
+			str.charAt(str.length - 1).toUpperCase() === 'Z'
+			? str + `'`
+			: str + `'s`;
+	}
+
+	function toggleHeShe(str) {
+		return str.toUpperCase() === 'MALE' ? 'he' : 'she';
+	}
+
+	function toggleHisHer(str) {
+		return str.toUpperCase() === 'MALE' ? 'his' : 'her';
+	}
+
+	function toggleHimHer(str) {
+		return str.toUpperCase() === 'MALE' ? 'him' : 'her';
+	}
+
+	function toggleHisHers(str) {
+		return str.toUpperCase() === 'MALE' ? 'his' : 'hers';
+	}
+
+	generateRRBtn.addEventListener('click', () => {
+		console.log(poaReceived, poaReceived.value, rrPoaReceived);
+		//EXPEDITED RELEASE REQUEST OUTPUT
+		const expeditedSponsorName = document.querySelectorAll(
+			'.expedited-sponsor-name'
+		);
+		const expeditedSponsorAge = document.getElementById(
+			'expedited-sponsor-age'
+		);
+		const expeditedCategory = document.getElementById('expedited-category');
+		const expeditedChildName = document.querySelectorAll(
+			'.expedited-child-name'
+		);
+		const expeditedANumber = document.getElementById('expedited-a-number');
+		const expeditedChildGender = document.getElementById(
+			'expedited-child-gender'
+		);
+		const expeditedChildAge = document.getElementById('expedited-child-age');
+		const expeditedSponsorCity = document.getElementById(
+			'expedited-sponsor-city'
+		);
+		const expeditedSponsorState = document.getElementById(
+			'expedited-sponsor-state'
+		);
+		const expeditedUCCompleted = document.getElementById(
+			'expedited-uc-completed'
+		);
+		const expeditedFRAReceived = document.getElementById(
+			'expedited-fra-received'
+		);
+		const expeditedBGC = document.getElementById('expedited-bgc');
+		const expeditedSponsorCompleted = document.getElementById(
+			'expedited-sponsor-assessment-completed'
+		);
+		const expeditedVerbalAttestation = document.getElementById(
+			'expedited-verbal-attestation'
+		);
+		const expeditedMedicalClearance = document.getElementById(
+			'expedited-medical-clearance'
+		);
+		const expeditedRelationship = document.querySelectorAll(
+			'.expedited-relationship'
+		);
+		const expeditedMotherName = document.getElementById(
+			'expedited-mother-name'
+		);
+		const expeditedFatherName = document.getElementById(
+			'expedited-father-name'
+		);
+		const expeditedListOfBcs = document.getElementById('expedited-list-of-bcs');
+
+		if (!catSelected || !releaseSelected) {
+			return alert('select a cat and a release type');
+		}
+
 		if (catSelected === 'CAT1EXP') {
-			console.log('cat 1 inputs');
-			cat1Inputs.classList.remove('hidden');
-			nonExpeditedInputs.classList.add('hidden');
+			if (
+				!validate(
+					'.rr-expedited',
+					document.querySelectorAll('.rr-expedited').length
+				)
+			) {
+				return alert('the missing data is highlighted in RED');
+			}
+			//EXPEDITED RELEASE REQUEST BODY
+			expeditedReleaseBody.classList.remove('hidden');
+			console.log('clicked');
+			expeditedSponsorName.forEach((node) => {
+				console.log(node);
+				node.textContent = firstName.value + ' ' + lastName.value;
+			});
+			expeditedSponsorAge.textContent = getAge(dob.value);
+			expeditedCategory.textContent = emailData[catSelected].abbreviated;
+			expeditedChildName.forEach((node) => {
+				console.log(node);
+				node.textContent = childName.value;
+			});
+			expeditedANumber.textContent = a_number.value;
+			expeditedChildGender.textContent = childGender.value;
+			expeditedChildAge.textContent = getAge(childDob.value);
+			expeditedSponsorCity.textContent = city.value;
+			expeditedSponsorState.textContent = stateEl.value;
+			expeditedUCCompleted.textContent = ucExpedited.value;
+			expeditedFRAReceived.textContent = expeditedFRA.value;
+			expeditedBGC.textContent = 'today';
+			expeditedSponsorCompleted.textContent = expeditedSponsor.value;
+			expeditedVerbalAttestation.textContent = expeditedVerbal.value;
+			expeditedMedicalClearance.textContent = expeditedMedical.value;
+			expeditedRelationship.forEach((node) => {
+				node.textContent = relationship.value;
+			});
+			expeditedMotherName.textContent = motherName.value;
+			expeditedFatherName.textContent = fatherName.value;
+			expeditedListOfBcs.textContent = expeditedBirthCertificates.value;
+			nonExpeditedReleaseBody.classList.add('hidden');
+
+			return;
 		} else {
-			console.log('non expedited inputs');
-			nonExpeditedInputs.classList.remove('hidden');
-			cat1Inputs.classList.add('hidden');
+			if (!validate('.rr', document.querySelectorAll('.rr').length)) {
+				return alert('the missing fields are highlighted in red');
+			}
+			//FILL RELEASE REQUEST
+			rrFieldGuidance11.forEach((node) => {
+				console.log(node);
+				rrFG11Check(node);
+			});
+			rrACGName.forEach((node) => {
+				node.textContent = ACGName.value;
+			});
+			rrListOfBcs.forEach((node) => {
+				node.textContent = listOfBcs.value;
+			});
+			rrChildHisHer.forEach((node) => {
+				node.textContent = toggleHisHer(childGender.value);
+			});
+			rrZip.forEach((node) => {
+				node.textContent = zipCode.value;
+			});
+			rrAddress.forEach((node) => {
+				node.textContent = address.value;
+			});
+			rrToday.forEach((node) => {
+				node.textContent = new Date().toLocaleDateString();
+			});
+			sponsorTitle.forEach((node) => {
+				node.textContent =
+					gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.';
+			});
+			rrSponsorName.forEach((node) => {
+				node.textContent = firstName.value + ' ' + lastName.value;
+			});
+			rrSponsorAge.forEach((node) => {
+				node.textContent = getAge(dob.value);
+			});
+			rrRelationship.forEach((node) => {
+				node.textContent = relationship.value;
+			});
+			rrChildName.forEach((node) => {
+				node.textContent = childName.value;
+			});
+			rrAnumber.forEach((node) => {
+				node.textContent = a_number.value;
+			});
+			rrChildAge.forEach((node) => {
+				node.textContent = getAge(childDob.value);
+			});
+			rrChildGender.forEach((node) => {
+				node.textContent = childGender.value;
+			});
+			rrCity.forEach((node) => {
+				node.textContent = city.value;
+			});
+			rrState.forEach((node) => {
+				node.textContent = stateEl.value;
+			});
+			rrPossessive.forEach((node) => {
+				node.textContent = parsePossessive(lastName.value);
+			});
+			rrHeShe.forEach((node) => {
+				node.textContent = toggleHeShe(gender.value);
+			});
+			sponsorHisHer.forEach((node) => {
+				node.textContent = toggleHisHer(gender.value);
+			});
+			rrPoaReceived.forEach((node) => {
+				node.textContent = poaReceived.value;
+			});
+			rrSponsorBackground.forEach((node) => {
+				node.textContent = sponsorBackground.value;
+			});
+			rrDateAdmitted.forEach((node) => {
+				node.textContent = dateAdmitted.value;
+			});
+			rrCaregiver.forEach((node) => {
+				node.textContent = cooCaregiver.value;
+			});
+			rrSponsorLastName.forEach((node) => {
+				node.textContent = lastName.value;
+			});
+			rrCategory.textContent = emailData[catSelected].category;
+			rrCooNarrative.textContent = cooNarrative.value;
+			rrPassportExp.textContent = createExpirationDate(dob.value);
+			rrHomeSize.textContent = homeSize.value;
+			rrPoaIssue.textContent = fullBillDate;
+			rrLodReceived.textContent = lodReceived.value;
+			rrLOPCReceived.textContent = lopcComplete.value;
+			rrHandbookRead.textContent = handbookRead.value;
+			rrOffenders.textContent = offenders.value;
+			rrCLENumber.textContent = CLEnumber.value;
+			rrCLENarrative.textContent = cleNarrative.value;
+			rrChildDob.textContent = childDob.value;
+			rrMotherName.textContent = motherName.value;
+			rrFatherName.textContent = fatherName.value;
+			rrCatUnabbreviated.textContent =
+				releaseCriteria[releaseSelected].nonAbbreviated;
+			rrReleaseReason.textContent = releaseReason.value;
+			rrMedicalClearance.textContent = medicalClearance.value;
+			rrFPConditions.textContent =
+				results.value.toUpperCase() === 'CLEAR'
+					? 'Results not required for this sponsor prior to submission.'
+					: 'Results required prior to submission.';
+			let USDollar = new Intl.NumberFormat('en-US', {
+				style: 'currency',
+				currency: 'USD',
+			});
+			rrIncome.textContent = USDollar.format(sponsorIncome.value);
+			nonExpeditedReleaseBody.classList.remove('hidden');
+			expeditedReleaseBody.classList.add('hidden');
 		}
 	});
-});
-
-function fingerprintRequirements(cat) {
-	if (catSelected == 'CAT1EXP' || catSelected == 'CAT2A') {
-		return 'Fingerprints not required ';
-	}
-	return 'Clear';
 }
-function parsePossessive(str) {
-	return str.charAt(str.length - 1).toUpperCase() === 'S' ||
-		str.charAt(str.length - 1).toUpperCase() === 'Z'
-		? str + `'`
-		: str + `'s`;
-}
-
-function toggleHeShe(str) {
-	return str.toUpperCase() === 'MALE' ? 'he' : 'she';
-}
-
-function toggleHisHer(str) {
-	return str.toUpperCase() === 'MALE' ? 'his' : 'her';
-}
-
-function toggleHimHer(str) {
-	return str.toUpperCase() === 'MALE' ? 'him' : 'her';
-}
-
-function toggleHisHers(str) {
-	return str.toUpperCase() === 'MALE' ? 'his' : 'hers';
-}
-
-generateRRBtn.addEventListener('click', () => {
-	console.log(poaReceived, poaReceived.value, rrPoaReceived);
-	//EXPEDITED RELEASE REQUEST OUTPUT
-	const expeditedSponsorName = document.querySelectorAll(
-		'.expedited-sponsor-name'
-	);
-	const expeditedSponsorAge = document.getElementById('expedited-sponsor-age');
-	const expeditedCategory = document.getElementById('expedited-category');
-	const expeditedChildName = document.querySelectorAll('.expedited-child-name');
-	const expeditedANumber = document.getElementById('expedited-a-number');
-	const expeditedChildGender = document.getElementById(
-		'expedited-child-gender'
-	);
-	const expeditedChildAge = document.getElementById('expedited-child-age');
-	const expeditedSponsorCity = document.getElementById(
-		'expedited-sponsor-city'
-	);
-	const expeditedSponsorState = document.getElementById(
-		'expedited-sponsor-state'
-	);
-	const expeditedUCCompleted = document.getElementById(
-		'expedited-uc-completed'
-	);
-	const expeditedFRAReceived = document.getElementById(
-		'expedited-fra-received'
-	);
-	const expeditedBGC = document.getElementById('expedited-bgc');
-	const expeditedSponsorCompleted = document.getElementById(
-		'expedited-sponsor-assessment-completed'
-	);
-	const expeditedVerbalAttestation = document.getElementById(
-		'expedited-verbal-attestation'
-	);
-	const expeditedMedicalClearance = document.getElementById(
-		'expedited-medical-clearance'
-	);
-	const expeditedRelationship = document.querySelectorAll(
-		'.expedited-relationship'
-	);
-	const expeditedMotherName = document.getElementById('expedited-mother-name');
-	const expeditedFatherName = document.getElementById('expedited-father-name');
-	const expeditedListOfBcs = document.getElementById('expedited-list-of-bcs');
-
-	if (!catSelected || !releaseSelected) {
-		return alert('select a cat and a release type');
-	}
-
-	if (catSelected === 'CAT1EXP') {
-		if (
-			!validate(
-				'.rr-expedited',
-				document.querySelectorAll('.rr-expedited').length
-			)
-		) {
-			return alert('the missing data is highlighted in RED');
-		}
-		//EXPEDITED RELEASE REQUEST BODY
-		expeditedReleaseBody.classList.remove('hidden');
-		console.log('clicked');
-		expeditedSponsorName.forEach((node) => {
-			console.log(node);
-			node.textContent = firstName.value + ' ' + lastName.value;
-		});
-		expeditedSponsorAge.textContent = getAge(dob.value);
-		expeditedCategory.textContent = emailData[catSelected].abbreviated;
-		expeditedChildName.forEach((node) => {
-			console.log(node);
-			node.textContent = childName.value;
-		});
-		expeditedANumber.textContent = a_number.value;
-		expeditedChildGender.textContent = childGender.value;
-		expeditedChildAge.textContent = getAge(childDob.value);
-		expeditedSponsorCity.textContent = city.value;
-		expeditedSponsorState.textContent = stateEl.value;
-		expeditedUCCompleted.textContent = ucExpedited.value;
-		expeditedFRAReceived.textContent = expeditedFRA.value;
-		expeditedBGC.textContent = 'today';
-		expeditedSponsorCompleted.textContent = expeditedSponsor.value;
-		expeditedVerbalAttestation.textContent = expeditedVerbal.value;
-		expeditedMedicalClearance.textContent = expeditedMedical.value;
-		expeditedRelationship.forEach((node) => {
-			node.textContent = relationship.value;
-		});
-		expeditedMotherName.textContent = motherName.value;
-		expeditedFatherName.textContent = fatherName.value;
-		expeditedListOfBcs.textContent = expeditedBirthCertificates.value;
-		nonExpeditedReleaseBody.classList.add('hidden');
-
-		return;
-	} else {
-		if (!validate('.rr', document.querySelectorAll('.rr').length)) {
-			return alert('the missing fields are highlighted in red');
-		}
-		//FILL RELEASE REQUEST
-		rrFieldGuidance11.forEach((node) => {
-			console.log(node);
-			rrFG11Check(node);
-		});
-		rrACGName.forEach((node) => {
-			node.textContent = ACGName.value;
-		});
-		rrListOfBcs.forEach((node) => {
-			node.textContent = listOfBcs.value;
-		});
-		rrChildHisHer.forEach((node) => {
-			node.textContent = toggleHisHer(childGender.value);
-		});
-		rrZip.forEach((node) => {
-			node.textContent = zipCode.value;
-		});
-		rrAddress.forEach((node) => {
-			node.textContent = address.value;
-		});
-		rrToday.forEach((node) => {
-			node.textContent = new Date().toLocaleDateString();
-		});
-		sponsorTitle.forEach((node) => {
-			node.textContent = gender.value.toUpperCase() === 'MALE' ? 'Mr.' : 'Ms.';
-		});
-		rrSponsorName.forEach((node) => {
-			node.textContent = firstName.value + ' ' + lastName.value;
-		});
-		rrSponsorAge.forEach((node) => {
-			node.textContent = getAge(dob.value);
-		});
-		rrRelationship.forEach((node) => {
-			node.textContent = relationship.value;
-		});
-		rrChildName.forEach((node) => {
-			node.textContent = childName.value;
-		});
-		rrAnumber.forEach((node) => {
-			node.textContent = a_number.value;
-		});
-		rrChildAge.forEach((node) => {
-			node.textContent = getAge(childDob.value);
-		});
-		rrChildGender.forEach((node) => {
-			node.textContent = childGender.value;
-		});
-		rrCity.forEach((node) => {
-			node.textContent = city.value;
-		});
-		rrState.forEach((node) => {
-			node.textContent = stateEl.value;
-		});
-		rrPossessive.forEach((node) => {
-			node.textContent = parsePossessive(lastName.value);
-		});
-		rrHeShe.forEach((node) => {
-			node.textContent = toggleHeShe(gender.value);
-		});
-		sponsorHisHer.forEach((node) => {
-			node.textContent = toggleHisHer(gender.value);
-		});
-		rrPoaReceived.forEach((node) => {
-			node.textContent = poaReceived.value;
-		});
-		rrSponsorBackground.forEach((node) => {
-			node.textContent = sponsorBackground.value;
-		});
-		rrDateAdmitted.forEach((node) => {
-			node.textContent = dateAdmitted.value;
-		});
-		rrCaregiver.forEach((node) => {
-			node.textContent = cooCaregiver.value;
-		});
-		rrSponsorLastName.forEach((node) => {
-			node.textContent = lastName.value;
-		});
-		rrCategory.textContent = emailData[catSelected].category;
-		rrCooNarrative.textContent = cooNarrative.value;
-		rrPassportExp.textContent = createExpirationDate(dob.value);
-		rrHomeSize.textContent = homeSize.value;
-		rrPoaIssue.textContent = fullBillDate;
-		rrLodReceived.textContent = lodReceived.value;
-		rrLOPCReceived.textContent = lopcComplete.value;
-		rrHandbookRead.textContent = handbookRead.value;
-		rrOffenders.textContent = offenders.value;
-		rrCLENumber.textContent = CLEnumber.value;
-		rrCLENarrative.textContent = cleNarrative.value;
-		rrChildDob.textContent = childDob.value;
-		rrMotherName.textContent = motherName.value;
-		rrFatherName.textContent = fatherName.value;
-		rrCatUnabbreviated.textContent =
-			releaseCriteria[releaseSelected].nonAbbreviated;
-		rrReleaseReason.textContent = releaseReason.value;
-		rrMedicalClearance.textContent = medicalClearance.value;
-		rrFPConditions.textContent =
-			results.value.toUpperCase() === 'CLEAR'
-				? 'Results not required for this sponsor prior to submission.'
-				: 'Results required prior to submission.';
-		let USDollar = new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: 'USD',
-		});
-		rrIncome.textContent = USDollar.format(sponsorIncome.value);
-		nonExpeditedReleaseBody.classList.remove('hidden');
-		expeditedReleaseBody.classList.add('hidden');
-	}
-});
