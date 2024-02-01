@@ -339,9 +339,9 @@ function saveChildToLocalStorage() {
 		sponsorZip: zipCode.value,
 		childDob: childDob.value,
 		countryOfOrigin: coo.value,
-		sponsorPhone: phoneNum.value,
-		BGCResults: results.value,
+		BGCResults: results.value || 'CLEAR',
 		childGender: childGender.value,
+		phone: phoneNum.value,
 		//Release Request
 		dateAdmitted: dateAdmitted.value,
 		poaReceived: poaReceived.value,
@@ -368,6 +368,8 @@ function saveChildToLocalStorage() {
 		expeditedMedical: expeditedMedical.value,
 		expeditedBirthCertificates: expeditedBirthCertificates.value,
 	};
+
+	console.log(childObj, "LOOK AT THIS AND TELL ME WHY IT'S NOT WORKING!!!");
 
 	if (childrenArray.length === 0) {
 		childrenArray.push(childObj);
@@ -432,6 +434,7 @@ function createCaseButtons(arr) {
 }
 
 function populateChild(child) {
+	console.log(child, 'THIS IS ON LOAD');
 	a_number.value = child.a_number || null;
 	firstName.value = child.sponsorFirstName || null;
 	lastName.value = child.sponsorLastName || null;
@@ -447,7 +450,7 @@ function populateChild(child) {
 	zipCode.value = child.sponsorZip || null;
 	childDob.value = child.childDob || null;
 	coo.value = child.countryOfOrigin || null;
-	phoneNum.value = child.sponsorPhone || null;
+	phoneNum.value = child.phone || null;
 	sponsorBackground.value = child.BGCResults || null;
 	childGender.value = child.childGender || null;
 	dateAdmitted.value = child.dateAdmitted || null;
@@ -466,6 +469,7 @@ function populateChild(child) {
 	listOfBcs.value = child.listOfBcs || null;
 	cleNarrative.value = child.CLENarrative || null;
 	releaseReason.value = child.releaseReason || null;
+	results.value = child.BGCResults || 'CLEAR';
 	//Expedited Release Request
 	ucExpedited.value = child.ucExpedited || null;
 	expeditedFRA.value = child.expeditedFRA || null;
@@ -556,6 +560,7 @@ function showDummyData() {
 	stateEl.value = 'TX';
 	relationship.value = 'Father';
 	caseManager.value = 'Mock Manager';
+	phoneNum.value = '2102657992';
 	zipCode.value = 78217;
 	city.value = 'San Antonio';
 	address.value = '9514 Hillsboro Dr';
@@ -566,11 +571,12 @@ function showDummyData() {
 	fatherName.value = 'Senior Ortiz';
 	gender.value = 'Male';
 	childGender.value = 'Male';
-	leadEmail.value = 'anna.gonzales@deployedservices.com';
-	buddy.value = 'irene.reyes@deployedservices.com';
-	clinician.value = 'martin.gonzalez@deployedservices.com';
+	leadEmail.value = 'lead.email@deployedservices.com';
+	buddy.value = 'buddy.email@deployedservices.com';
+	clinician.value = 'clinician.email@deployedservices.com';
 	ucExpedited.value = '';
 	expeditedFRA.value = '';
+	results.value = 'CLEAR';
 	expeditedSponsor.value = '';
 	expeditedVerbal.value = '';
 	expeditedMedical.value = '';
