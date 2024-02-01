@@ -341,7 +341,7 @@ function saveChildToLocalStorage() {
 		city: city.value,
 		countryOfOrigin: coo.value,
 		cooCaregiver: cooCaregiver.value,
-		cooNarrative: rrCooNarrative.value,
+		cooNarrative: cooNarrative.value,
 		countryOfOrigin: coo.value,
 		dateAdmitted: dateAdmitted.value,
 		dob: dob.value,
@@ -365,7 +365,7 @@ function saveChildToLocalStorage() {
 		poaReceived: poaReceived.value,
 		relationship: relationship.value,
 		release: releaseSelected,
-		releaseReason: rrReleaseReason.value,
+		releaseReason: releaseReason.value,
 		results: results.value || 'CLEAR',
 		sponsorAddress: address.value,
 		sponsorBackgroundCheck: sponsorBackground.value,
@@ -382,7 +382,7 @@ function saveChildToLocalStorage() {
 		ucExpedited: ucExpedited.value,
 		zipCode: zipCode.value,
 	};
-
+	console.log(releaseReason.value);
 	console.log(childObj, "LOOK AT THIS AND TELL ME WHY IT'S NOT WORKING!!!");
 
 	if (childrenArray.length === 0) {
@@ -405,6 +405,7 @@ function saveChildToLocalStorage() {
 			childrenArray.splice(i, 1, childObj);
 			const view = JSON.parse(localStorage.getItem('children'));
 			console.log(view, 'BRUSH THIS IS SAVED!!');
+			localStorage.setItem('children', JSON.stringify(childrenArray));
 			showSaveToast();
 			subMenu5El.innerHTML = '';
 			createCaseButtons(childrenArray);
@@ -488,7 +489,7 @@ function populateChild(child) {
 	CLEnumber.value = child.CLEnumber || null;
 	cooNarrative.value = child.cooNarrative || null;
 	listOfBcs.value = child.listOfBcs || null;
-	rrCLENarrative.value = child.CLENarrative || null;
+	cleNarrative.value = child.CLENarrative || null;
 	releaseReason.value = child.releaseReason || null;
 	results.value = child.BGCResults || 'CLEAR';
 	//Expedited Release Request
