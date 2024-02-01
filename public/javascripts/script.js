@@ -305,8 +305,9 @@ function saveEmailsToLocalStorage() {
 const oldFormat = JSON.parse(localStorage.getItem('child'));
 let savedChildren = JSON.parse(localStorage.getItem('children'));
 let childrenArray;
-
+console.log(oldFormat, 'THIS IS THE OLD FORMAT');
 if (oldFormat) {
+	localStorage.removeItem('child');
 	savedChildren = new Array(oldFormat);
 }
 // Manage child local storage
@@ -367,6 +368,8 @@ function saveChildToLocalStorage() {
 		expeditedVerbal: expeditedVerbal.value,
 		expeditedMedical: expeditedMedical.value,
 		expeditedBirthCertificates: expeditedBirthCertificates.value,
+		category: catSelected,
+		release: releaseSelected,
 	};
 
 	console.log(childObj, "LOOK AT THIS AND TELL ME WHY IT'S NOT WORKING!!!");
