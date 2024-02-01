@@ -2030,7 +2030,7 @@ resignBtn.addEventListener('click', () => {
 
 emailDavid.addEventListener('click', () => {
 	window.open(
-		'mailto: davidjortizmusic@gmail.com?subject=WTF! Sersiously, David??!&body=I have been putting up with your nonsense for too long already...'
+		'mailto: davidjortizmusic@gmail.com?subject=WTF! Sersiously, David??!&body=Listen David!!!  I have been putting up with your nonsense for too long already...'
 	);
 });
 
