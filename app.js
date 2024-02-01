@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 const fraRouter = require('./routes/fra');
 const ariRouter = require('./routes/ari');
+const medicalRouter = require('./routes/medicalAuth');
+const placementRouter = require('./routes/placementAuth');
 var usersRouter = require('./routes/users');
 
 //AUTH 0 STUFF
@@ -66,6 +68,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/fra', fraRouter);
 app.use('/ari', ariRouter);
+app.use('/medical-auth', medicalRouter);
+app.use('/placement-auth', placementRouter);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // catch 404 and forward to error handler

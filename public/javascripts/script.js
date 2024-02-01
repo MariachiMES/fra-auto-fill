@@ -732,12 +732,12 @@ function checkFieldGuidance() {
 	}
 }
 async function getResource(url, data, datapoints) {
-	showLoading();
 	if (validate(`.${url}`, datapoints) === false) {
 		return alert(
 			`you are missing some data. the missing data will be highlighted in red`
 		);
 	}
+	showLoading();
 
 	console.log(data, 'this is the fra data');
 	const response = await fetch(
