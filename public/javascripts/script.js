@@ -325,51 +325,62 @@ if (savedChildren) {
 function saveChildToLocalStorage() {
 	const childObj = {
 		//Initial Demographics
-		a_number: a_number.value,
-		sponsorFirstName: firstName.value,
-		sponsorLastName: lastName.value,
-		sponsorDob: dob.value,
-		sponsorGender: gender.value,
-		sponsorRelationship: relationship.value,
-		childName: childName.value,
-		childMother: motherName.value,
-		childFather: fatherName.value,
-		sponsorAddress: address.value,
-		sponsorCity: city.value,
-		sponosrState: stateEl.value,
-		sponsorZip: zipCode.value,
-		childDob: childDob.value,
-		countryOfOrigin: coo.value,
-		BGCResults: results.value || 'CLEAR',
-		childGender: childGender.value,
-		phone: phoneNum.value,
-		//Release Request
-		dateAdmitted: dateAdmitted.value,
-		poaReceived: poaReceived.value,
-		lodReceived: lodReceived.value,
-		lopcComplete: lopcComplete.value,
-		handbookRead: handbookRead.value,
-		sponsorBackgroundCheck: sponsorBackground.value,
-		medicallyClear: medicalClearance.value,
 		ACGName: ACGName.value,
-		cooCaregiver: cooCaregiver.value,
-		homeSize: homeSize.value,
-		sponsorIncome: sponsorIncome.value,
-		NumberOfOffenders: offenders.value,
+		BGCResults: results.value || 'CLEAR',
 		CLEnumber: CLEnumber.value,
-		cooNarrative: cooNarrative.value,
-		listOfBcs: listOfBcs.value,
 		CLENarrative: cleNarrative.value,
-		releaseReason: releaseReason.value,
-		//Expedited Release Request
-		ucExpedited: ucExpedited.value,
+		NumberOfOffenders: offenders.value,
+		a_number: a_number.value,
+		address: address.value,
+		catSelected: catSelected,
+		childDob: childDob.value,
+		childFather: fatherName.value,
+		childGender: childGender.value,
+		childMother: motherName.value,
+		childName: childName.value,
+		city: city.value,
+		countryOfOrigin: coo.value,
+		cooCaregiver: cooCaregiver.value,
+		cooNarrative: rrCooNarrative.value,
+		countryOfOrigin: coo.value,
+		dateAdmitted: dateAdmitted.value,
+		dob: dob.value,
+		expeditedBirthCertificates: expeditedBirthCertificates.value,
 		expeditedFRA: expeditedFRA.value,
+		expeditedMedical: expeditedMedical.value,
 		expeditedSponsor: expeditedSponsor.value,
 		expeditedVerbal: expeditedVerbal.value,
-		expeditedMedical: expeditedMedical.value,
-		expeditedBirthCertificates: expeditedBirthCertificates.value,
-		category: catSelected,
+		fatherName: fatherName.value,
+		firstName: firstName.value,
+		gender: gender.value,
+		handbookRead: handbookRead.value,
+		homeSize: homeSize.value,
+		listOfBcs: listOfBcs.value,
+		lodReceived: lodReceived.value,
+		lopcComplete: lopcComplete.value,
+		lastName: lastName.value,
+		medicalClearance: medicalClearance.value,
+		motherName: motherName.value,
+		phoneNum: phoneNum.value,
+		poaReceived: poaReceived.value,
+		relationship: relationship.value,
 		release: releaseSelected,
+		releaseReason: rrReleaseReason.value,
+		results: results.value || 'CLEAR',
+		sponsorAddress: address.value,
+		sponsorBackgroundCheck: sponsorBackground.value,
+		sponsorCity: city.value,
+		sponsorDob: dob.value,
+		sponsorFirstName: firstName.value,
+		sponsorGender: gender.value,
+		sponsorIncome: sponsorIncome.value,
+		sponsorLastName: lastName.value,
+		sponsorRelationship: relationship.value,
+		sponsorState: stateEl.value,
+		sponsorZip: zipCode.value,
+		stateEl: stateEl.value,
+		ucExpedited: ucExpedited.value,
+		zipCode: zipCode.value,
 	};
 
 	console.log(childObj, "LOOK AT THIS AND TELL ME WHY IT'S NOT WORKING!!!");
@@ -377,6 +388,8 @@ function saveChildToLocalStorage() {
 	if (childrenArray.length === 0) {
 		childrenArray.push(childObj);
 		localStorage.setItem('children', JSON.stringify(childrenArray));
+		const view = JSON.parse(localStorage.getItem('children'));
+		console.log(view, 'BRUSH THIS IS SAVED!!');
 		showSaveToast();
 		subMenu5El.innerHTML = '';
 		createCaseButtons(childrenArray);
@@ -390,6 +403,8 @@ function saveChildToLocalStorage() {
 				i
 			);
 			childrenArray.splice(i, 1, childObj);
+			const view = JSON.parse(localStorage.getItem('children'));
+			console.log(view, 'BRUSH THIS IS SAVED!!');
 			showSaveToast();
 			subMenu5El.innerHTML = '';
 			createCaseButtons(childrenArray);
@@ -401,7 +416,10 @@ function saveChildToLocalStorage() {
 		) {
 			console.log('adding to the end of the array');
 			childrenArray.push(childObj);
+
 			localStorage.setItem('children', JSON.stringify(childrenArray));
+			const view = JSON.parse(localStorage.getItem('children'));
+			console.log(view, 'BRUSH THIS IS SAVED!!');
 			showSaveToast();
 			subMenu5El.innerHTML = '';
 			createCaseButtons(childrenArray);
@@ -470,7 +488,7 @@ function populateChild(child) {
 	CLEnumber.value = child.CLEnumber || null;
 	cooNarrative.value = child.cooNarrative || null;
 	listOfBcs.value = child.listOfBcs || null;
-	cleNarrative.value = child.CLENarrative || null;
+	rrCLENarrative.value = child.CLENarrative || null;
 	releaseReason.value = child.releaseReason || null;
 	results.value = child.BGCResults || 'CLEAR';
 	//Expedited Release Request
