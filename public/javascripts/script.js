@@ -644,8 +644,7 @@ function clearForm(bool) {
 		return;
 	} else {
 		firstName.value = '';
-		lastName.value = '';,
-		dob.value = '';
+		lastName.value = '';
 		a_number.value = '';
 		stateEl.value = '';
 		relationship.value = '';
