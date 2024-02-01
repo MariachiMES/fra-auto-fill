@@ -46,6 +46,8 @@ const saveEmailsBtn = document.getElementById('save-emails');
 const generateRRBtn = document.getElementById('generate-release-request');
 const saveChildBtn = document.getElementById('save-child-btn');
 const deleteChildBtn = document.getElementById('delete-child-btn');
+const medicalAuthBtn = document.getElementById('medical-auth-btn');
+const placementAuthBtn = document.getElementById('placement-auth-btn');
 
 //CASE MANAGER INFO INPUTS
 const caseManager = document.getElementById('case-manager');
@@ -723,6 +725,32 @@ fingerprintConfirmBtn.addEventListener('click', renderFPConfirmation);
 idCreator.addEventListener('click', renderForeignId);
 bcBtn.addEventListener('click', renderBc);
 lodBtn.addEventListener('click', renderLOD);
+medicalAuthBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	getResource(
+		'medical-auth',
+		{
+			aNumber: a_number.value,
+			childsName: childName.value,
+			coo: coo.value,
+			childsDob: childDob.value,
+		},
+		4
+	);
+});
+placementAuthBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	getResource(
+		'placement-auth',
+		{
+			aNumber: a_number.value,
+			childsName: childName.value,
+			coo: coo.value,
+			childsDob: childDob.value,
+		},
+		4
+	);
+});
 fraBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	getResource(
