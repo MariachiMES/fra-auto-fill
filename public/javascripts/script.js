@@ -530,9 +530,7 @@ function getGoogleEarth() {
 	const cityParam = city.value.split(' ').join('+');
 	const googleEarthUrl = `https://earth.google.com/web/search/${addressParam},+${cityParam},+${stateEl.value}+${zipCode.value}/`;
 	window.open(googleEarthUrl, '_blank');
-}
-phoneNum.value = '0000000000';
-results.value = 'Clear';
+
 
 window.addEventListener('load', () => {
 	instructionsBtn.click();
@@ -646,7 +644,7 @@ function clearForm(bool) {
 		return;
 	} else {
 		firstName.value = '';
-		lastName.value = '';
+		lastName.value = '';,
 		dob.value = '';
 		a_number.value = '';
 		stateEl.value = '';
