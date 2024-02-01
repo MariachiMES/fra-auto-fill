@@ -531,8 +531,6 @@ function getGoogleEarth() {
 	const googleEarthUrl = `https://earth.google.com/web/search/${addressParam},+${cityParam},+${stateEl.value}+${zipCode.value}/`;
 	window.open(googleEarthUrl, '_blank');
 }
-phoneNum.value = '0000000000';
-results.value = 'Clear';
 
 window.addEventListener('load', () => {
 	instructionsBtn.click();
