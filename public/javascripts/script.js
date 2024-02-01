@@ -1591,7 +1591,7 @@ function renderBc() {
 	<h3>Registro Civil de las Personas</h3>
 	<h3>Certificado de Nacimiento</h3></div><div class="bc-info">
 	<h3>
-		El infrascrito Rigistrador Civil de las Personas del Rigistro Nacional de
+		El infrascrito Registrador Civil de las Personas del Registro Nacional de
 		las Personas del Municipio de
 		${coo.value}, Departamento de
 		${coo.value},
