@@ -141,6 +141,54 @@ const expeditedBirthCertificates = document.getElementById(
 const menuEl = document.getElementById('menu');
 const subMenu5El = document.getElementById('submenu5');
 const deletedToast = document.getElementById('deleted-toast');
+
+const luckyBtn = document.getElementById('lucky-btn');
+const randomLove = [
+	`Hey vero!!  hope you're having a great day! \n love, david 😘`,
+	`Hi vero! just thinking of you! i hope today doesn't suck, and if it does... i hope it gets better. \n love, david 😘 `,
+	`Hey vero!  how's the case work going?  slow?  hopefuly this utility will help you out just a little. text me! \n love, david 😘`,
+	`Hello, veronica! here's a baby elephant for you to brighten your day! 🐘 \n love, david 😘`,
+	`Vero. Thank you for your trust, and vulnerability.  i know it's probably hard to do that sometimes, but you really made my last days in greensboro so magical.  have a good day! \n love, david 😘`,
+	`Salutations, Vero!!  How many of these do you think there are?!! lol  Hope you haven't gotten bored yet!.  smile!  you're on my mind!  \n love, david 😘`,
+	`Como estas, vero! espero que estes bien!  te quiero mucho, sabes?  \n love, david 😘`,
+	`Vero, you know you really impacted me in a positive way.  i'm sure one day i'll get the chance to tell you all about it.  for now, just enjoy this case manager utility.  lol  \n love, david 😘`,
+	`Hola mi vero! take a deep breath.  smile.  close your eyes.  imagine we are watching the first ten minutes of The Vow, lol. \n love, david 😘`,
+	`Buenos dias, vero!!  hope this isn't too much!  i hope you're enjoying all my little messages. \n love, david 😘`,
+	`Vero! More than anything, i want you to know that in this moment, while there are a lot of people that may make you feel alone, you're always in my thoughts, ok?  \n love, david 😘`,
+	`VERONICA!!!  sorry, i didn't mean to yell, i'm just happy you found this button and you're reading these messages, lol.  have a good day!  \n love, david 😘`,
+	`VERONICAAAAA!!! i miss you.  that's all.  \n love, david 😘`,
+	`Vero, send me a text to tell me you miss me, hurry!  please, lol  \n love, david 😘`,
+	`Oye, Vero.  I know you don't always feel it, but i want you to know that you are so special, and forget anyone who disagrees. ok?  ok.  \n love, david 😘`,
+	`Vero, i was wondering: is there anyone that ever calls you 'Gabriela'?  i was just curious.  it's a pretty name, i hope you like it as much as i do.  \n love, david 😘`,
+	`Vero, i'm missing that beautiful mind of yours right now. i miss your curiosity and you're insightfulness.  if you're not too busy, send me a little insight and wisdom for me to ponder, please.  \n love, david 😘`,
+	`V E R O N I C A ! i'm probably asleep right now, honestly.  but.  that's ok.  you can text me anyway if you want to.  or  maybe you just want to keep clicking this thing to see what else i have to say to you, lol \n love, david 😘`,
+	`hi vero.  do you think i should have made this website purple?  i'm kind of a bad web designer.  maybe purple would have been nice.  what do you think?  \n love, david 😘`,
+	`hola vero!! maybe this is the first message you get today, but.... if it's not... don't get busted having too much fun here ok?  i promise i'm much  more fun to talk to over text than using this alert thing. \n love, david 😘`,
+	`Greeting, veronica!  what's your idea for your next tattoo?  i have NO clue what i am going to get, lol. you should get one when you come to san antonio!  or i could paint your arm like a temprary thing!  i don't do henna or anything like that altough i always wante to.  maybe i could learn... hmmm.   \n love, david 😘`,
+	`veronica i just wanted to let you know that i think you're doing a fantastic job!!!  \n love, david 😘`,
+	`hey vero, let me give you some free advice: you are beautiful and worthy and amazing and wonderful and brilliant and gorgeous and witty and funny and best of all you are you.  keep doing that.  that's not really advice, but i think it's still something i wanted to tell you.  \n love, david 😘`,
+	`Vero!!!  🎶tengo algo que decirte y no se como empezar a explicar... lo que te quiero contar....  no encuentro las palabras, ni verso rimo, o prosa, quiza con una rosa 🌹, te lo pueda decir.... 🎶 \n i'm singing to you!! hope you liked it. \n love, david 😘`,
+	`Smile, vero!  if you can. and if you can't you text me and i'll send you a virtual hug.  and right now too.  double virtual hug! 🫂🫂 \n love, david 😘`,
+	`vero thank you for being you!  i miss you! \n love, david 😘`,
+];
+function getRandomThing(arr) {
+	randomIdx = Math.floor(Math.random() * arr.length);
+	return [arr[randomIdx], randomIdx];
+}
+
+caseManager.addEventListener('input', () => {
+	if (this.value.toUpperCase() === 'VERO BARRA-BRAVO') {
+		luckyBtn.classList.remove('hidden');
+	} else {
+		luckyBtn.classList.add('hidden');
+	}
+});
+
+luckyBtn.addEventListener('click', () => {
+	const [message, idx] = getRandomThing(randomLove);
+	alert(`${idx}/${randomLove.length} \n ${message}`);
+});
+
 // const expeditedDummyBtn = document.getElementById('expedited-dummy-btn');
 // expeditedDummyBtn.addEventListener('click', () => {
 // 	ucExpedited.value = '';
