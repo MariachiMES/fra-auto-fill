@@ -177,7 +177,8 @@ function getRandomThing(arr) {
 }
 
 caseManager.addEventListener('input', () => {
-	if (this.value.toUpperCase() === 'VERO BARRA-BRAVO') {
+	console.log(this.value);
+	if (caseManager.value.toUpperCase() === 'VERO BARRA-BRAVO') {
 		luckyBtn.classList.remove('hidden');
 	} else {
 		luckyBtn.classList.add('hidden');
