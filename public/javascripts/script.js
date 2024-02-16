@@ -177,7 +177,6 @@ function getRandomThing(arr) {
 }
 
 caseManager.addEventListener('input', () => {
-	console.log(this.value);
 	if (caseManager.value.toUpperCase() === 'VERO BARRA-BRAVO') {
 		luckyBtn.classList.remove('hidden');
 	} else {
@@ -429,7 +428,6 @@ function saveChildToLocalStorage() {
 		sponsorRelationship: relationship.value,
 		sponsorState: stateEl.value,
 		sponsorZip: zipCode.value,
-		stateEl: stateEl.value,
 		ucExpedited: ucExpedited.value,
 		zipCode: zipCode.value,
 	};
@@ -519,11 +517,11 @@ function populateChild(child) {
 	fatherName.value = child.childFather || null;
 	address.value = child.sponsorAddress || null;
 	city.value = child.sponsorCity || null;
-	stateEl.value = child.sponosrState || null;
+	stateEl.value = child.sponsorState || null;
 	zipCode.value = child.sponsorZip || null;
 	childDob.value = child.childDob || null;
 	coo.value = child.countryOfOrigin || null;
-	phoneNum.value = child.phone || null;
+	phoneNum.value = child.phoneNum || null;
 	sponsorBackground.value = child.BGCResults || null;
 	childGender.value = child.childGender || null;
 	dateAdmitted.value = child.dateAdmitted || null;
